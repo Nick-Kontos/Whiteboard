@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>WhiteBoard</name>
+	<name>whiteboard</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -26,7 +26,7 @@
 		<link>
 			<name>.link_to_grails_plugins</name>
 			<type>2</type>
-			<location>C:/Users/nickk_000/Documents/workspace-ggts-3.6.1.RELEASE/WhiteBoard/target/work/plugins</location>
+			<location>C:/Users/Jacob Lee/Documents/workspace-ggts-3.6.1.RELEASE/whiteboard/target/work/plugins</location>
 		</link>
 	</linkedResources>
 </projectDescription>

@@ -13,7 +13,7 @@ class BootStrap {
 		def TARole = new Role(authority: 'ROLE_TA').save(flush: true)
 
 		def siteManager = new User(username: 'admin', password: 'password')
-		siteManager.save(flush: true)
+		siteManager.save(failOnError: true)
 
 		UserRole.create(siteManager, siteManagerRole, true)
 

@@ -9,7 +9,7 @@ class Course {
 	
     static constraints = {
 		teacher(blank: false)
-		
+		name(blank: false)
 		
 		//must add student and teacher restraints to ensure proper roles
     }

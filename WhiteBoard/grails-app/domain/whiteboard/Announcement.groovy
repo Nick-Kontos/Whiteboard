@@ -11,5 +11,6 @@ class Announcement {
 	static belongsTo = [course:Course]
 
     static constraints = {
+		
     }
 }

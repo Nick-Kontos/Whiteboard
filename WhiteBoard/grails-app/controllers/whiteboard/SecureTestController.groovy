@@ -8,4 +8,5 @@ class SecureTestController {
     def index() {
 		render 'Success'
 	}
+	// This has to be changed. 
 }

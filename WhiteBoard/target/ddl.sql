@@ -68,6 +68,7 @@
         version bigint not null,
         course_id bigint not null,
         doc_link varchar(255) not null,
+        due_date timestamp not null,
         text varchar(255) not null,
         title varchar(255) not null,
         totalpoints integer not null,

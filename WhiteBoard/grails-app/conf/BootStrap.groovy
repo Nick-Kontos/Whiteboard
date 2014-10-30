@@ -12,7 +12,7 @@ class BootStrap {
 		def teacherRole = new Role(authority: 'ROLE_TEACHER').save(flush: true)
 		def TARole = new Role(authority: 'ROLE_TA').save(flush: true)
 
-		def siteManager = new User(username: 'admin', password: 'password')
+		def siteManager = new User(username: 'admin', password: 'password', email: '123@email.com', firstname: 'John', lastname: 'Smith')
 		siteManager.save(failOnError: true)
 
 		UserRole.create(siteManager, siteManagerRole, true)

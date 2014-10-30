@@ -2,15 +2,15 @@ package whiteboard
 
 class Course {
 	
-	String name
+	String coursename
+	String coursecode
 	String description
 	User teacher
 	static hasMany = [TAs:User, students:User]
 	
     static constraints = {
-		teacher(blank: false)
-		name(blank: false)
-		
-		//must add student and teacher restraints to ensure proper roles
+		teacher blank: false
+		coursename blank: false
+		coursecode blank: false		
     }
 }

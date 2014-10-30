@@ -1,6 +1,5 @@
 package whiteboard
 
-
 class Announcement {
 	
 	String title
@@ -10,7 +9,4 @@ class Announcement {
 	Boolean viewable
 	static belongsTo = [course:Course]
 
-    static constraints = {
-		
-    }
 }

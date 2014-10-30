@@ -51,6 +51,7 @@ grails.project.dependency.resolution = {
         // runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0-grails-2.4"
+		runtime 'org.postgresql:postgresql:9.3-1100-jdbc4'
     }
 
     plugins {
@@ -62,6 +63,7 @@ grails.project.dependency.resolution = {
         compile ':cache:1.1.7'
         compile ":asset-pipeline:1.9.6"
 		compile ":spring-security-core:2.0-RC4"
+		compile ":mail:1.0.7"
 		//compile ":twitter-bootstrap:3.1.1.3"
 		//compile ":lesscss-resources:1.3.3"
 

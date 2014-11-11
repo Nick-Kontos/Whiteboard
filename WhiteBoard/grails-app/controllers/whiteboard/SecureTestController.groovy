@@ -6,7 +6,9 @@ class SecureTestController {
 	
 	@Secured(['ROLE_SITEMANAGER'])
     def index() {
-		
+
 	}
+
+
 	// This has to be changed. 
 }

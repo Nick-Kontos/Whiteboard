@@ -70,6 +70,7 @@
         datedue timestamp not null,
         doc_link varchar(255) not null,
         lastsubmission timestamp not null,
+        due_date timestamp not null,
         text varchar(255) not null,
         title varchar(255) not null,
         totalpoints integer not null,

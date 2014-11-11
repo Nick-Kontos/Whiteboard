@@ -1,6 +1,7 @@
 import whiteboard.Role
 import whiteboard.User
 import whiteboard.UserRole
+import whiteboard.Course
 
 class BootStrap {
 
@@ -14,12 +15,27 @@ class BootStrap {
 
 		def siteManager = new User(username: 'admin', password: 'password', email: '123@email.com', firstname: 'John', lastname: 'Smith')
 		siteManager.save(failOnError: true)
+		
+		def student1 = new User(username: 's1', password: '1', email: 's1@email.com', firstname: 'John', lastname: 'Smith')
+		student1.save(failOnError: true)
+		
+		def teacher1 = new User(username: 't1', password: '1', email: 't1@email.com', firstname: 'John', lastname: 'Smith')
+		teacher1.save(failOnError: true)
+		
+		def TA1 = new User(username: 'TA1', password: '1', email: 'ta1@email.com', firstname: 'John', lastname: 'Smith')
+		TA1.save(failOnError: true)
 
 		UserRole.create(siteManager, siteManagerRole, true)
+		UserRole.create(student1, studentRole, true)
+		UserRole.create(teacher1, teacherRole, true)
+		UserRole.create(TA1, TARole, true)
+		UserRole.create(TA1, studentRole, true)
+		
+		def cse308 = new Course(coursename: 'Software Engineering', coursecode: 'CSE308', description: 'BLANK', teacher: teacher1)
+		cse308.addToTAs(TA1)
+		cse308.addToStudents(student1)
+		cse308.save(failOnError: true)
 
-		assert User.count() == 1
-		assert Role.count() == 4
-		assert UserRole.count() == 1
 	}
 	def destroy = {
 	}

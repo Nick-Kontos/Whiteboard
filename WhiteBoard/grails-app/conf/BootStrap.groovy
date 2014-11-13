@@ -36,6 +36,11 @@ class BootStrap {
 		cse308.addToStudents(student1)
 		cse308.save(failOnError: true)
 
+		/*
+		Announcement for each class will be genereated here as a mock data
+		*/
+		//def announcement = new announcement()
+
 	}
 	def destroy = {
 	}

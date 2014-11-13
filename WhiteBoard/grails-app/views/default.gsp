@@ -26,8 +26,21 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">White Board <span
-					class="label label-default">student</span></a>
+				<a class="navbar-brand" href="index.html">White Board 
+					<g:if test="${currentUserRole == 'ROLE_SITEMANAGER'}">
+					<span class="label label-default">SiteManager</span>
+					</g:if>
+					<g:elseif test="${currentUserRole == 'ROLE_TEACHER'}">	
+					<span class="label label-default">Teacher</span>
+					</g:elseif>
+					<g:elseif test="${currentUserRole == 'ROLE_TA'}">	
+					<span class="label label-default">TA</span>
+					</g:elseif>					
+					<g:elseif test="${currentUserRole == 'ROLE_STUDENT'}">	
+					<span class="label label-default">Student</span>
+					</g:elseif>					
+
+					</a>
 
 			</div>
 			<div class="navbar-collapse collapse">

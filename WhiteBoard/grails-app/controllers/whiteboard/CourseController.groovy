@@ -39,6 +39,7 @@ class CourseController {
 		def coursename = params.coursename
 		if(coursename)
 			render('Course view for' + coursename)
+
 		else
 			render('error')
 	}

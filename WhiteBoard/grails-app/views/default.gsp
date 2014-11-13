@@ -11,7 +11,7 @@
 <link
 	href="${request.contextPath}/WhiteBoardFrontEnd/css/whiteboard.css"
 	rel="stylesheet">
-<title>I am a test page</title>
+<title>Whiteboard Home</title>
 <!-- <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css"> -->
 </head>
 
@@ -32,10 +32,15 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left">
-					<li><g:link controller="Announcement" update="sidebar">Announcements</g:link></li>
-					<li><g:link controller="Course" update="sidebar">Courses</g:link></li>
-					<li><g:link controller="Grade" update="sidebar">Grades</g:link></li>
-					<li><g:link controller="Assignment" update="sidebar">Assignments</g:link></li>
+					<li><g:link controller="Announcement">Announcements</g:link></li>
+					<li><g:link controller="Course">Courses</g:link></li>	
+					<g:if test="${currentUserRole == 'ROLE_SITEMANAGER'}">
+						<li><g:link controller="Account">Accounts</g:link></li>
+					</g:if>
+					<g:if test="${currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_TA' || currentUserRole == 'ROLE_STUDENT'}">	
+						<li><g:link controller="Grade">Grades</g:link></li>
+						<li><g:link controller="Assignment">Assignments</g:link></li>
+					</g:if>	
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<form name="submitForm" method="POST"
@@ -51,10 +56,73 @@
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<g:each in="${sidebarlinks}">
-						<li><a href="#"> ${it}
-						</a></li>
-					</g:each>
+					<g:if test="${controllertype == 'Announcement' }">
+						<g:if
+							test="${ currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_SITEMANAGER' || currentUserRole == 'ROLE_TA'}">
+							<li><g:link controller="announcement" action="createLink">Create</g:link></li>
+						</g:if>
+						<g:if
+							test="${ currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_TA' || currentUserRole == 'ROLE_STUDENT'}">
+							<li><g:link controller="announcement" action="allLink">All</g:link></li>
+						</g:if>
+						<li><g:link controller="announcement" action="generalLink">General</g:link></li>
+						<g:if
+							test="${ currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_STUDENT' || currentUserRole == 'ROLE_TA'}">
+							<g:each in="${sidebarlinks}">
+								<li><g:link controller="announcement" action="courseLink"
+										params="[coursename: "${it }"]">
+										${it }
+									</g:link></li>
+							</g:each>
+						</g:if>
+					</g:if>
+					<g:elseif test="${controllertype == 'Assignment' }">
+						<g:if test="${ currentUserRole == 'ROLE_TEACHER'}">
+							<li><g:link controller="assignment" action="createLink">Create</g:link></li>
+						</g:if>
+						<li><g:link controller="assignment" action="allLink">All</g:link></li>
+						<g:if
+							test="${ currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_STUDENT' || currentUserRole == 'ROLE_TA'}">
+							<g:each in="${sidebarlinks}">
+								<li><g:link controller="assignment" action="courseLink"
+										params="[coursename: "${it }"]">
+										${it }
+									</g:link></li>
+							</g:each>
+						</g:if>
+					</g:elseif>
+					<g:elseif test="${controllertype == 'Account' }">
+						<g:if test="${currentUserRole == 'ROLE_SITEMANAGER'}">
+							<li><g:link controller="account" action="createLink">Create</g:link></li>
+							<li><g:link controller="account" action="searchLink">Search</g:link></li>
+						</g:if>
+					</g:elseif>
+					<g:elseif test="${controllertype == 'Course' }">
+						<g:if test="${currentUserRole == 'ROLE_SITEMANAGER' }">
+							<li><g:link controller="course" action="createLink">Create</g:link></li>
+							<li><g:link controller="course" action="searchLink">Search</g:link></li>
+						</g:if>
+						<g:if test="${currentUserRole != 'ROLE_SITEMANAGER' }">
+							<g:each in="${sidebarlinks}">
+								<li><g:link controller="course" action="courseLink"
+										params="[coursename: "${it }"]">
+										${it }
+									</g:link></li>
+							</g:each>
+						</g:if>
+
+					</g:elseif>
+					<g:elseif test="${controllertype == 'Grade' }">
+						<g:if test="${currentUserRole != 'ROLE_SITEMANAGER' }">
+							<li><g:link controller="grade" action="allLink">All</g:link></li>
+							<g:each in="${sidebarlinks}">
+								<li><g:link controller="grade" action="courseLink"
+										params="[coursename: "${it }"]">
+										${it }
+									</g:link></li>
+							</g:each>
+						</g:if>
+					</g:elseif>
 				</ul>
 			</div>
 		</div>

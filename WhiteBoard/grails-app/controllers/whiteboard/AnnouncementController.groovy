@@ -20,7 +20,7 @@ class AnnouncementController {
 		def result
 		if(getAccountType() == 'ROLE_STUDENT'){
 			def c = Course.createCriteria()
-			result = c.get {
+			result = c.list {
 				students{
 					idEq(springSecurityService.currentUser.id)
 				}
@@ -42,6 +42,7 @@ class AnnouncementController {
 		def coursename = params.coursename
 		if(coursename)
 			render(coursename)
+			//return coursename
 		else
 			render('error')
 	}

@@ -141,7 +141,380 @@
 		</div>
 	</div>
 
+					<g:if test="${controllertype == 'Announcement' }">
+						<g:if
+							test="${ currentUserRole == 'ROLE_STUDENT' }">
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        All of the announcments will be displayed here
+							        Everyone gets A
+							      </div>
+							    </div></div>
+							</div>
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        Everyone gets A
+									veryone gets Averyone gets Averyone gets Averyone gets Averyone gets Averyone gets A
+									veryone gets A
+									veryone gets Averyone gets A
+									veryone gets A
+									veryone gets A
+							      </div>
+							    </div></div>
+							</div>
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        Everyone gets A
+							      </div>
+							    </div></div>
+							</div>
+	
 
+						</g:if>
+					<g:elseif test="${currentUserRole == 'ROLE_TEACHER' }">
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        Professor's list of Announcements
+							        
+							      </div>
+							    </div></div>
+							</div>
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        All of the announcments will be displayed here
+							        Everyone gets A
+							      </div>
+							    </div></div>
+							</div>							
+
+					</g:elseif>
+					<g:elseif test="${currentUserRole == 'ROLE_TA' }">
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        TA's list of Announcements
+							        
+							      </div>
+							    </div></div>
+							</div>
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        All of the announcments will be displayed here
+							        Everyone gets A
+							      </div>
+							    </div></div>
+							</div>							
+
+					</g:elseif>											
+					</g:if>
+
+					<g:if test="${controllertype == 'Course' }">
+						<g:if
+							test="${ currentUserRole == 'ROLE_STUDENT' }">
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        All of the course functions will be here
+							        Everyone gets AEveryone gets AEveryone gets AEveryone gets AEveryone gets A
+							        Everyone gets AEveryone gets AEveryone gets AEveryone gets AEveryone gets AEveryone gets A
+							        Everyone gets AEveryone gets AEveryone gets A
+
+							      </div>
+							    </div></div>
+							</div>
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+		
+							      </div>
+							    </div></div>
+							</div>
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        Everyone gets A
+							      </div>
+							    </div></div>
+							</div>
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        Everyone gets A
+							      </div>
+							    </div></div>
+							</div>
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        Everyone gets A
+							      </div>
+							    </div></div>
+							</div>
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        Everyone gets A
+							      </div>
+							    </div></div>
+							</div>
+						</g:if>
+					<g:elseif test="${currentUserRole == 'ROLE_TEACHER' }">
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        Professor's list of courses
+							        
+							      </div>
+							    </div></div>
+							</div>
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        All of the announcments will be displayed here
+							        Everyone gets A
+							      </div>
+							    </div></div>
+							</div>							
+
+					</g:elseif>	
+					<g:elseif test="${currentUserRole == 'ROLE_TA' }">
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        TA's list of courses
+							        
+							      </div>
+							    </div></div>
+							</div>
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        All of the announcments will be displayed here
+							        Everyone gets A
+							      </div>
+							    </div></div>
+							</div>							
+
+					</g:elseif>											
+					</g:if>
+
+					<g:if test="${controllertype == 'Grade' }">
+						<g:if
+							test="${ currentUserRole == 'ROLE_STUDENT' }">
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2">
+
+
+					<table class="table table-hover">
+					  <tr><td>Date</td>
+					  	<td>Name</td>
+					  	<td>Median</td>
+					  	<td>Average</td>
+					  	<td>Grade</td>
+					  	<td>LetterGrade</td>
+					  </tr>
+					  <tr><td>213</td>
+					  <td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					</tr>
+					  <tr><td>213</td>
+					  <td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					</tr>
+					  <tr><td>213</td>
+					  <td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					</tr>
+					  <tr><td>213</td>
+					  <td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					</tr>
+
+					</table>
+							  </div>
+							</div>
+							
+						</g:if>
+					<g:elseif test="${currentUserRole == 'ROLE_TEACHER' }">
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2">
+					<table class="table table-hover">
+					  <tr><td>Date</td>
+					  	<td>Name</td>
+					  	<td>Median</td>
+					  	<td>Average</td>
+					  	<td>Grade</td>
+					  	<td>LetterGrade</td>
+					  </tr>
+					  <tr><td>213</td>
+					  <td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					</tr>
+					  <tr><td>213</td>
+					  <td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					</tr>
+					  <tr><td>213</td>
+					  <td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					</tr>
+					  <tr><td>213</td>
+					  <td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					</tr>
+
+					</table>
+							  </div>
+							</div>
+					</g:elseif>			
+					<g:elseif test="${currentUserRole == 'ROLE_TA' }">
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2">
+					<table class="table table-hover">
+					  <tr><td>Date</td>
+					  	<td>Name</td>
+					  	<td>Median</td>
+					  	<td>Average</td>
+					  	<td>Grade</td>
+					  	<td>LetterGrade</td>
+					  </tr>
+					  <tr><td>213</td>
+					  <td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					</tr>
+					  <tr><td>213</td>
+					  <td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					</tr>
+					  <tr><td>213</td>
+					  <td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					</tr>
+					  <tr><td>213</td>
+					  <td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					<td>213</td>
+					</tr>
+
+					</table>
+							  </div>
+							</div>
+					</g:elseif>									
+					</g:if>					
+				<g:if test="${controllertype == 'Assignment' }">
+						<g:if
+							test="${ currentUserRole == 'ROLE_STUDENT' }">
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        Assignment page
+							      </div>
+							    </div></div>
+							</div>
+						</g:if>
+					<g:elseif test="${currentUserRole == 'ROLE_TEACHER' }">
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        Professor's list of Assignments
+							        
+							      </div>
+							    </div></div>
+							</div>
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        All of the announcments will be displayed here
+							        Everyone gets A
+							      </div>
+							    </div></div>
+							</div>							
+
+					</g:elseif>	
+					<g:elseif test="${currentUserRole == 'ROLE_TA' }">
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							       TA's list of Assignments
+							        
+							      </div>
+							    </div></div>
+							</div>
+							<div class="row">
+							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
+							      <div class="panel-heading">CSE 312 8/20/14</div>
+							      <div class="panel-body">
+							        All of the announcments will be displayed here
+							        Everyone gets A
+							      </div>
+							    </div></div>
+							</div>							
+
+					</g:elseif>											
+
+					</g:if>
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

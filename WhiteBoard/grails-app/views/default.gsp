@@ -26,34 +26,32 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">White Board 
-					<g:if test="${currentUserRole == 'ROLE_SITEMANAGER'}">
-					<span class="label label-default">SiteManager</span>
-					</g:if>
-					<g:elseif test="${currentUserRole == 'ROLE_TEACHER'}">	
-					<span class="label label-default">Teacher</span>
+				<a class="navbar-brand" href="index.html">White Board <g:if
+						test="${currentUserRole == 'ROLE_SITEMANAGER'}">
+						<span class="label label-default">SiteManager</span>
+					</g:if> <g:elseif test="${currentUserRole == 'ROLE_TEACHER'}">
+						<span class="label label-default">Teacher</span>
+					</g:elseif> <g:elseif test="${currentUserRole == 'ROLE_TA'}">
+						<span class="label label-default">TA</span>
+					</g:elseif> <g:elseif test="${currentUserRole == 'ROLE_STUDENT'}">
+						<span class="label label-default">Student</span>
 					</g:elseif>
-					<g:elseif test="${currentUserRole == 'ROLE_TA'}">	
-					<span class="label label-default">TA</span>
-					</g:elseif>					
-					<g:elseif test="${currentUserRole == 'ROLE_STUDENT'}">	
-					<span class="label label-default">Student</span>
-					</g:elseif>					
 
-					</a>
+				</a>
 
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left">
 					<li><g:link controller="Announcement">Announcements</g:link></li>
-					<li><g:link controller="Course">Courses</g:link></li>	
+					<li><g:link controller="Course">Courses</g:link></li>
 					<g:if test="${currentUserRole == 'ROLE_SITEMANAGER'}">
 						<li><g:link controller="Account">Accounts</g:link></li>
 					</g:if>
-					<g:if test="${currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_TA' || currentUserRole == 'ROLE_STUDENT'}">	
+					<g:if
+						test="${currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_TA' || currentUserRole == 'ROLE_STUDENT'}">
 						<li><g:link controller="Grade">Grades</g:link></li>
 						<li><g:link controller="Assignment">Assignments</g:link></li>
-					</g:if>	
+					</g:if>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<form name="submitForm" method="POST"
@@ -72,67 +70,68 @@
 					<g:if test="${controllertype == 'Announcement' }">
 						<g:if
 							test="${ currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_SITEMANAGER' || currentUserRole == 'ROLE_TA'}">
-							<li><g:link controller="announcement" action="createLink">Create</g:link></li>
+							<li><g:remoteLink update="MainContent" controller="announcement"
+									action="createLink">Create</g:remoteLink></li>
 						</g:if>
 						<g:if
 							test="${ currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_TA' || currentUserRole == 'ROLE_STUDENT'}">
-							<li><g:link controller="announcement" action="allLink">All</g:link></li>
+							<li><g:remoteLink update="MainContent" controller="announcement" action="allLink">All</g:remoteLink></li>
 						</g:if>
 						<li><g:link controller="announcement" action="generalLink">General</g:link></li>
 						<g:if
 							test="${ currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_STUDENT' || currentUserRole == 'ROLE_TA'}">
 							<g:each in="${sidebarlinks}">
-								<li><g:link controller="announcement" action="courseLink"
+								<li><g:remoteLink update="MainContent" controller="announcement" action="courseLink"
 										params="[coursename: "${it }"]">
 										${it }
-									</g:link></li>
+									</g:remoteLink></li>
 							</g:each>
 						</g:if>
 					</g:if>
 					<g:elseif test="${controllertype == 'Assignment' }">
 						<g:if test="${ currentUserRole == 'ROLE_TEACHER'}">
-							<li><g:link controller="assignment" action="createLink">Create</g:link></li>
+							<li><g:remoteLink update="MainContent" controller="assignment" action="createLink">Create</g:remoteLink></li>
 						</g:if>
-						<li><g:link controller="assignment" action="allLink">All</g:link></li>
+						<li><g:remoteLink update="MainContent" controller="assignment" action="allLink">All</g:remoteLink></li>
 						<g:if
 							test="${ currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_STUDENT' || currentUserRole == 'ROLE_TA'}">
 							<g:each in="${sidebarlinks}">
-								<li><g:link controller="assignment" action="courseLink"
+								<li><g:remoteLink update="MainContent" controller="assignment" action="courseLink"
 										params="[coursename: "${it }"]">
 										${it }
-									</g:link></li>
+									</g:remoteLink></li>
 							</g:each>
 						</g:if>
 					</g:elseif>
 					<g:elseif test="${controllertype == 'Account' }">
 						<g:if test="${currentUserRole == 'ROLE_SITEMANAGER'}">
-							<li><g:link controller="account" action="createLink">Create</g:link></li>
-							<li><g:link controller="account" action="searchLink">Search</g:link></li>
+							<li><g:remoteLink update="MainContent" controller="account" action="createLink">Create</g:remoteLink></li>
+							<li><g:remoteLink update="MainContent" controller="account" action="searchLink">Search</g:remoteLink></li>
 						</g:if>
 					</g:elseif>
 					<g:elseif test="${controllertype == 'Course' }">
 						<g:if test="${currentUserRole == 'ROLE_SITEMANAGER' }">
-							<li><g:link controller="course" action="createLink">Create</g:link></li>
-							<li><g:link controller="course" action="searchLink">Search</g:link></li>
+							<li><g:remoteLink update="MainContent" controller="course" action="createLink">Create</g:remoteLink></li>
+							<li><g:remoteLink update="MainContent" controller="course" action="searchLink">Search</g:remoteLink></li>
 						</g:if>
 						<g:if test="${currentUserRole != 'ROLE_SITEMANAGER' }">
 							<g:each in="${sidebarlinks}">
-								<li><g:link controller="course" action="courseLink"
+								<li><g:remoteLink update="MainContent" controller="course" action="courseLink"
 										params="[coursename: "${it }"]">
 										${it }
-									</g:link></li>
+									</g:remoteLink></li>
 							</g:each>
 						</g:if>
 
 					</g:elseif>
 					<g:elseif test="${controllertype == 'Grade' }">
 						<g:if test="${currentUserRole != 'ROLE_SITEMANAGER' }">
-							<li><g:link controller="grade" action="allLink">All</g:link></li>
+							<li><g:remoteLink update="MainContent" controller="grade" action="allLink">All</g:remoteLink></li>
 							<g:each in="${sidebarlinks}">
-								<li><g:link controller="grade" action="courseLink"
+								<li><g:remoteLink update="MainContent" controller="grade" action="courseLink"
 										params="[coursename: "${it }"]">
 										${it }
-									</g:link></li>
+									</g:remoteLink></li>
 							</g:each>
 						</g:if>
 					</g:elseif>
@@ -140,381 +139,11 @@
 			</div>
 		</div>
 	</div>
-
-					<g:if test="${controllertype == 'Announcement' }">
-						<g:if
-							test="${ currentUserRole == 'ROLE_STUDENT' }">
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        All of the announcments will be displayed here
-							        Everyone gets A
-							      </div>
-							    </div></div>
-							</div>
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        Everyone gets A
-									veryone gets Averyone gets Averyone gets Averyone gets Averyone gets Averyone gets A
-									veryone gets A
-									veryone gets Averyone gets A
-									veryone gets A
-									veryone gets A
-							      </div>
-							    </div></div>
-							</div>
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        Everyone gets A
-							      </div>
-							    </div></div>
-							</div>
 	
-
-						</g:if>
-					<g:elseif test="${currentUserRole == 'ROLE_TEACHER' }">
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        Professor's list of Announcements
-							        
-							      </div>
-							    </div></div>
-							</div>
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        All of the announcments will be displayed here
-							        Everyone gets A
-							      </div>
-							    </div></div>
-							</div>							
-
-					</g:elseif>
-					<g:elseif test="${currentUserRole == 'ROLE_TA' }">
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        TA's list of Announcements
-							        
-							      </div>
-							    </div></div>
-							</div>
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        All of the announcments will be displayed here
-							        Everyone gets A
-							      </div>
-							    </div></div>
-							</div>							
-
-					</g:elseif>											
-					</g:if>
-
-					<g:if test="${controllertype == 'Course' }">
-						<g:if
-							test="${ currentUserRole == 'ROLE_STUDENT' }">
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        All of the course functions will be here
-							        Everyone gets AEveryone gets AEveryone gets AEveryone gets AEveryone gets A
-							        Everyone gets AEveryone gets AEveryone gets AEveryone gets AEveryone gets AEveryone gets A
-							        Everyone gets AEveryone gets AEveryone gets A
-
-							      </div>
-							    </div></div>
-							</div>
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
+	<div id="MainContent" class="col-sm-9 col-sm-offset-3 col-md-5 col-md-offset-2 main">
 		
-							      </div>
-							    </div></div>
-							</div>
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        Everyone gets A
-							      </div>
-							    </div></div>
-							</div>
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        Everyone gets A
-							      </div>
-							    </div></div>
-							</div>
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        Everyone gets A
-							      </div>
-							    </div></div>
-							</div>
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        Everyone gets A
-							      </div>
-							    </div></div>
-							</div>
-						</g:if>
-					<g:elseif test="${currentUserRole == 'ROLE_TEACHER' }">
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        Professor's list of courses
-							        
-							      </div>
-							    </div></div>
-							</div>
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        All of the announcments will be displayed here
-							        Everyone gets A
-							      </div>
-							    </div></div>
-							</div>							
+	</div>
 
-					</g:elseif>	
-					<g:elseif test="${currentUserRole == 'ROLE_TA' }">
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        TA's list of courses
-							        
-							      </div>
-							    </div></div>
-							</div>
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        All of the announcments will be displayed here
-							        Everyone gets A
-							      </div>
-							    </div></div>
-							</div>							
-
-					</g:elseif>											
-					</g:if>
-
-					<g:if test="${controllertype == 'Grade' }">
-						<g:if
-							test="${ currentUserRole == 'ROLE_STUDENT' }">
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2">
-
-
-					<table class="table table-hover">
-					  <tr><td>Date</td>
-					  	<td>Name</td>
-					  	<td>Median</td>
-					  	<td>Average</td>
-					  	<td>Grade</td>
-					  	<td>LetterGrade</td>
-					  </tr>
-					  <tr><td>213</td>
-					  <td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					</tr>
-					  <tr><td>213</td>
-					  <td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					</tr>
-					  <tr><td>213</td>
-					  <td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					</tr>
-					  <tr><td>213</td>
-					  <td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					</tr>
-
-					</table>
-							  </div>
-							</div>
-							
-						</g:if>
-					<g:elseif test="${currentUserRole == 'ROLE_TEACHER' }">
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2">
-					<table class="table table-hover">
-					  <tr><td>Date</td>
-					  	<td>Name</td>
-					  	<td>Median</td>
-					  	<td>Average</td>
-					  	<td>Grade</td>
-					  	<td>LetterGrade</td>
-					  </tr>
-					  <tr><td>213</td>
-					  <td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					</tr>
-					  <tr><td>213</td>
-					  <td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					</tr>
-					  <tr><td>213</td>
-					  <td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					</tr>
-					  <tr><td>213</td>
-					  <td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					</tr>
-
-					</table>
-							  </div>
-							</div>
-					</g:elseif>			
-					<g:elseif test="${currentUserRole == 'ROLE_TA' }">
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2">
-					<table class="table table-hover">
-					  <tr><td>Date</td>
-					  	<td>Name</td>
-					  	<td>Median</td>
-					  	<td>Average</td>
-					  	<td>Grade</td>
-					  	<td>LetterGrade</td>
-					  </tr>
-					  <tr><td>213</td>
-					  <td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					</tr>
-					  <tr><td>213</td>
-					  <td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					</tr>
-					  <tr><td>213</td>
-					  <td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					</tr>
-					  <tr><td>213</td>
-					  <td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					<td>213</td>
-					</tr>
-
-					</table>
-							  </div>
-							</div>
-					</g:elseif>									
-					</g:if>					
-				<g:if test="${controllertype == 'Assignment' }">
-						<g:if
-							test="${ currentUserRole == 'ROLE_STUDENT' }">
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        Assignment page
-							      </div>
-							    </div></div>
-							</div>
-						</g:if>
-					<g:elseif test="${currentUserRole == 'ROLE_TEACHER' }">
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        Professor's list of Assignments
-							        
-							      </div>
-							    </div></div>
-							</div>
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        All of the announcments will be displayed here
-							        Everyone gets A
-							      </div>
-							    </div></div>
-							</div>							
-
-					</g:elseif>	
-					<g:elseif test="${currentUserRole == 'ROLE_TA' }">
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							       TA's list of Assignments
-							        
-							      </div>
-							    </div></div>
-							</div>
-							<div class="row">
-							  <div class="col-md-6 col-md-offset-2"><div class="panel panel-primary">
-							      <div class="panel-heading">CSE 312 8/20/14</div>
-							      <div class="panel-body">
-							        All of the announcments will be displayed here
-							        Everyone gets A
-							      </div>
-							    </div></div>
-							</div>							
-
-					</g:elseif>											
-
-					</g:if>
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

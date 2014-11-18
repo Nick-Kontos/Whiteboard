@@ -15,7 +15,7 @@ class AccountController {
 	
 	def createLink(){
 		//render placeholder
-		render('Create Account')
+		render(template: '/templates/createAccountForm')
 	}
 	
 	def searchLink(){

@@ -44,7 +44,7 @@ class AssignmentController {
 	}
 	def allLink(){
 		//render placeholder
-		render('All Assignments')
+		render(template: '/templates/viewAssignments')
 	}
 	
 }

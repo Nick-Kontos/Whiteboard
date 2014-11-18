@@ -35,7 +35,7 @@ class AnnouncementController {
 	}
 	def createLink(){
 		//render placeholder
-		render('Create Announcement')
+		render(template: '/templates/createAnnouncementForm')
 	}
 	def courseLink(){
 		//render placeholder
@@ -48,10 +48,10 @@ class AnnouncementController {
 	}
 	def allLink(){
 		//render placeholder
-		render('All')
+		render(template: '/templates/viewAnnouncements')
 	}
 	def generalLink(){
 		//render placeholder
-		render('General')
+		render(template: '/templates/viewAnnouncements')
 	}
 }

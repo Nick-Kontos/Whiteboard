@@ -32,7 +32,7 @@ class CourseController {
 	}
 	def createLink(){
 		//render placeholder
-		render('Create Course')
+		render(template: '/templates/createCourseForm')
 	}
 	def courseLink(){
 		//render placeholder

@@ -11,7 +11,7 @@ class Course {
     static constraints = {
 		teacher blank: false
 		coursename blank: false
-		coursecode blank: false	
+		coursecode blank: false, unique: true
 		description blank: true	
     }
 }

@@ -8,5 +8,8 @@ class Announcement {
 	User creator
 	Boolean viewable
 	static belongsTo = [course:Course]
-
+	
+	static constraints = {
+		doclink blank: true
+	}
 }

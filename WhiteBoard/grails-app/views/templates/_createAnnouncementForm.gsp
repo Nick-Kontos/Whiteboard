@@ -1,56 +1,37 @@
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-offset-2">
-			<div class="panel panel-primary">
-				<div class="panel-heading">For teacher show list of all
-					courses they're teaching</div>
-				<div class="panel-body">
-					<p>List of courses available to teacher</p>
-				</div>
-				<div class="btn-group btn-group-justified" role="group">
-					<div class="btn-group" role="group">
-						<button type="button" class="btn btn-default">All</button>
-					</div>
-					<div class="btn-group" role="group">
-						<button type="button" class="btn btn-default">CSE110</button>
-					</div>
-					<div class="btn-group" role="group">
-						<button type="button" class="btn btn-default">CSE114</button>
-					</div>
-					<div class="btn-group" role="group">
-						<button type="button" class="btn btn-default">CSE214</button>
-					</div>
-					<div class="btn-group" role="group">
-						<button type="button" class="btn btn-default">CSE219</button>
-					</div>
-					<div class="btn-group" role="group">
-						<button type="button" class="btn btn-default">CSE215</button>
-					</div>
-				</div>
-			</div>
-		</div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Create Announcement</h3>
 	</div>
-
-	<div class="row">
-		<div class="col-md-4 col-md-offset-2">
-			<div class="panel panel-primary">
-				<div class="panel-heading">Create new announcement</div>
-				<textarea class="form-control" rows=10
-					placeholder="Announcement text goes here"></textarea>
-				<div class="btn-group btn-group-justified" role="group">
-					<div class="btn-group" role="group">
-						<button type="button" class="btn btn-default">Post
-							announcement</button>
-					</div>
-					<div class="btn-group" role="group">
-						<button type="button" class="btn btn-default">Preview
-							post</button>
-					</div>
-					<div class="btn-group" role="group">
-						<button type="button" class="btn btn-default">Cancel</button>
-					</div>
-				</div>
+	<div class="panel-body">
+		<g:form role="form" controller="announcement"
+			action="createAnnouncement" enctype="multipart/form-data">
+			<div class="form-group">
+				<label for="InputCourse">Select Course</label>
+				<g:select name="InputCourse" class="form-control" id="InputCourse"
+					from="${sidebarlinks}" />
 			</div>
-		</div>
+			<div class="form-group">
+				<label for="InputTitle">Announcement Title</label>
+				<g:textField name="InputTitle" type="text" class="form-control"
+					id="InputTitle" placeholder="Title" />
+			</div>
+			<div class="form-group">
+				<label for="InputText">Announcement Text</label>
+				<g:textArea class="form-control" name="InputText" rows="5"
+					id="InputText" />
+			</div>
+			<div class="form-group">
+				<label for="fileUpload">Upload File</label> <input type="file"
+					id="fileUpload" name="fileUpload">
+			</div>
+			<div class="form-group">
+				<label for="InputVisible">Visible</label>
+				<g:checkBox name="InputVisible" value="${true }"
+					id="InputVisible" />
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-default btn-lg btn-block">Submit</button>
+			</div>
+		</g:form>
 	</div>
 </div>

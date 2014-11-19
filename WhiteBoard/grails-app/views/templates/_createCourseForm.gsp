@@ -1,41 +1,36 @@
-<div class="row">
-	<div class="form-group">
-		<label for="coursecode">Select Course Code:</label> <select
-			class="form-control" id="coursecode">
-			<option selected-disabled>Please select</option>
-			<option>CSE</option>
-			<option>AMS</option>
-			<option>HUM</option>
-			<option>MAT</option>
-			<option>EGL</option>
-		</select>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Create Course</h3>
 	</div>
-</div>
-<div class="row">&nbsp;</div>
-<!--  Padding between rows -->
-<div class="row">
-	<div class="form-group">
-		<label for="courseid">Input Course ID:</label> <input type="text"
-			class="form-control" id="courseid" placeholder="Course ID">
-	</div>
-</div>
-<div class="row">&nbsp;</div>
-<div class="row">
-	<div class="form">
-		<label for="textdescription">Section:</label> <input type="text"
-			class="form-control" id="coursesection" placeholder="00">
-	</div>
-</div>
-<div class="row">&nbsp;</div>
-<div class="row">
-	<div class="form-group">
-		<label for="textdescription">Textual Description:</label>
-		<textarea class="form-control" rows=5 id="textdescription"></textarea>
-	</div>
-</div>
-<div class="row">&nbsp;</div>
-<!--  add teachers and student text box -->
-<!--  
+	<div class="panel-body">
+		<g:form role="form" controller="course" action="createCourse"
+			enctype="multipart/form-data">
+			<div class="form-group">
+				<label for="InputCourseCode">Input Course Code</label>
+				<g:textField type="text" name="InputCourseCode" class="form-control"
+					id="InputCourseCode" placeholder="Course Code" />
+			</div>
+			<div class="form-group">
+				<label for="InputCourseName">Input Course Name</label>
+				<g:textField type="text" name="InputCourseName" class="form-control"
+					id="InputCourseName" placeholder="Course Name" />
+			</div>
+			<div class="form-group">
+				<label for="InputDescription">Textual Description</label>
+				<g:textArea name="InputDescription" class="form-control" rows="5" id="InputDescription" />
+			</div>
+			<div class="form-group">
+				<label for="InputInstructor">Input Course Instructor</label>
+				<g:textField name="InputInstructor" type="text" class="form-control"
+					id="InputInstructor" placeholder="Course Instructor" />
+			</div>
+			<div class="form-group">
+				<label for="InputRoster">Input Course Roster
+					(Comma-separated):</label>
+				<g:textArea class="form-control" rows="10" name="InputRoster" id="InputRoster"/>
+			</div>
+			<!--  add teachers and student text box -->
+			<!--  
 				<label class="checkbox-inline">
 					<input type="checkbox" id="monday" value="mondayopt">Monday
 				</label>
@@ -84,9 +79,13 @@
                </script>
 
             </div>     -->
-<div class="row">
-	<div class="form-group">
-		<button type="submit" class="btn btn-primary">Submit</button>
-		<button type="cancel" class="btn btn-primary">Cancel</button>
+			<div class="form-group">
+				<label for="fileUpload">Upload File</label> <input type="file"
+					id="fileUpload" name="fileUpload">
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-default btn-lg btn-block">Submit</button>
+			</div>
+		</g:form>
 	</div>
 </div>

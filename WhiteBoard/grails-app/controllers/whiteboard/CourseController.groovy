@@ -47,4 +47,7 @@ class CourseController {
 		//render placeholder
 		render('Search all courses')
 	}
+	def createCourse(){
+		
+	}
 }

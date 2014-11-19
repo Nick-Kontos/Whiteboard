@@ -32,10 +32,9 @@ class AssignmentController {
 	}
 	def createLink(){
 		//render placeholder
-		render('Create Assignment')
+		render(template: '/templates/createAssignmentForm')
 	}
 	def courseLink(){
-		//render placeholder
 		def coursename = params.coursename
 		if(coursename)
 			render('Assignment for ' + coursename)
@@ -43,8 +42,10 @@ class AssignmentController {
 			render('error')
 	}
 	def allLink(){
-		//render placeholder
 		render(template: '/templates/viewAssignments')
 	}
-	
+	def createAssignment(){
+		//placeholder
+		render('Create assignment')
+	}
 }

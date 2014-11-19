@@ -2,6 +2,7 @@ package whiteboard
 
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.*
+import liquibase.util.csv.CSVReader
 
 class AnnouncementController {
 
@@ -53,5 +54,25 @@ class AnnouncementController {
 	def generalLink(){
 		//render placeholder
 		render(template: '/templates/viewAnnouncements')
+	}
+	def createAnnouncement(){
+		//option 1 parse through inputstream
+		def file = params.fileUpload
+		//file.inputStream
+		//doc for inputstream is at http://groovy.codehaus.org/groovy-jdk/java/io/InputStream.html
+		
+		//option 2 parse through using csv reader
+		//file.transferTo(new File('newFile.csv'))
+		//def csv = new CSVReader(new File('newFile.csv').newReader())
+		//doc for csv reader is at http://www.liquibase.org/javadoc/liquibase/util/csv/opencsv/CSVReader.html
+		
+		//just testing if file is there
+		if(file){
+			render(file.originalFilename)
+		}
+		else{
+			render('upload failed')
+		}
+			
 	}
 }

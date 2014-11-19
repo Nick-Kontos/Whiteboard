@@ -77,7 +77,7 @@
 							test="${ currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_TA' || currentUserRole == 'ROLE_STUDENT'}">
 							<li><g:remoteLink update="MainContent" controller="announcement" action="allLink">All</g:remoteLink></li>
 						</g:if>
-						<li><g:link controller="announcement" action="generalLink">General</g:link></li>
+						<li><g:remoteLink update="MainContent" controller="announcement" action="generalLink">General</g:remoteLink></li>
 						<g:if
 							test="${ currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_STUDENT' || currentUserRole == 'ROLE_TA'}">
 							<g:each in="${sidebarlinks}">

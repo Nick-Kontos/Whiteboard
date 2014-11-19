@@ -22,6 +22,8 @@ class AccountController {
 		//render placeholder
 		render('Search Account')
 	}
-	
+	def createAccount(){
+		render(params)
+	}
 	
 }

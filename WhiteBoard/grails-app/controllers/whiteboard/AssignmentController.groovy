@@ -2,7 +2,7 @@ package whiteboard
 
 class AssignmentController {
 
-  	def springSecurityService
+	def springSecurityService
 
 	def index() {
 		def links = []
@@ -45,7 +45,34 @@ class AssignmentController {
 		render(template: '/templates/viewAssignments')
 	}
 	def createAssignment(){
-		//placeholder
-		render('Create assignment')
+		//option 1 parse through inputstream
+		def file = params.fileUpload
+		//file.inputStream
+		//doc for inputstream is at http://groovy.codehaus.org/groovy-jdk/java/io/InputStream.html
+
+		//option 2 parse through using csv reader
+		//file.transferTo(new File('newFile.csv'))
+		//def csv = new CSVReader(new File('newFile.csv').newReader())
+		//doc for csv reader is at http://www.liquibase.org/javadoc/liquibase/util/csv/opencsv/CSVReader.html
+
+		//first check if all parameters are not null
+		if(params.InputCourse && params.InputTitle && params.InputDescription && params.InputPointsWorth && params.InputDueDate){
+			try{
+				def newAssign = new Assignment(title: params.InputTitle, text: params.InputDescription, datedue: params.InputDueDate, totalpoints: params.InputPointsWorth)
+				if(params.InputVisable){
+					newAssign.viewable = true
+				}else{
+					newAssign.viewable = false
+				}
+				newAssign.addTo(Course.findByCoursecode(params.InputCourse))
+				newAssign.save(failOnError: true)
+				render('Successfully created ')
+			}catch(Exception e){
+				//this need to be completed to handle different errors
+				render(e.message)
+			}
+		}else {
+			render('Error please complete all fields')
+		}
 	}
 }

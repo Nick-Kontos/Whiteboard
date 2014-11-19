@@ -6,9 +6,9 @@
 		<g:form role="form" controller="announcement"
 			action="createAnnouncement" enctype="multipart/form-data">
 			<div class="form-group">
-				<label for="inputCourse">Select Availability:</label>
-				<g:select name="inputCourse" class="form-control" id="inputCourse"
-					from="${['CSE110','CSE114','CSE214']}" />
+				<label for="InputCourse">Select Course</label>
+				<g:select name="InputCourse" class="form-control" id="InputCourse"
+					from="${sidebarlinks}" />
 			</div>
 			<div class="form-group">
 				<label for="InputTitle">Announcement Title</label>

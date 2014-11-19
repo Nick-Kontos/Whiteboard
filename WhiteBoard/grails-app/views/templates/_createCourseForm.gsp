@@ -16,8 +16,8 @@
 					id="InputCourseName" placeholder="Course Name" />
 			</div>
 			<div class="form-group">
-				<label for="textdescription">Textual Description</label>
-				<textarea class="form-control" rows=5 id="textdescription"></textarea>
+				<label for="InputDescription">Textual Description</label>
+				<g:textArea name="InputDescription" class="form-control" rows="5" id="InputDescription" />
 			</div>
 			<div class="form-group">
 				<label for="InputInstructor">Input Course Instructor</label>

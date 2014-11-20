@@ -31,18 +31,24 @@ class AssignmentController {
 		UserRole.findAllByUser(springSecurityService.currentUser).get(0).role.authority
 	}
 	def createLink(){
-		//render placeholder
-		render(template: '/templates/createAssignmentForm')
+		def links = []
+		retrieveClasses().each {
+			links.add(it.coursecode)
+		}
+		render(template: '/templates/createAssignmentForm', model: [coursecodes: links])
 	}
 	def courseLink(){
 		def coursename = params.coursename
-		if(coursename)
-			render('Assignment for ' + coursename)
-		else
-			render('error')
+		def assignlist = []
+		assignlist = Assignment.findAllByCourse(Course.findByCoursecode(coursename))
+		render(template: '/templates/viewAssignments', model: [assignlist: assignlist])
 	}
 	def allLink(){
-		render(template: '/templates/viewAssignments')
+		def assignlist = []
+		retrieveClasses().each {
+			assignlist.add(Assignment.findByCourse(it))
+		}
+		render(template: '/templates/viewAssignments', model: [assignlist: assignlist])
 	}
 	def createAssignment(){
 		//option 1 parse through inputstream
@@ -64,7 +70,7 @@ class AssignmentController {
 				}else{
 					newAssign.viewable = false
 				}
-				newAssign.addTo(Course.findByCoursecode(params.InputCourse))
+				newAssign.course = Course.findByCoursecode(params.InputCourse)
 				newAssign.save(failOnError: true)
 				render('Successfully created ')
 			}catch(Exception e){

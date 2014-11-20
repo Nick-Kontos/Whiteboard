@@ -36,26 +36,39 @@ class AnnouncementController {
 	}
 	def createLink(){
 		//render placeholder
-		def announcelist = Announcement.findByCourseList(retrieveClasses())
-		render(template: '/templates/createAnnouncementForm', model: [announcelist: announcelist])
+		def links = []
+		retrieveClasses().each {
+			links.add(it.coursecode)
+		}
+		render(template: '/templates/createAnnouncementForm', model: [coursecodes: links])
 	}
 	def courseLink(){
 		//render placeholder
 		def coursename = params.coursename
-		if(coursename)
-			render(coursename)
-		//return coursename
-		else
-			render('error')
+		def announcelist = []
+		announcelist = Announcement.findAllByCourse(Course.findByCoursecode(coursename))
+		render(template: '/templates/viewAnnouncements', model: [announcelist: announcelist])
 	}
 	def allLink(){
 		//render placeholder
-		
-		render(template: '/templates/viewAnnouncements')
+		def announcelist = []
+		retrieveClasses().each {
+			announcelist.add(Announcement.findByCourse(it))
+		}
+		//there may be a more efficient way
+		(Announcement.findAllByCourse(Course.findByCoursecode('General'))).each{
+			announcelist.add(it)
+		}		
+		render(template: '/templates/viewAnnouncements', model: [announcelist: announcelist])
 	}
 	def generalLink(){
 		//render placeholder
-		render(template: '/templates/viewAnnouncements')
+		def announcelist = []
+		//there may be a more efficient way
+		(Announcement.findAllByCourse(Course.findByCoursecode('General'))).each{
+			announcelist.add(it)
+		}
+		render(template: '/templates/viewAnnouncements', model: [announcelist: announcelist])
 	}
 	def createAnnouncement(){
 		//option 1 parse through inputstream
@@ -77,7 +90,7 @@ class AnnouncementController {
 				}else{
 					newAnnouncement.viewable = false
 				}
-				newAnnouncement.addTo(Course.findByCoursecode(params.InputCourse))
+				newAnnouncement.course = Course.findByCoursecode(params.InputCourse)
 				newAnnouncement.save(failOnError: true)
 				render('Successfully created ')
 			}catch (Exception e){

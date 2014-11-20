@@ -11,7 +11,7 @@ class Assignment {
 	static belongsTo = [course:Course]
 	
 	static constraints = {
-		doclink blank: true
+		doclink nullable: true
 	}
 
 }

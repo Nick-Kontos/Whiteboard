@@ -9,7 +9,7 @@
 			<div class="form-group">
 				<label for="InputCourse">Select Course</label>
 				<g:select name="InputCourse" class="form-control" id="InputCourse"
-					from="${sidebarlinks}" />
+					from="${coursecodes}" />
 			</div>
 			<div class="form-group">
 				<label for="InputTitle">Enter assignment name</label>

@@ -9,7 +9,7 @@ class Course {
 	static hasMany = [TAs:User, students:User]
 	
     static constraints = {
-		teacher blank: false
+		teacher nullable: true
 		coursename blank: false
 		coursecode blank: false, unique: true
 		description blank: true	

@@ -17,7 +17,7 @@ class AssignmentController {
 		def result
 		if(getAccountType() == 'ROLE_STUDENT'){
 			def c = Course.createCriteria()
-			result = c.get {
+			result = c.list {
 				students{
 					idEq(springSecurityService.currentUser.id)
 				}

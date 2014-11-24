@@ -1,0 +1,60 @@
+2014-11-20 13:47:37,861 [localhost-startStop-1] INFO  [localhost].[/whiteboard]  - Initializing Spring root WebApplicationContext
+2014-11-20 13:47:45,812 [localhost-startStop-1] INFO  hibernate4.HibernatePluginSupport  - Set db generation strategy to 'create-drop' for datasource DEFAULT
+2014-11-20 13:47:48,954 [localhost-startStop-1] INFO  cache.CacheBeanPostProcessor  - postProcessBeanDefinitionRegistry start
+2014-11-20 13:47:48,974 [localhost-startStop-1] INFO  cache.Cac2014-11-20 13:52:48,814 [Thread-12] INFO  compiler.GrailsProjectWatcher  - File [C:\github\Whiteboard\WhiteBoard\grails-app\conf\Config.groovy] changed. Applying changes to application.
+2014-11-20 13:52:49,861 [Thread-12] INFO  compiler.GrailsProjectWatcher  - File [C:\github\Whiteboard\WhiteBoard\grails-app\conf\Config.groovy] changed. Applying changes to application.
+rationFactory  - No configuration found. Configuring ehcache from ehcache-failsafe.xml  found in the classpath: jar:file:/C:/Users/미소년/.m2/repository/net/sf/ehcache/ehcache-core/2.4.8/ehcache-core-2.4.8.jar!/ehcache-failsafe.xml
+2014-11-20 13:47:51,685 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table announcement drop constraint FK_f8mupkebjntypkykcw8u6j5bu if exists
+2014-11-20 13:47:51,686 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "ANNOUNCEMENT" not found; SQL statement:
+alter table announcement drop constraint FK_f8mupkebjntypkykcw8u6j5bu if exists [42102-176]
+2014-11-20 13:47:51,686 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table announcement drop constraint FK_1rmyeh2ta991loishtjmc3l05 if exists
+2014-11-20 13:47:51,686 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "ANNOUNCEMENT" not found; SQL statement:
+alter table announcement drop constraint FK_1rmyeh2ta991loishtjmc3l05 if exists [42102-176]
+2014-11-20 13:47:51,686 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table assignment drop constraint FK_5eyumr0i2ug4ms48we268lib6 if exists
+2014-11-20 13:47:51,686 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "ASSIGNMENT" not found; SQL statement:
+alter table assignment drop constraint FK_5eyumr0i2ug4ms48we268lib6 if exists [42102-176]
+2014-11-20 13:47:51,686 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table course drop constraint FK_ps182hc66y3h1w7vrjwwo4rot if exists
+2014-11-20 13:47:51,686 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "COURSE" not found; SQL statement:
+alter table course drop constraint FK_ps182hc66y3h1w7vrjwwo4rot if exists [42102-176]
+2014-11-20 13:47:51,686 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table course_user drop constraint FK_g8aemk037bkp123ao6vp4krdf if exists
+2014-11-20 13:47:51,686 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "COURSE_USER" not found; SQL statement:
+alter table course_user drop constraint FK_g8aemk037bkp123ao6vp4krdf if exists [42102-176]
+2014-11-20 13:47:51,686 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table course_user drop constraint FK_dawtehu1euwtuoftyhmvyqvf8 if exists
+2014-11-20 13:47:51,686 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "COURSE_USER" not found; SQL statement:
+alter table course_user drop constraint FK_dawtehu1euwtuoftyhmvyqvf8 if exists [42102-176]
+2014-11-20 13:47:51,686 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table course_user drop constraint FK_6wip63opa4rlqpct416ttewiu if exists
+2014-11-20 13:47:51,686 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "COURSE_USER" not found; SQL statement:
+alter table course_user drop constraint FK_6wip63opa4rlqpct416ttewiu if exists [42102-176]
+2014-11-20 13:47:51,686 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table submission drop constraint FK_ijm6a7eqv71w0c1j3cjv5r0an if exists
+2014-11-20 13:47:51,686 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "SUBMISSION" not found; SQL statement:
+alter table submission drop constraint FK_ijm6a7eqv71w0c1j3cjv5r0an if exists [42102-176]
+2014-11-20 13:47:51,687 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table submission drop constraint FK_db8d422d38emxhhn37mce9h0h if exists
+2014-11-20 13:47:51,687 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "SUBMISSION" not found; SQL statement:
+alter table submission drop constraint FK_db8d422d38emxhhn37mce9h0h if exists [42102-176]
+2014-11-20 13:47:51,687 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table submission drop constraint FK_m2almb7pfdnphy42r4ncd40x2 if exists
+2014-11-20 13:47:51,687 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "SUBMISSION" not found; SQL statement:
+alter table submission drop constraint FK_m2almb7pfdnphy42r4ncd40x2 if exists [42102-176]
+2014-11-20 13:47:51,687 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table user_role drop constraint FK_it77eq964jhfqtu54081ebtio if exists
+2014-11-20 13:47:51,687 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "USER_ROLE" not found; SQL statement:
+alter table user_role drop constraint FK_it77eq964jhfqtu54081ebtio if exists [42102-176]
+2014-11-20 13:47:51,687 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table user_role drop constraint FK_apcc8lxk2xnug8377fatvbn04 if exists
+2014-11-20 13:47:51,687 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "USER_ROLE" not found; SQL statement:
+alter table user_role drop constraint FK_apcc8lxk2xnug8377fatvbn04 if exists [42102-176]
+2014-11-20 13:47:53,190 [localhost-startStop-1] INFO  scaffolding.AbstractGrailsTemplateGenerator  - Scaffolding template generator set to use resource loader [org.codehaus.groovy.grails.commons.spring.GrailsWebApplicationContext@6f7232d6: startup date [Thu Nov 20 13:47:48 EST 2014]; parent: Root WebApplicationContext]
+2014-11-20 13:47:58,287 [localhost-startStop-1] WARN  intercept.AnnotationFilterInvocationDefinition  - replaced rule for '/logout/**' with tokens [permitAll] with tokens [permitAll]
+2014-11-20 13:47:58,867 [localhost-startStop-1] INFO  databasemigration.MigrationRunner  - updateOnStart disabled for dataSource; not running migrations
+2014-11-20 13:47:58,902 [localhost-startStop-1] INFO  ScaffoldingGrailsPlugin  - configuring scaffolding...
+2014-11-20 13:47:58,909 [localhost-startStop-1] INFO  ScaffoldingGrailsPlugin  - done configuring scaffolding.
+2014-11-20 13:47:59,035 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [teacher] of domain class whiteboard.Course has type [whiteboard.User] and doesn't support constraint [blank]. This constraint will not be checked during validation.
+2014-11-20 13:47:59,037 [localhost-startStop-1] INFO  context.GrailsConfigUtils  - [GrailsContextLoader] Grails application loaded.
+2014-11-20 13:48:00,212 [localhost-startStop-1] INFO  [localhost].[/whiteboard]  - Initializing Spring FrameworkServlet 'grails'
+2014-11-20 13:48:00,212 [localhost-startStop-1] INFO  servlet.GrailsDispatcherServlet  - FrameworkServlet 'grails': initialization started
+2014-11-20 13:48:00,234 [localhost-startStop-1] INFO  servlet.GrailsDispatcherServlet  - Using MultipartResolver [org.codehaus.groovy.grails.web.multipart.ContentLengthAwareCommonsMultipartResolver@133e1c98]
+2014-11-20 13:48:00,234 [localhost-startStop-1] INFO  servlet.GrailsDispatcherServlet  - FrameworkServlet 'grails': initialization completed in 22 ms
+2014-11-20 13:48:00,269 [main] INFO  http11.Http11Protocol  - Starting ProtocolHandler ["http-bio-8080"]
+2014-11-20 13:48:06,898 [http-bio-8080-exec-9] INFO  [localhost].[/whiteboard]  - Initializing Spring FrameworkServlet 'gsp'
+2014-11-20 13:48:06,898 [http-bio-8080-exec-9] INFO  pages.GroovyPagesServlet  - FrameworkServlet 'gsp': initialization started
+2014-11-20 13:48:06,899 [http-bio-8080-exec-9] INFO  [localhost].[/whiteboard]  - GSP servlet initialized
+2014-11-20 13:48:06,947 [http-bio-8080-exec-9] INFO  pages.GroovyPagesServlet  - FrameworkServlet 'gsp': initialization completed in 48 ms
+2014-11-20 13:52:48,816 [Thread-8] INFO  compiler.GrailsProjectWatcher  - File [C:\github\Whiteboard\WhiteBoard\grails-app\conf\Config.groovy] changed. Applying changes to application.
+2014-11-20 13:52:50,048 [Thread-8] INFO  compiler.GrailsProjectWatcher  - File [C:\github\Whiteboard\WhiteBoard\grails-app\conf\Config.groovy] changed. Applying changes to application.

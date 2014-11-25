@@ -21,8 +21,8 @@
 					id="InputText" />
 			</div>
 			<div class="form-group">
-				<label for="fileUpload">Upload File</label> <input type="file"
-					id="fileUpload" name="fileUpload">
+				<label for="FileUpload">Upload File</label> <input type="file"
+					id="FileUpload" name="FileUpload">
 			</div>
 			<div class="form-group">
 				<label for="InputVisible">Visible</label>

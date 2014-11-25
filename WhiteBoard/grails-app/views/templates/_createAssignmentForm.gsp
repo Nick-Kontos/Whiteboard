@@ -31,9 +31,10 @@
 				<g:datePicker name="InputDueDate" id="InputDueDate"
 					relativeYears="[-1..1]" />
 			</div>
+
 			<div class="form-group">
-				<label for="FileUpload">Upload File</label> <input type="file"
-					id="FileUpload" name="FileUpload">
+				<label for="FileUpload">Upload File haha</label> 
+				<input type="file" id="FileUpload" name="FileUpload">
 			</div>
 			<div class="form-group">
 				<label for="InputVisible">Visible</label>

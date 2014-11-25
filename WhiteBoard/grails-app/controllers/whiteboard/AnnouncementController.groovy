@@ -28,7 +28,9 @@ class AnnouncementController {
 			}
 		}else if(getAccountType() == 'ROLE_TEACHER'){
 			result = Course.findByTeacher(springSecurityService.currentUser)
+
 		}
+
 		return result
 	}
 	def getAccountType(){
@@ -40,14 +42,14 @@ class AnnouncementController {
 		retrieveClasses().each {
 			links.add(it.coursecode)
 		}
-		render(template: '/templates/createAnnouncementForm', model: [coursecodes: links])
+		render(template: '/templates/createAnnouncementForm', model: [coursecodes: links, currentUserRole: getAccountType()])
 	}
 	def courseLink(){
 		//render placeholder
 		def coursename = params.coursename
 		def announcelist = []
 		announcelist = Announcement.findAllByCourse(Course.findByCoursecode(coursename))
-		render(template: '/templates/viewAnnouncements', model: [announcelist: announcelist])
+		render(template: '/templates/viewAnnouncements', model: [announcelist: announcelist, currentUserRole: getAccountType()])
 	}
 	def allLink(){
 		//render placeholder
@@ -59,7 +61,7 @@ class AnnouncementController {
 		(Announcement.findAllByCourse(Course.findByCoursecode('General'))).each{
 			announcelist.add(it)
 		}		
-		render(template: '/templates/viewAnnouncements', model: [announcelist: announcelist])
+		render(template: '/templates/viewAnnouncements', model: [announcelist: announcelist, currentUserRole: getAccountType()])
 	}
 	def generalLink(){
 		//render placeholder
@@ -68,7 +70,7 @@ class AnnouncementController {
 		(Announcement.findAllByCourse(Course.findByCoursecode('General'))).each{
 			announcelist.add(it)
 		}
-		render(template: '/templates/viewAnnouncements', model: [announcelist: announcelist])
+		render(template: '/templates/viewAnnouncements', model: [announcelist: announcelist, currentUserRole: getAccountType()])
 	}
 	def createAnnouncement(){
 		//option 1 parse through inputstream
@@ -84,7 +86,9 @@ class AnnouncementController {
 		//first check if all parameters are not null
 		if(params.InputCourse && params.InputTitle && params.InputText){
 			try{
+
 				def newAnnouncement = new Announcement(title: params.InputTitle, text: params.InputText, creator: springSecurityService.currentUser)
+				
 				if(params.InputVisable){
 					newAnnouncement.viewable = true
 				}else{

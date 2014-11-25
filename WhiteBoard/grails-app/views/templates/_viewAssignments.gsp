@@ -22,9 +22,13 @@
 						<div class="panel-body">
 						<font size="6">${it?.title } </font><br>
 						${it?.text }<br>
-						uploaded file: ${it?.doclink}</div>
-						<input type="file" class="btn btn-default btn-lg btn-block" id="FileUpload" name="FileUpload">
-						<button type="submit" class="btn btn-default btn-lg btn-block">Submit</button>
+						</div>
+						<div>uploaded file: ${it?.doclink}</div>
+							<g:if test="${currentUserRole == 'ROLE_STUDENT'}">
+							<input type="file" class="btn btn-default btn-lg btn-block" id="FileUpload" name="FileUpload">
+							<button type="submit" class="btn btn-default btn-lg btn-block">Submit</button>
+							</g:if>						
+						
 						
 					</div>
 

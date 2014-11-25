@@ -32,7 +32,7 @@ class GradeController {
 				}
 			}
 		}else if(getAccountType() == 'ROLE_TEACHER'){
-			result = Course.findByTeacher(springSecurityService.currentUser)
+			result = Course.findAllByTeacher(springSecurityService.currentUser)
 		}
 		return result
 	}

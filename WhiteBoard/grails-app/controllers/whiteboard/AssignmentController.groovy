@@ -32,7 +32,7 @@ class AssignmentController {
 				}
 			}
 		}else if(getAccountType() == 'ROLE_TEACHER'){
-			result = Course.findByTeacher(springSecurityService.currentUser)
+			result = Course.findAllByTeacher(springSecurityService.currentUser)
 		}
 		return result
 	}
@@ -83,7 +83,10 @@ class AssignmentController {
 				
 				def newAssign = new Assignment(title: params.InputTitle, text: params.InputDescription, datedue: params.InputDueDate, totalpoints: params.InputPointsWorth, creator: springSecurityService.currentUser, doclink:file.originalFilename)
 				//newAssign.doclink = file.originalFilename
-
+           		
+           		//response.setContentType("APPLICATION/OCTET-STREAM")
+            	//response.setHeader("Content-Disposition", "Attachment;Filename=\"${it.doclink}\"")				
+				
 				if(params.InputVisable){
 					newAssign.viewable = true
 				}else{

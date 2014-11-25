@@ -91,7 +91,7 @@ class AssignmentController {
 				}
 				newAssign.course = Course.findByCoursecode(params.InputCourse)
 				newAssign.save(failOnError: true)
-				render('Successfully created ')
+				redirect(view: 'default')
 			}catch(Exception e){
 				//this need to be completed to handle different errors
 				render(e.message)

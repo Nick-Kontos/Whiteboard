@@ -44,8 +44,11 @@
 				<ul class="nav navbar-nav navbar-left">
 					<li><g:remoteLink update="sidebar" controller="Announcement" class="active"
 							action="sidebar">Announcements</g:remoteLink></li>
+					<g:if
+						test="${currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_TA' || currentUserRole == 'ROLE_SITEMANAGER'}">							
 					<li><g:remoteLink update="sidebar" controller="Course"
 							action="sidebar">Courses</g:remoteLink></li>
+					</g:if>		
 					<g:if test="${currentUserRole == 'ROLE_SITEMANAGER'}">
 						<li><g:remoteLink update="sidebar" controller="Account"
 								action="sidebar">Accounts</g:remoteLink></li>

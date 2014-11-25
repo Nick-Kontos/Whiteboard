@@ -10,10 +10,12 @@
 						- ${it?.creator.firstname} 
 						${it?.creator.lastname} 
 						
-						<div class="pull-right">
-						<button type="button" class="btn btn-default">Edit</button>
-  						<button type="button" class="btn btn-default">Delete</button>			
-						</div>						 
+							<g:if test="${currentUserRole == 'ROLE_TEACHER' }">
+								<div class="pull-right">
+								<button type="button" class="btn btn-default">Edit</button>
+		  						<button type="button" class="btn btn-default">Delete</button>			
+								</div>
+							</g:if>					 
 						
 						<div>posted Date: <g:formatDate format="yyyy-MM-dd" date="${it?.dateCreated}"/></div>
 						</div>
@@ -21,7 +23,7 @@
 						<font size="6">${it?.title } </font><br>
 						${it?.text }<br>
 						uploaded file: ${it?.doclink}</div>
-						<input type="file" class="btn btn-default btn-lg btn-block"s id="FileUpload" name="FileUpload">
+						<input type="file" class="btn btn-default btn-lg btn-block" id="FileUpload" name="FileUpload">
 						<button type="submit" class="btn btn-default btn-lg btn-block">Submit</button>
 						
 					</div>

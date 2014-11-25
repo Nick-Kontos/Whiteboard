@@ -106,7 +106,8 @@ class AnnouncementController {
 				}
 				newAnnouncement.course = Course.findByCoursecode(params.InputCourse)
 				newAnnouncement.save(failOnError: true)
-				render('Successfully created ')
+				redirect(view: 'default')
+				
 			}catch (Exception e){
 				//This need to be completed to handle various errors for adding to the database
 				render(e.message)

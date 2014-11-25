@@ -10,13 +10,12 @@
 						<div class="panel-heading">${it?.course.coursecode }
 						- ${it?.creator.firstname} 
 						${it?.creator.lastname} 
-
-						<div class="pull-right">
-						<button type="button" class="btn btn-default">Edit</button>
-  						<button type="button" class="btn btn-default">Delete</button>			
-						</div>
-						
-
+							<g:if test="${currentUserRole == 'ROLE_TEACHER' }">
+								<div class="pull-right">
+								<button type="button" class="btn btn-default">Edit</button>
+		  						<button type="button" class="btn btn-default">Delete</button>			
+								</div>
+							</g:if>
 						<div>posted Date: <g:formatDate format="yyyy-MM-dd" date="${it?.dateCreated}"/></div>
 						</div>
 						<div class="panel-body">

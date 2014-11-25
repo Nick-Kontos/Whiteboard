@@ -22,6 +22,7 @@
 						<div class="panel-body">
 						<font size="6">${it?.title } </font><br>
 						${it?.text }</div>
+
 					</div>
 				</div>
 				</g:each>

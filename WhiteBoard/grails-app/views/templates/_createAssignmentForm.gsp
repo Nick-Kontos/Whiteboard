@@ -1,7 +1,7 @@
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title">Create Assignment</h3>
+		<h3 class="panel-title">Create Assignment!</h3>
 	</div>
 	<div class="panel-body">
 		<g:form role="form" controller="assignment" action="createAssignment"
@@ -33,8 +33,10 @@
 			</div>
 
 			<div class="form-group">
+
 				<label for="FileUpload">Upload File haha</label> 
 				<input type="file" id="FileUpload" name="FileUpload">
+
 			</div>
 			<div class="form-group">
 				<label for="InputVisible">Visible</label>

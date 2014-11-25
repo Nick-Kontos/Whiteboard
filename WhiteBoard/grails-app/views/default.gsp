@@ -65,7 +65,7 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-3 col-md-2 sidebar">
+			<div id="sidebar" class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
 					<g:if test="${controllertype == 'Announcement' }">
 						<g:if
@@ -136,7 +136,7 @@
 						</g:if>
 					</g:elseif>
 				</ul>
-			</div>
+				</div>
 		</div>
 	</div>
 	

@@ -46,7 +46,9 @@ class AssignmentController {
 	def allLink(){
 		def assignlist = []
 		retrieveClasses().each {
-			assignlist.add(Assignment.findByCourse(it))
+			Assignment.findAllByCourse(it).each{
+				assignlist.add(it)
+			}		
 		}
 		render(template: '/templates/viewAssignments', model: [assignlist: assignlist, currentUserRole: getAccountType()])
 	}

@@ -55,7 +55,9 @@ class AnnouncementController {
 		//render placeholder
 		def announcelist = []
 		retrieveClasses().each {
-			announcelist.add(Announcement.findByCourse(it))
+			Announcement.findAllByCourse(it).each{
+				announcelist.add(it)
+			}	
 		}
 		//there may be a more efficient way
 		(Announcement.findAllByCourse(Course.findByCoursecode('General'))).each{
@@ -68,6 +70,7 @@ class AnnouncementController {
 		def announcelist = []
 		//there may be a more efficient way
 		(Announcement.findAllByCourse(Course.findByCoursecode('General'))).each{
+			
 			announcelist.add(it)
 		}
 		render(template: '/templates/viewAnnouncements', model: [announcelist: announcelist, currentUserRole: getAccountType()])

@@ -44,13 +44,13 @@ class AssignmentController {
 		retrieveClasses().each {
 			links.add(it.coursecode)
 		}
-		render(template: '/templates/createAssignmentForm', model: [coursecodes: links])
+		render(template: '/templates/createAssignmentForm', model: [coursecodes: links, currentUserRole: getAccountType()])
 	}
 	def courseLink(){
 		def coursename = params.coursename
 		def assignlist = []
 		assignlist = Assignment.findAllByCourse(Course.findByCoursecode(coursename))
-		render(template: '/templates/viewAssignments', model: [assignlist: assignlist])
+		render(template: '/templates/viewAssignments', model: [assignlist: assignlist, currentUserRole: getAccountType()])
 	}
 	def allLink(){
 		def assignlist = []
@@ -59,11 +59,14 @@ class AssignmentController {
 				assignlist.add(it)
 			}		
 		}
-		render(template: '/templates/viewAssignments', model: [assignlist: assignlist])
+		render(template: '/templates/viewAssignments', model: [assignlist: assignlist, currentUserRole: getAccountType()])
 	}
 	def createAssignment(){
 		//option 1 parse through inputstream
-		def file = params.fileUpload
+		//def file = params.FileUpload
+		def file = params.FileUpload
+
+		//print file
 		//file.inputStream
 		//doc for inputstream is at http://groovy.codehaus.org/groovy-jdk/java/io/InputStream.html
 
@@ -73,9 +76,14 @@ class AssignmentController {
 		//doc for csv reader is at http://www.liquibase.org/javadoc/liquibase/util/csv/opencsv/CSVReader.html
 
 		//first check if all parameters are not null
+
+
 		if(params.InputCourse && params.InputTitle && params.InputDescription && params.InputPointsWorth && params.InputDueDate){
 			try{
-				def newAssign = new Assignment(title: params.InputTitle, text: params.InputDescription, datedue: params.InputDueDate, totalpoints: params.InputPointsWorth)
+				
+				def newAssign = new Assignment(title: params.InputTitle, text: params.InputDescription, datedue: params.InputDueDate, totalpoints: params.InputPointsWorth, creator: springSecurityService.currentUser, doclink:file.originalFilename)
+				//newAssign.doclink = file.originalFilename
+
 				if(params.InputVisable){
 					newAssign.viewable = true
 				}else{

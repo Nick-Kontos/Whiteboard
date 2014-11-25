@@ -1,7 +1,7 @@
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title">Create Assignment</h3>
+		<h3 class="panel-title">Create Assignment!</h3>
 	</div>
 	<div class="panel-body">
 		<g:form role="form" controller="assignment" action="createAssignment"
@@ -32,7 +32,7 @@
 					relativeYears="[-1..1]" />
 			</div>
 			<div class="form-group">
-				<label for="FileUpload">Upload File</label> <input type="file"
+				<label for="FileUpload">Upload File</label> <input type="file" class="btn btn-default btn-lg btn-block"
 					id="FileUpload" name="FileUpload">
 			</div>
 			<div class="form-group">

@@ -6,7 +6,7 @@
 				<g:each in="${announcelist }">
 				<div class="col-md-10 col-md-offset-1">
 					<div class="panel panel-info">
-						<div class="panel-heading">${it?.course.coursecode }</div>
+						<div class="panel-heading">${it?.course?.coursecode }</div>
 						<div class="panel-heading">date created</div>
 						<div class="panel-heading">${it?.title }</div>
 						<div class="panel-body">${it?.text }</div>

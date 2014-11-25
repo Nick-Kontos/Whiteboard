@@ -132,6 +132,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/favicon.ico':                ['permitAll'],
 	'/logout/**': ['permitAll'],
 	//controller access restrictions
+	'/**': ['IS_AUTHENTICATED_FULLY'],
 	'/announcement/**': ['IS_AUTHENTICATED_FULLY'],
 	'/assignment/**': ['IS_AUTHENTICATED_FULLY'],
 	'/course/**': ['IS_AUTHENTICATED_FULLY'],

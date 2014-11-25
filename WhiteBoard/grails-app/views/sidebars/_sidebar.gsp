@@ -7,9 +7,10 @@
 		</g:if>
 		<g:if
 			test="${ currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_TA' || currentUserRole == 'ROLE_STUDENT'}">
-			<li><g:remoteLink update="MainContent" controller="announcement"
+			<li><g:remoteLink update="MainContent" controller="announcement" class="active"
 					action="allLink">All</g:remoteLink></li>
 		</g:if>
+							
 		<li><g:remoteLink update="MainContent" controller="announcement"
 				action="generalLink">General</g:remoteLink></li>
 		<g:if

@@ -8,6 +8,10 @@ class AccountController {
 		def currentRole = getAccountType()
 		render(view: '/default', model: [controllertype: 'Account', currentUserRole: currentRole])
 	}
+	def sidebar(){
+		def currentRole = getAccountType()
+		render(template: '/sidebars/sidebar', model: [controllertype: 'Account', currentUserRole: currentRole])
+	}
 
 	def getAccountType(){
 		UserRole.findAllByUser(springSecurityService.currentUser).get(0).role.authority

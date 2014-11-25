@@ -12,6 +12,15 @@ class CourseController {
 		def currentRole = getAccountType()
 		render(view: '/default', model: [sidebarlinks: links, controllertype: 'Course', currentUserRole: currentRole])
 	}
+	
+	def sidebar(){
+		def links = []
+		retrieveClasses().each {
+			links.add(it.coursecode)
+		}
+		def currentRole = getAccountType()
+		render(template: '/sidebars/sidebar', model: [sidebarlinks: links, controllertype: 'Course', currentUserRole: currentRole])
+	}
 
 	def retrieveClasses(){
 		def result
@@ -47,6 +56,11 @@ class CourseController {
 		//render placeholder
 		render('Search all courses')
 	}
+	
+	def appointTA(){
+		
+	}
+	
 	def createCourse(){
 		//option 1 parse through inputstream
 		def file = params.fileUpload

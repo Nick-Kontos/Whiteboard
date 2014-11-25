@@ -12,6 +12,15 @@ class GradeController {
 		def currentRole = getAccountType()
 		render(view: '/default', model: [sidebarlinks: links, controllertype: 'Grade', currentUserRole: currentRole])
 	}
+	
+	def sidebar(){
+		def links = []
+		retrieveClasses().each {
+			links.add(it.coursecode)
+		}
+		def currentRole = getAccountType()
+		render(template: '/sidebars/sidebar', model: [sidebarlinks: links, controllertype: 'Grade', currentUserRole: currentRole])
+	}
 
 	def retrieveClasses(){
 		def result

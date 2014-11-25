@@ -1,0 +1,109 @@
+2014-11-19 12:25:44,670 [FileSystemWatcher: files=#268 cl=groovy.lang.GroovyClassLoader@5f0f419c] ERROR agent.Watcher  - FileWatcher caught serious error, see cause
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "Config$_run_closure1$$DOw5BL6j"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:800)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:643)
+	at java.lang.Thread.run(Thread.java:744)
+2014-11-19 12:25:44,797 [FileSystemWatcher: files=#268 cl=groovy.lang.GroovyClassLoader@5f0f419c] ERROR agent.Watcher  - FileWatcher caught serious error, see cause
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "Config$_run_closure1_closure4$$DOw5BL6k"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:800)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:643)
+	at java.lang.Thread.run(Thread.java:744)
+2014-11-19 12:25:44,805 [FileSystemWatcher: files=#268 cl=groovy.lang.GroovyClassLoader@5f0f419c] ERROR agent.Watcher  - FileWatcher caught serious error, see cause
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "Config$_run_closure1_closure4_closure5$$DOw5BL6m"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:800)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:643)
+	at java.lang.Thread.run(Thread.java:744)
+2014-11-19 12:25:44,846 [FileSystemWatcher: files=#268 cl=groovy.lang.GroovyClassLoader@5f0f419c] ERROR agent.Watcher  - FileWatcher caught serious error, see cause
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "Config$_run_closure1_closure4_closure5_closure6$$DOw5BL6m"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:800)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:643)
+	at java.lang.Thread.run(Thread.java:744)
+2014-11-19 12:25:44,854 [FileSystemWatcher: files=#268 cl=groovy.lang.GroovyClassLoader@5f0f419c] ERROR agent.Watcher  - FileWatcher caught serious error, see cause
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "Config$_run_closure2$$DOw5BL6n"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:800)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:643)
+	at java.lang.Thread.run(Thread.java:744)
+2014-11-19 12:25:44,861 [FileSystemWatcher: files=#268 cl=groovy.lang.GroovyClassLoader@5f0f419c] ERROR agent.Watcher  - FileWatcher caught serious error, see cause
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "Config$_run_closure2_closure7$$DOw5BL6n"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:800)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:643)
+	at java.lang.Thread.run(Thread.java:744)
+2014-11-19 12:25:44,870 [FileSystemWatcher: files=#268 cl=groovy.lang.GroovyClassLoader@5f0f419c] ERROR agent.Watcher  - FileWatcher caught serious error, see cause
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "Config$_run_closure2_closure8$$DOw5BL6o"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:800)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:643)
+	at java.lang.Thread.run(Thread.java:744)
+2014-11-19 12:25:44,911 [FileSystemWatcher: files=#268 cl=groovy.lang.GroovyClassLoader@5f0f419c] ERROR agent.Watcher  - FileWatcher caught serious error, see cause
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "Config$_run_closure3$$DOw5BL6p"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:800)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:643)
+	at java.lang.Thread.run(Thread.java:744)
+2014-11-19 12:25:45,006 [FileSystemWatcher: files=#268 cl=groovy.lang.GroovyClassLoader@5f0f419c] ERROR agent.Watcher  - FileWatcher caught serious error, see cause
+java.lang.LinkageError: loader (instance of  org/springsource/loaded/ChildClassLoader): attempted  duplicate class definition for name: "Config$$DOw5BL6j"
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:800)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:643)
+	at java.lang.Thread.run(Thread.java:744)
+2014-11-19 12:28:46,167 [Thread-8] ERROR compiler.GrailsProjectWatcher  - Compilation Error: startup failed:
+C:\github\Whiteboard\WhiteBoard\grails-app\conf\Config.groovy: 164: unexpected token: } @ line 164, column 1.
+   }
+   ^
+
+1 error
+
+2014-11-19 12:28:46,186 [Thread-12] ERROR compiler.GrailsProjectWatcher  - Compilation Error: startup failed:
+C:\github\Whiteboard\WhiteBoard\grails-app\conf\Config.groovy: 164: unexpected token: } @ line 164, column 1.
+   }
+   ^
+
+1 error
+
+2014-11-19 12:28:46,775 [Thread-12] ERROR compiler.GrailsProjectWatcher  - Compilation Error: startup failed:
+C:\github\Whiteboard\WhiteBoard\grails-app\conf\Config.groovy: 164: unexpected token: } @ line 164, column 1.
+   }
+   ^
+
+1 error
+
+2014-11-19 12:28:46,900 [Thread-8] ERROR compiler.GrailsProjectWatcher  - Compilation Error: startup failed:
+C:\github\Whiteboard\WhiteBoard\grails-app\conf\Config.groovy: 164: unexpected token: } @ line 164, column 1.
+   }
+   ^
+
+1 error
+
+2014-11-19 12:30:01,104 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table announcement drop constraint FK_f8mupkebjntypkykcw8u6j5bu if exists
+2014-11-19 12:30:01,105 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "ANNOUNCEMENT" not found; SQL statement:
+alter table announcement drop constraint FK_f8mupkebjntypkykcw8u6j5bu if exists [42102-176]
+2014-11-19 12:30:01,106 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table announcement drop constraint FK_1rmyeh2ta991loishtjmc3l05 if exists
+2014-11-19 12:30:01,106 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "ANNOUNCEMENT" not found; SQL statement:
+alter table announcement drop constraint FK_1rmyeh2ta991loishtjmc3l05 if exists [42102-176]
+2014-11-19 12:30:01,106 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table assignment drop constraint FK_5eyumr0i2ug4ms48we268lib6 if exists
+2014-11-19 12:30:01,106 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "ASSIGNMENT" not found; SQL statement:
+alter table assignment drop constraint FK_5eyumr0i2ug4ms48we268lib6 if exists [42102-176]
+2014-11-19 12:30:01,108 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table course drop constraint FK_ps182hc66y3h1w7vrjwwo4rot if exists
+2014-11-19 12:30:01,108 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "COURSE" not found; SQL statement:
+alter table course drop constraint FK_ps182hc66y3h1w7vrjwwo4rot if exists [42102-176]
+2014-11-19 12:30:01,108 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table course_user drop constraint FK_g8aemk037bkp123ao6vp4krdf if exists
+2014-11-19 12:30:01,108 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "COURSE_USER" not found; SQL statement:
+alter table course_user drop constraint FK_g8aemk037bkp123ao6vp4krdf if exists [42102-176]
+2014-11-19 12:30:01,109 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table course_user drop constraint FK_dawtehu1euwtuoftyhmvyqvf8 if exists
+2014-11-19 12:30:01,109 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "COURSE_USER" not found; SQL statement:
+alter table course_user drop constraint FK_dawtehu1euwtuoftyhmvyqvf8 if exists [42102-176]
+2014-11-19 12:30:01,109 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table course_user drop constraint FK_6wip63opa4rlqpct416ttewiu if exists
+2014-11-19 12:30:01,109 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "COURSE_USER" not found; SQL statement:
+alter table course_user drop constraint FK_6wip63opa4rlqpct416ttewiu if exists [42102-176]
+2014-11-19 12:30:01,110 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table submission drop constraint FK_ijm6a7eqv71w0c1j3cjv5r0an if exists
+2014-11-19 12:30:01,110 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "SUBMISSION" not found; SQL statement:
+alter table submission drop constraint FK_ijm6a7eqv71w0c1j3cjv5r0an if exists [42102-176]
+2014-11-19 12:30:01,110 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table submission drop constraint FK_db8d422d38emxhhn37mce9h0h if exists
+2014-11-19 12:30:01,110 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "SUBMISSION" not found; SQL statement:
+alter table submission drop constraint FK_db8d422d38emxhhn37mce9h0h if exists [42102-176]
+2014-11-19 12:30:01,111 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table submission drop constraint FK_m2almb7pfdnphy42r4ncd40x2 if exists
+2014-11-19 12:30:01,111 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "SUBMISSION" not found; SQL statement:
+alter table submission drop constraint FK_m2almb7pfdnphy42r4ncd40x2 if exists [42102-176]
+2014-11-19 12:30:01,111 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table user_role drop constraint FK_it77eq964jhfqtu54081ebtio if exists
+2014-11-19 12:30:01,113 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "USER_ROLE" not found; SQL statement:
+alter table user_role drop constraint FK_it77eq964jhfqtu54081ebtio if exists [42102-176]
+2014-11-19 12:30:01,113 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - HHH000389: Unsuccessful: alter table user_role drop constraint FK_apcc8lxk2xnug8377fatvbn04 if exists
+2014-11-19 12:30:01,113 [localhost-startStop-1] ERROR hbm2ddl.SchemaExport  - Table "USER_ROLE" not found; SQL statement:
+alter table user_role drop constraint FK_apcc8lxk2xnug8377fatvbn04 if exists [42102-176]

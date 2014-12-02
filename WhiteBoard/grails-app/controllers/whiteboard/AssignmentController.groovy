@@ -83,7 +83,7 @@ class AssignmentController {
 				
 				def newAssign = new Assignment(title: params.InputTitle, text: params.InputDescription, datedue: params.InputDueDate, totalpoints: params.InputPointsWorth, creator: springSecurityService.currentUser, doclink:file.originalFilename)
 				//newAssign.doclink = file.originalFilename
-           		
+				           		
            		//response.setContentType("APPLICATION/OCTET-STREAM")
             	//response.setHeader("Content-Disposition", "Attachment;Filename=\"${it.doclink}\"")				
 				
@@ -94,7 +94,7 @@ class AssignmentController {
 				}
 				newAssign.course = Course.findByCoursecode(params.InputCourse)
 				newAssign.save(failOnError: true)
-				redirect(view: 'default')
+				redirect(view: '/default')
 			}catch(Exception e){
 				//this need to be completed to handle different errors
 				render(e.message)
@@ -103,4 +103,6 @@ class AssignmentController {
 			render('Error please complete all fields')
 		}
 	}
+
+
 }

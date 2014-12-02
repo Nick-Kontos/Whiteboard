@@ -49,8 +49,36 @@ class GradeController {
 			render('error')
 	}
 	def allLink(){
-		//render placeholder
-		render('All Grades')
+		def assignlist = []
+		retrieveClasses().each {
+			Submission.findAllByCourse(it).each{
+				assignlist.add(it)
+			}		
+		}
+		render(template: '/templates/viewGrades', model: [assignlist: assignlist, currentUserRole: getAccountType()])
+	}
+	def saveGrades(){
+
+		def grades = params.int('InputGrades')
+		def id = params.SubmissionId
+
+		if(params.InputGrades ){
+
+			try{
+
+				def updateGrades = Submission.get(id)
+				updateGrades.grade = grades
+				updateGrades.save()
+
+				render('save')
+			}catch(Exception e){
+				//this need to be completed to handle different errors
+				render(e.message)
+			}
+		}else {
+			render('Error please complete all fields')
+		}
+		
 	}
 
 }

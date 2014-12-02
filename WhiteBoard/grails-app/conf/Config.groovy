@@ -144,6 +144,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/grade/**': ['IS_AUTHENTICATED_FULLY'],
 	'/account/**': ['IS_AUTHENTICATED_FULLY'],
 	'/dbdoc/**': ['ROLE_SITEMANAGER'],
+    '/grading/**': ['IS_AUTHENTICATED_FULLY'],
     //access controller database
     '/dbconsole/**':                  ['permitAll']    
 ]

@@ -69,6 +69,9 @@ grails.project.dependency.resolution = {
 		//compile ":bootstrap-file-upload:2.1.2"
 		//compile ":twitter-bootstrap:3.1.1.3"
 		//compile ":lesscss-resources:1.3.3"
+        
+        //file uploader
+        //compile ":file-uploader:1.2.1"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.5" // or ":hibernate:3.6.10.17"

@@ -88,15 +88,15 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
-        uploadFolder = "C:/temp/"
+        uploadFolder = "C:/github/"
     }
     test{
-        uploadFolder = "C:/temp/"
+        uploadFolder = "C:/github/"
     }
     production {
         grails.logging.jul.usebridge = false
         // TODO: grails.serverURL = "http://www.changeme.com"
-        uploadFolder = "C:/temp/"   
+        uploadFolder = "C:/github/"   
     }
 }
 
@@ -144,6 +144,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/grade/**': ['IS_AUTHENTICATED_FULLY'],
 	'/account/**': ['IS_AUTHENTICATED_FULLY'],
 	'/dbdoc/**': ['ROLE_SITEMANAGER'],
+    '/grading/**': ['IS_AUTHENTICATED_FULLY'],
     //access controller database
     '/dbconsole/**':                  ['permitAll']    
 ]

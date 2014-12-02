@@ -25,7 +25,7 @@
 						<font size="6">${it?.title } </font><br>
 						${it?.text }<br>
 						</div>
-						<div>uploaded file: ${it?.doclink} </div>
+						<div>uploaded file: <g:link controller="assignment" action="download"  id="${it?.id}">${it?.doclink}</g:link> </div>
 
 						<g:if test="${currentUserRole == 'ROLE_STUDENT'}">
 							<g:form role="form" controller="grading" action="saveAssignment"

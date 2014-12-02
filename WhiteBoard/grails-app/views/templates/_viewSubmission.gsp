@@ -19,7 +19,7 @@
 						${it?.docLink }<br>
 						</div>
 
-					<g:form role="form" controller="grade" action="saveGrades	"
+					<g:form role="form" controller="grade" action="saveGrades"
 						enctype="multipart/form-data">
 						<div class="form-group">
 							<input type="hidden" id="SubmissionId" name="SubmissionId" value="${it?.id}">
@@ -27,7 +27,8 @@
 							<input type="hidden" id="StudentId" name="StudentId" value="${it?.course.students.id}">
 							<input type="hidden" id="AssignmentId" name="AssignmentId" value="${it?.assignment.id}">
 							<input type="hidden" id="DocLink" name="DocLink" value="${it?.docLink}">
-						</div>						
+						</div>
+						<div>uploaded file: <g:link controller="grading" action="download"  id="${it?.id}">${it?.docLink}</g:link> </div>												
 						<div class="form-group">
 							<label for="SubmitGrades">Grades worth</label>
 							<g:textField name="InputGrades"  id="InputGrades"/> / ${it?.assignment.totalpoints}

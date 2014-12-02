@@ -24,7 +24,7 @@
 
 						<div class="panel-body">
 						${it?.assignment.text }<br>
-						submitted file: ${it?.docLink}
+						submitted file: <g:link controller="grading" action="download"  id="${it?.id}">${it?.docLink}</g:link>
 						</div>						
 					</div>
 

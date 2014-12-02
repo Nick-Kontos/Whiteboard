@@ -64,8 +64,9 @@ class AssignmentController {
 	def createAssignment(){
 		//option 1 parse through inputstream
 		//def file = params.FileUpload
-		def file = params.FileUpload
-
+		//def file = params.FileUpload
+		def file = request.getFile('FileUpload')
+		//print file1
 		//print file
 		//file.inputStream
 		//doc for inputstream is at http://groovy.codehaus.org/groovy-jdk/java/io/InputStream.html
@@ -81,11 +82,18 @@ class AssignmentController {
 		if(params.InputCourse && params.InputTitle && params.InputDescription && params.InputPointsWorth && params.InputDueDate){
 			try{
 				
+				if(file.empty){
+					flash.message = "File cannot be empty"
+				}
+				else{
 				def newAssign = new Assignment(title: params.InputTitle, text: params.InputDescription, datedue: params.InputDueDate, totalpoints: params.InputPointsWorth, creator: springSecurityService.currentUser, doclink:file.originalFilename)
 				//newAssign.doclink = file.originalFilename
 				           		
            		//response.setContentType("APPLICATION/OCTET-STREAM")
-            	//response.setHeader("Content-Disposition", "Attachment;Filename=\"${it.doclink}\"")				
+            	//response.setHeader("Content-Disposition", "Attachment;Filename=\"${it.doclink}\"")	
+
+            	newAssign.docpath = grailsApplication.config.uploadFolder + newAssign.doclink
+            	file.transferTo(new File(newAssign.docpath))		
 				
 				if(params.InputVisable){
 					newAssign.viewable = true
@@ -94,7 +102,9 @@ class AssignmentController {
 				}
 				newAssign.course = Course.findByCoursecode(params.InputCourse)
 				newAssign.save(failOnError: true)
-				redirect(view: '/default')
+				redirect(view: '/default')					
+				}
+
 			}catch(Exception e){
 				//this need to be completed to handle different errors
 				render(e.message)
@@ -102,6 +112,34 @@ class AssignmentController {
 		}else {
 			render('Error please complete all fields')
 		}
+	}
+	def download(long id){
+
+		Assignment newAssign = Assignment.get(id)
+		if( newAssign == null){
+			flash.message = "Document Not Found"
+			//redirect 
+		}
+		else{
+           response.setContentType("APPLICATION/OCTET-STREAM")
+           response.setHeader("Content-Disposition", "Attachment;Filename=\"${newAssign.doclink}\"")
+
+	       def file = new File(newAssign.docpath)
+	       def fileInputStream = new FileInputStream(file)
+	       def outputStream = response.getOutputStream()
+
+	       byte[] buffer = new byte[4096];
+           int len;
+           while ((len = fileInputStream.read(buffer)) > 0) {
+               outputStream.write(buffer, 0, len);
+           }
+
+           outputStream.flush()
+           outputStream.close()
+           fileInputStream.close()           
+
+		}
+
 	}
 
 

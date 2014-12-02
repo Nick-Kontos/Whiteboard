@@ -61,30 +61,62 @@ class GradingController {
 	}
 
 	def saveAssignment(){
-		def file = params.FileUpload
+		def file = request.getFile('FileUpload')
+
 		//file uploading has to be implemented here
 
 		//If the due date is correct save it to submission domain
 
 
 			try{
+				if(file.empty){
+					flash.message = "File cannot be empty"
+				}
+				else{				
 				//Submission domain needs docLink and each primary key of student, course, and assignment so that everything can be connected to each other				
 				def newSub = new Submission(docLink:file.originalFilename, student: params.StudentId[1], course: params.CourseId, assignment: params.AssignmentId)
-				//print newSub
-				//newAssign.doclink = file.originalFilename
-				           		
-           		//response.setContentType("APPLICATION/OCTET-STREAM")
-            	//response.setHeader("Content-Disposition", "Attachment;Filename=\"${it.doclink}\"")				
-				
-				//newAssign.course = Course.findByCoursecode(params.InputCourse)
+
+            	newSub.docpath = grailsApplication.config.uploadFolder + newSub.docLink
+            	file.transferTo(new File(newSub.docpath))	
+
 				newSub.save(failOnError: true)
 				render("saved")
 				//redirect(view: '/default')
+				}
 			}catch(Exception e){
 				//this need to be completed to handle different errors
 				render(e.message)
 			}	
 	}
+	def download(long id){
+
+		Submission newSub = Submission.get(id)
+		//print newSub
+		if( newSub == null){
+			flash.message = "Document Not Found"
+			//redirect 
+		}
+		else{
+           response.setContentType("APPLICATION/OCTET-STREAM")
+           response.setHeader("Content-Disposition", "Attachment;Filename=\"${newSub.docLink}\"")
+
+	       def file = new File(newSub.docpath)
+	       def fileInputStream = new FileInputStream(file)
+	       def outputStream = response.getOutputStream()
+
+	       byte[] buffer = new byte[4096];
+           int len;
+           while ((len = fileInputStream.read(buffer)) > 0) {
+               outputStream.write(buffer, 0, len);
+           }
+
+           outputStream.flush()
+           outputStream.close()
+           fileInputStream.close()           
+
+		}
+
+	}	
 
 
 

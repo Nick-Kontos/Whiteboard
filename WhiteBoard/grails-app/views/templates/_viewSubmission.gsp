@@ -28,7 +28,12 @@
 							<input type="hidden" id="AssignmentId" name="AssignmentId" value="${it?.assignment.id}">
 							<input type="hidden" id="DocLink" name="DocLink" value="${it?.docLink}">
 						</div>
-						<div>uploaded file: <g:link controller="grading" action="download"  id="${it?.id}">${it?.docLink}</g:link> </div>												
+						<div>uploaded file: <g:link controller="grading" action="download"  id="${it?.id}">${it?.docLink}</g:link> </div>				
+						<div class="form-group">
+							<label for="InputComment">Comment</label>
+							<g:textArea name="InputComment" class="form-control" rows="5"
+								id="InputComment" />
+						</div>														
 						<div class="form-group">
 							<label for="SubmitGrades">Grades worth</label>
 							<g:textField name="InputGrades"  id="InputGrades"/> / ${it?.assignment.totalpoints}

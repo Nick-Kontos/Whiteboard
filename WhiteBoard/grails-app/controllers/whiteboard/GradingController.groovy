@@ -41,8 +41,9 @@ class GradingController {
 	}
 
 	def courseLink(){
-		
+		//render placeholder
 		def coursename = params.coursename
+
 		def assignlist = []
 		assignlist = Submission.findAllByCourse(Course.findByCoursecode(coursename))
 		render(template: '/templates/viewSubmission', model: [assignlist: assignlist, currentUserRole: getAccountType()])			
@@ -63,6 +64,7 @@ class GradingController {
 		def file = request.getFile('FileUpload')
 		def dateDue = params.DateDue
 		Date now = new Date()
+		print dateDue
 		//change dateDue type from String to Date
 		def changedDateDueType = Date.parse("yyyy-MM-dd hh:mm:ss.s", dateDue)
 		

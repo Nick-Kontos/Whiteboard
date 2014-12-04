@@ -60,15 +60,17 @@ class GradeController {
 	def saveGrades(){
 
 		def grades = params.int('InputGrades')
+		def comment = params.InputComment
 		def id = params.SubmissionId
 
 		if(params.InputGrades ){
 
 			try{
 
-				def updateGrades = Submission.get(id)
-				updateGrades.grade = grades
-				updateGrades.save()
+				def update = Submission.get(id)
+				update.grade = grades
+				update.comment = comment
+				update.save()
 
 				render('save')
 			}catch(Exception e){

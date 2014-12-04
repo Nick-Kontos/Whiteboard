@@ -60,11 +60,6 @@
 						<li><g:remoteLink update="sidebar" controller="Assignment"
 								action="sidebar">Assignments</g:remoteLink></li>
 					</g:if>
-					<g:if
-						test="${currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_TA' }">
-						<li><g:remoteLink update="sidebar" controller="Grading"
-								action="sidebar">Grading</g:remoteLink></li>
-					</g:if>					
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<form name="submitForm" method="POST"

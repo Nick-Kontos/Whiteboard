@@ -45,9 +45,10 @@
 									<input type="hidden" id="AssignmentId" name="AssignmentId" value="${it?.id}">
 									<input type="hidden" id="CourseId" name="CourseId" value="${it?.course.id}">
 									<input type="hidden" id="StudentId" name="StudentId" value="${it?.course.students.id}">
+									<input type="hidden" id="DateDue" name="DateDue" value="${it?.datedue}">
 								</div>
 								<div class="form-group">
-
+									<g:formatDate format="yyyy-MM-dd" date="${it?.datedue}"/>
 									<label for="FileUpload">Upload File </label> 
 									<input type="file" id="FileUpload" name="FileUpload">
 

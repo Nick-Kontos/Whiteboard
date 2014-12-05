@@ -14,12 +14,23 @@
 								${it?.creator.firstname}
 								${it?.creator.lastname}
 
-								<g:if test="${currentUserRole == 'ROLE_TEACHER' }">
-									<div class="pull-right">
-										<button type="button" class="btn btn-default">Edit</button>
-										<button type="button" class="btn btn-default">Delete</button>
-									</div>
-								</g:if>
+					<g:if test="${currentUserRole == 'ROLE_TEACHER' }">
+					<div class="pull-right">
+					<g:form role="form" controller="assignment"
+					action="editAssignment" enctype="multipart/form-data">
+					<input type="hidden" id="assignmentno" name="assignmentno" value="${it?.title}">
+					<button type="submit" class="btn btn-default">Edit</button>
+					</g:form>
+					 
+					 
+					<g:form role="form" controller="assignment"
+					action="deleteAssignment"  name="InputText" id="InputText" enctype="multipart/form-data">
+					<input type="hidden" id="assignmentno" name="assignmentno" value="${it?.title}">
+					  <button type="submit" class="btn btn-default">Delete</button>
+					 
+					  </g:form>
+					</div>
+					</g:if>
 
 								<div>
 									posted Date:

@@ -57,37 +57,135 @@ class CourseController {
 		render('Search all courses')
 	}
 	
-	def appointTA(){
-		
-	}
-	
 	def createCourse(){
-		//option 1 parse through inputstream
-		def file = params.fileUpload
-		//file.inputStream
-		//doc for inputstream is at http://groovy.codehaus.org/groovy-jdk/java/io/InputStream.html
-
-		//option 2 parse through using csv reader
-		//file.transferTo(new File('newFile.csv'))
-		//def csv = new CSVReader(new File('newFile.csv').newReader())
-		//doc for csv reader is at http://www.liquibase.org/javadoc/liquibase/util/csv/opencsv/CSVReader.html
-
-		if(params.InputCourseCode && params.InputCourseName && params.InputDescription && params.InputInstructor && params.InputRoster){
-			try{
-				def newCourse = new Course(coursename: params.InputCourseName, coursecode: params.InputCourseCode, description: params.InputDescription, teacher: User.findByUsername(params.InputInstructor))
-				params.InputRoster.tokenize(',').each {
-					def s = User.findByUsername(it)
-					newCourse.addToStudents(s)
+		if(params.InputCourseCode && params.InputCourseName && params.InputDescription && params.InputInstructor){
+			def file = params.fileUpload
+			if(file != null){
+				try{
+					def newCourse = new Course(coursename: params.InputCourseName, coursecode: params.InputCourseCode, description: params.InputDescription, teacher: User.findByUsername(params.InputInstructor))
+					print newCourse
+					file.getInputStream().eachLine{line ->
+						print line
+						if(line != null){
+							def lineList = line.tokenize(",")
+							if((User.findByUsername(lineList.get(0))) == null){
+								print "HELLO"
+								def newStudent = new User(username: lineList.get(0), password: "password", email: lineList.get(3), firstname: lineList.get(2), lastname: lineList.get(1))
+								newStudent.save(failOnError: true)
+								UserRole.create(newStudent, Role.findByAuthority('ROLE_STUDENT'), true)
+								newCourse.addToStudents(newStudent)
+								newCourse.save(failOnError:true)
+							}
+							else{
+								print "Error1"
+								def s = User.findByUsername(lineList.get(0))
+								print s
+								newCourse.addToStudents(s)
+								newCourse.save(failOnError:true)	
+							}
+						}
+					}
+					render "SUCCESS"
+				}catch(Exception e){
+					render "ERROR"
 				}
-				newCourse.save(failOnError: true)
-				render('Successfully created ')
-			}catch(Exception e){
-				//This needs to be filled in
-				render(e.message)
+			}
+			else{
+				try{
+					def newCourse = new Course(coursename: params.InputCourseName, coursecode: params.InputCourseCode, description: params.InputDescription, teacher: User.findByUsername(params.InputInstructor))
+					params.InputRoster.tokenize(',').each {
+						def s = User.findByUsername(it)
+						newCourse.addToStudents(s)
+					}
+					newCourse.save(failOnError: true)
+					render('Successfully created ')
+				}catch(Exception e){
+					//This needs to be filled in
+					render(e.message)
+				}
 			}
 		}else{
 			render('Input incomplete please complete all fields')
 		}
+	}
+	def appointTA(){
+	 
+		//render placeholder
+		def links = []
+		retrieveClasses().each {
+		links.add(it.coursecode)
+		}
+		 
+		render(template: '/templates/appointTaForm', model: [coursecodes: links, currentUserRole: getAccountType()])
+		}
+	def appointTa2(){
+		if(params.InputCourse &&params.InputRoster){
+		params.InputRoster.tokenize(',').each {
+		def s = User.findByUsername(it)
+		def coursename = params.InputCourse
+		def student
+		def newUserRole
+		newUserRole = Role.findByAuthority('ROLE_TA')
+		UserRole.create(s, newUserRole, true)
+		student = Course.findByCoursecode(coursename)
+		student.addToTAs(s)
+		}
+		 
+		 
+		render('Appointed the TA')
+		}
+	}	
+}
 
+
+//option 1 parse through inputstream
+//print params.fileUpload
+/*
+def file = params.fileUpload //CommonsMultipartFile
+if(file != null){
+	print file.getInputStream().eachLine{line ->
+		print line
+		if(line != null){
+			def lineList = line.tokenize(",")
+			if(User.findByUsername(lineList.get(0)) == null){
+				def newStudent = new User(username: lineList.get(0), password: "password", email: lineList.get(3), firstname: lineList.get(2), lastname: lineList.get(1))
+				try{
+					newStudent.save(failOnError: true)
+					UserRole.create(newStudent, Role.findByAuthority('ROLE_STUDENT'), true)
+				}catch(Exception e){
+					render "Could not create student account."
+				}
+			}
+		}
 	}
 }
+*/
+//if(params.InputCourseCode && params.InputCourseName && params.InputDescription && params.InputInstructor && params.InputRoster){
+
+/*
+ params.InputRoster.tokenize(',').each {
+	 def s = User.findByUsername(it)
+	 newCourse.addToStudents(s)
+ }
+ newCourse.save(failOnError: true)
+ render('Successfully created ')
+}catch(Exception e){
+ //This needs to be filled in
+ render(e.message)
+}
+file.getInputStream().eachLine{line ->
+ print line
+ if(line != null){
+	 def lineList = line.tokenize(",")
+	 if(User.findByUsername(lineList.get(0)) == null){
+		 def newStudent = new User(username: lineList.get(0), password: "password", email: lineList.get(3), firstname: lineList.get(2), lastname: lineList.get(1))
+		 try{
+			 newStudent.save(failOnError: true)
+			 UserRole.create(newStudent, Role.findByAuthority('ROLE_STUDENT'), true)
+		 }catch(Exception e){
+			 render "Could not create student account."
+		 }
+	 }
+ }
+}
+*/

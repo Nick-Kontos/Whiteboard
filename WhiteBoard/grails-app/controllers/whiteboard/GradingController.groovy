@@ -43,10 +43,10 @@ class GradingController {
 	def courseLink(){
 		//render placeholder
 		def coursename = params.coursename
-		if(coursename)
-			render('Grades for ' + coursename)
-		else
-			render('error')
+
+		def assignlist = []
+		assignlist = Submission.findAllByCourse(Course.findByCoursecode(coursename))
+		render(template: '/templates/viewSubmission', model: [assignlist: assignlist, currentUserRole: getAccountType()])			
 	}
 	def allLink(){
 		def assignlist = []
@@ -62,26 +62,38 @@ class GradingController {
 
 	def saveAssignment(){
 		def file = request.getFile('FileUpload')
-
-		//file uploading has to be implemented here
-
-		//If the due date is correct save it to submission domain
-
-
+		def dateDue = params.DateDue
+		Date now = new Date()
+		print dateDue
+		//change dateDue type from String to Date
+		def changedDateDueType = Date.parse("yyyy-MM-dd hh:mm:ss.s", dateDue)
+		
 			try{
 				if(file.empty){
 					flash.message = "File cannot be empty"
 				}
-				else{				
-				//Submission domain needs docLink and each primary key of student, course, and assignment so that everything can be connected to each other				
-				def newSub = new Submission(docLink:file.originalFilename, student: params.StudentId[1], course: params.CourseId, assignment: params.AssignmentId)
+				else{
+					if(changedDateDueType > now){
+						//Submission domain needs docLink and each primary key of student, course, and assignment so that everything can be connected to each other				
+						def newSub = new Submission(docLink:file.originalFilename, student: params.StudentId[1], course: params.CourseId, assignment: params.AssignmentId)
 
-            	newSub.docpath = grailsApplication.config.uploadFolder + newSub.docLink
-            	file.transferTo(new File(newSub.docpath))	
+		            	newSub.docpath = grailsApplication.config.uploadFolder + newSub.docLink
+		            	file.transferTo(new File(newSub.docpath))	
 
-				newSub.save(failOnError: true)
-				render("saved")
-				//redirect(view: '/default')
+						newSub.save(failOnError: true)
+						render("saved")
+						//redirect(view: '/default')						
+
+					}
+					else{
+						//sendMail {     
+						//		  to "ben-jun@hotmail.com"     
+						//		  subject "Hello Fred"     
+						//		  body 'How are you?' 
+						//		 }
+						render("failed cuz of due date is late and mail has been sent")
+					}
+				
 				}
 			}catch(Exception e){
 				//this need to be completed to handle different errors

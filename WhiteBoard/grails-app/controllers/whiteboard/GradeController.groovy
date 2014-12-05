@@ -43,10 +43,10 @@ class GradeController {
 	def courseLink(){
 		//render placeholder
 		def coursename = params.coursename
-		if(coursename)
-			render('Grades for ' + coursename)
-		else
-			render('error')
+
+		def assignlist = []
+		assignlist = Submission.findAllByCourse(Course.findByCoursecode(coursename))
+		render(template: '/templates/viewGrades', model: [assignlist: assignlist, currentUserRole: getAccountType()])
 	}
 	def allLink(){
 		def assignlist = []
@@ -60,15 +60,17 @@ class GradeController {
 	def saveGrades(){
 
 		def grades = params.int('InputGrades')
+		def comment = params.InputComment
 		def id = params.SubmissionId
 
 		if(params.InputGrades ){
 
 			try{
 
-				def updateGrades = Submission.get(id)
-				updateGrades.grade = grades
-				updateGrades.save()
+				def update = Submission.get(id)
+				update.grade = grades
+				update.comment = comment
+				update.save()
 
 				render('save')
 			}catch(Exception e){

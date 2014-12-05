@@ -92,6 +92,8 @@ class AssignmentController {
            		//response.setContentType("APPLICATION/OCTET-STREAM")
             	//response.setHeader("Content-Disposition", "Attachment;Filename=\"${it.doclink}\"")	
 
+
+            	//submission,assignmentTitle
             	newAssign.docpath = grailsApplication.config.uploadFolder + newAssign.doclink
             	file.transferTo(new File(newAssign.docpath))		
 				
@@ -118,7 +120,7 @@ class AssignmentController {
 		Assignment newAssign = Assignment.get(id)
 		if( newAssign == null){
 			flash.message = "Document Not Found"
-			//redirect 
+			//redirect 1
 		}
 		else{
            response.setContentType("APPLICATION/OCTET-STREAM")

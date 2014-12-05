@@ -7,26 +7,18 @@
 				<g:each in="${assignlist }">
 				
 				<div class="col-md-11 col-md-offset-1">
-					<div class="panel panel-info">
-						<div class="panel-heading">
-						${it?.course.coursecode }
-						${it?.assignment.title }
-						 
-							<g:if test="${currentUserRole == 'ROLE_TEACHER' }">
-								<div class="pull-right">
-								<button type="button" class="btn btn-default">Edit</button>
-		  						<button type="button" class="btn btn-default">Delete</button>			
-								</div>
-							</g:if>							
-						<div>Name: ${it?.student.firstname} ${it?.student.lastname}	</div>
-						<div>Grade: ${it?.grade}</div>						 				
-						</div>
 
-						<div class="panel-body">
-						${it?.assignment.text }<br>
-						submitted file: <g:link controller="grading" action="download"  id="${it?.id}">${it?.docLink}</g:link>
-						</div>						
-					</div>
+					<table class="table table-hover">
+  						<tr>
+  							<th>Name of the assignment<br>
+  							Date Due: ${it?.assignment.datedue}</th>
+  							<th>Grades of student</th>
+  						</tr>
+  						<tr>
+  							<td class="info">${it?.assignment.title }</td>
+  							<td class="info"><button type="button" class="btn btn-primary btn-lg active">view</button></td>
+  						</tr>
+					</table>					
 
 				</div>
 				</g:each>

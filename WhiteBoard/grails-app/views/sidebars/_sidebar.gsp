@@ -84,8 +84,7 @@
 	</g:elseif>
 	<g:elseif test="${controllertype == 'Grading' }">
 		<g:if test="${currentUserRole != 'ROLE_SITEMANAGER' || 'ROLE_STUDENT' }">
-			<li><g:remoteLink update="MainContent" controller="grading"
-					action="allLink">All</g:remoteLink></li>
+
 			<g:each in="${sidebarlinks}">
 				<li><g:remoteLink update="MainContent" controller="grading"
 						action="courseLink" params="[coursename: "${it }"]">

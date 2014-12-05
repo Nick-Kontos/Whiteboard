@@ -43,11 +43,20 @@ class GradingController {
 	def courseLink(){
 		//render placeholder
 		def coursename = params.coursename
-
+		Date d = new Date()
 		def assignlist = []
-		assignlist = Submission.findAllByCourse(Course.findByCoursecode(coursename))
-		render(template: '/templates/viewSubmission', model: [assignlist: assignlist, currentUserRole: getAccountType()])			
+		assignlist = Assignment.findAllByCourse(Course.findByCoursecode(coursename))
+		render(template: '/templates/viewSubmission', model: [assignlist: assignlist, currentUserRole: getAccountType(), currentDateTime: d])			
 	}
+	
+	def assignmentGrades(){
+		def submissionList = Submission.findAllByAssignment(Assignment.findById(params.assignmentId))
+		
+		render template: '/templates/viewAssignmentSubmissions', model: [submissionList: submissionList]
+	}
+	
+	
+	
 	def allLink(){
 		def assignlist = []
 		retrieveClasses().each {

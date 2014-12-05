@@ -51,10 +51,13 @@
 										[User]Student User:${it?.course.students.username}
 									</p>
 									<div class="form-group">
-										<input type="hidden" id="AssignmentId" name="AssignmentId" value="${it?.id}"> 
-										<input type="hidden" id="CourseId" name="CourseId" value="${it?.course.id}"> 
-										<input type="hidden" id="StudentId" name="StudentId" value="${it?.course.students.id}">
-										<input type="hidden" id="DateDue" name="DateDue" value="${it?.datedue}">
+										<input type="hidden" id="AssignmentId" name="AssignmentId"
+											value="${it?.id}"> <input type="hidden" id="CourseId"
+											name="CourseId" value="${it?.course.id}"> <input
+											type="hidden" id="StudentId" name="StudentId"
+											value="${it?.course.students.id}"> <input
+											type="hidden" id="DateDue" name="DateDue"
+											value="${it?.datedue}">
 									</div>
 									<div class="form-group">
 
@@ -62,7 +65,7 @@
 											type="file" id="FileUpload" name="FileUpload">
 
 									</div>
-									
+
 									<div class="form-group">
 										<button type="submit" class="btn btn-default btn-lg btn-block">Submit</button>
 									</div>
@@ -73,7 +76,6 @@
 
 
 						</div>
-
 				</g:each>
 			</div>
 

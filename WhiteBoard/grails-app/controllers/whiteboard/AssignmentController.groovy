@@ -12,7 +12,7 @@ class AssignmentController {
 		def currentRole = getAccountType()
 		render(view: '/default', model: [sidebarlinks: links, controllertype: 'Assignment', currentUserRole: currentRole])
 	}
-	
+
 	def sidebar(){
 		def links = []
 		retrieveClasses().each {
@@ -55,9 +55,7 @@ class AssignmentController {
 	def allLink(){
 		def assignlist = []
 		retrieveClasses().each {
-			Assignment.findAllByCourse(it).each{
-				assignlist.add(it)
-			}		
+			Assignment.findAllByCourse(it).each{ assignlist.add(it) }
 		}
 		render(template: '/templates/viewAssignments', model: [assignlist: assignlist, currentUserRole: getAccountType()])
 	}
@@ -81,22 +79,18 @@ class AssignmentController {
 
 		if(params.InputCourse && params.InputTitle && params.InputDescription && params.InputPointsWorth && params.InputDueDate){
 			try{
-				
-				if(file.empty){
-					flash.message = "File cannot be empty"
-				}
-				else{
+
 				def newAssign = new Assignment(title: params.InputTitle, text: params.InputDescription, datedue: params.InputDueDate, totalpoints: params.InputPointsWorth, creator: springSecurityService.currentUser, doclink:file.originalFilename)
 				//newAssign.doclink = file.originalFilename
-				           		
-           		//response.setContentType("APPLICATION/OCTET-STREAM")
-            	//response.setHeader("Content-Disposition", "Attachment;Filename=\"${it.doclink}\"")	
+
+				//response.setContentType("APPLICATION/OCTET-STREAM")
+				//response.setHeader("Content-Disposition", "Attachment;Filename=\"${it.doclink}\"")
 
 
-            	//submission,assignmentTitle
-            	newAssign.docpath = grailsApplication.config.uploadFolder + newAssign.doclink
-            	file.transferTo(new File(newAssign.docpath))		
-				
+				//submission,assignmentTitle
+				newAssign.docpath = grailsApplication.config.uploadFolder + newAssign.doclink
+				file.transferTo(new File(newAssign.docpath))
+
 				if(params.InputVisable){
 					newAssign.viewable = true
 				}else{
@@ -104,8 +98,8 @@ class AssignmentController {
 				}
 				newAssign.course = Course.findByCoursecode(params.InputCourse)
 				newAssign.save(failOnError: true)
-				redirect(view: '/default')					
-				}
+				redirect(view: '/default')
+
 
 			}catch(Exception e){
 				//this need to be completed to handle different errors
@@ -123,22 +117,22 @@ class AssignmentController {
 			//redirect 1
 		}
 		else{
-           response.setContentType("APPLICATION/OCTET-STREAM")
-           response.setHeader("Content-Disposition", "Attachment;Filename=\"${newAssign.doclink}\"")
+			response.setContentType("APPLICATION/OCTET-STREAM")
+			response.setHeader("Content-Disposition", "Attachment;Filename=\"${newAssign.doclink}\"")
 
-	       def file = new File(newAssign.docpath)
-	       def fileInputStream = new FileInputStream(file)
-	       def outputStream = response.getOutputStream()
+			def file = new File(newAssign.docpath)
+			def fileInputStream = new FileInputStream(file)
+			def outputStream = response.getOutputStream()
 
-	       byte[] buffer = new byte[4096];
-           int len;
-           while ((len = fileInputStream.read(buffer)) > 0) {
-               outputStream.write(buffer, 0, len);
-           }
+			byte[] buffer = new byte[4096];
+			int len;
+			while ((len = fileInputStream.read(buffer)) > 0) {
+				outputStream.write(buffer, 0, len);
+			}
 
-           outputStream.flush()
-           outputStream.close()
-           fileInputStream.close()           
+			outputStream.flush()
+			outputStream.close()
+			fileInputStream.close()
 
 		}
 

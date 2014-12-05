@@ -42,13 +42,13 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left">
-					<li><g:remoteLink update="sidebar" controller="Announcement" class="active"
-							action="sidebar">Announcements</g:remoteLink></li>
+					<li><g:remoteLink update="sidebar" controller="Announcement"
+							class="active" action="sidebar">Announcements</g:remoteLink></li>
 					<g:if
-						test="${currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_TA' || currentUserRole == 'ROLE_SITEMANAGER'}">							
-					<li><g:remoteLink update="sidebar" controller="Course"
-							action="sidebar">Courses</g:remoteLink></li>
-					</g:if>		
+						test="${currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_TA' || currentUserRole == 'ROLE_SITEMANAGER'}">
+						<li><g:remoteLink update="sidebar" controller="Course"
+								action="sidebar">Courses</g:remoteLink></li>
+					</g:if>
 					<g:if test="${currentUserRole == 'ROLE_SITEMANAGER'}">
 						<li><g:remoteLink update="sidebar" controller="Account"
 								action="sidebar">Accounts</g:remoteLink></li>
@@ -64,7 +64,7 @@
 						test="${currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_TA' }">
 						<li><g:remoteLink update="sidebar" controller="Grading"
 								action="sidebar">Grading</g:remoteLink></li>
-					</g:if>					
+					</g:if>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<form name="submitForm" method="POST"
@@ -87,7 +87,7 @@
 
 	<div id="MainContent"
 		class="col-sm-9 col-sm-offset-3 col-md-5 col-md-offset-2 main">
-			<g:include controller="announcement" action="allLink" />
+		<g:include controller="announcement" action="allLink" />
 	</div>
 
 	<!-- Placed at the end of the document so the pages load faster -->

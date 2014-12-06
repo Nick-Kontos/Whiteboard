@@ -45,7 +45,7 @@
 					<li><g:remoteLink update="sidebar" controller="Announcement"
 							class="active" action="sidebar">Announcements</g:remoteLink></li>
 					<g:if
-						test="${currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_TA' || currentUserRole == 'ROLE_SITEMANAGER'}">
+						test="${currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_SITEMANAGER'}">
 						<li><g:remoteLink update="sidebar" controller="Course"
 								action="sidebar">Courses</g:remoteLink></li>
 					</g:if>
@@ -54,9 +54,11 @@
 								action="sidebar">Accounts</g:remoteLink></li>
 					</g:if>
 					<g:if
-						test="${currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_TA' || currentUserRole == 'ROLE_STUDENT'}">
+						test="${currentUserRole == 'ROLE_TA' || currentUserRole == 'ROLE_STUDENT'}">
 						<li><g:remoteLink update="sidebar" controller="Grade"
 								action="sidebar">Grades</g:remoteLink></li>
+					</g:if>
+					<g:if test="${currentUserRole == 'ROLE_TA' || currentUserRole == 'ROLE_STUDENT' || currentUserRole == 'ROLE_TEACHER'}">
 						<li><g:remoteLink update="sidebar" controller="Assignment"
 								action="sidebar">Assignments</g:remoteLink></li>
 					</g:if>

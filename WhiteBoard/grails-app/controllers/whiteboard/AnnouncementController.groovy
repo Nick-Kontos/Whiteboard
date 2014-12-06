@@ -36,19 +36,64 @@ class AnnouncementController {
 		}else if(getAccountType() == 'ROLE_TEACHER'){
 			result = Course.findAllByTeacher(springSecurityService.currentUser)
 
+		}else if (getAccountType()=='ROLE_TA'){
+			def c = Course.createCriteria()
+			result = c.list {
+				students{
+					idEq(springSecurityService.currentUser.id)
+				}
+			}
+					
+		}
+		else if (getAccountType()=='ROLE_SITEMANAGER'){
+			result = Course.findAllByTeacher(springSecurityService.currentUser)
+					
 		}
 
 		return result
 	}
-	def getAccountType(){
-		UserRole.findAllByUser(springSecurityService.currentUser).get(0).role.authority
+	
+	
+	def retrieveTAClasses(){
 		
+		def result
+		def c = Course.createCriteria()
+		result = c.list {
+			TAs{
+				idEq(springSecurityService.currentUser.id)
+			}
+		}
+		return result
+	}
+	
+	
+	def getAccountType(){
+		def roleList = UserRole.findAllByUser(springSecurityService.currentUser)
+		if(roleList.size>1){
+			return 'ROLE_TA'
+			
+		}
+		else{
+			return roleList.get(0).role.authority
+			
+		}
+
 	}
 	def createLink(){
 		//render placeholder
+		
 		def links = []
-		retrieveClasses().each {
+		if (getAccountType()=='ROLE_TA'){
+			retrieveTAClasses().each {
+				links.add(it.coursecode)
+				}
+			
+		}else {
+		
+			retrieveClasses().each {
 			links.add(it.coursecode)
+			}
+		
 		}
 		render(template: '/templates/createAnnouncementForm', model: [coursecodes: links, currentUserRole: getAccountType()])
 	}
@@ -57,6 +102,7 @@ class AnnouncementController {
 		def coursename = params.coursename
 		def announcelist = []
 		announcelist = Announcement.findAllByCourse(Course.findByCoursecode(coursename))
+		
 		render(template: '/templates/viewAnnouncements', model: [announcelist: announcelist, currentUserRole: getAccountType()])
 	}
 	def allLink(){
@@ -68,9 +114,10 @@ class AnnouncementController {
 			}	
 		}
 		//there may be a more efficient way
+		if(getAccountType()!='ROLE_SITEMANAGER'){
 		(Announcement.findAllByCourse(Course.findByCoursecode('General'))).each{
 			announcelist.add(it)
-		}		
+		}		}
 		render(template: '/templates/viewAnnouncements', model: [announcelist: announcelist, currentUserRole: getAccountType()])
 	}
 	def generalLink(){
@@ -78,7 +125,6 @@ class AnnouncementController {
 		def announcelist = []
 		//there may be a more efficient way
 		(Announcement.findAllByCourse(Course.findByCoursecode('General'))).each{
-			
 			announcelist.add(it)
 		}
 		render(template: '/templates/viewAnnouncements', model: [announcelist: announcelist, currentUserRole: getAccountType()])
@@ -97,7 +143,6 @@ class AnnouncementController {
 		//first check if all parameters are not null
 		if(params.InputCourse && params.InputTitle && params.InputText){
 			try{
-
 				def newAnnouncement = new Announcement(title: params.InputTitle, text: params.InputText, creator: springSecurityService.currentUser)
 				
 				if(params.InputVisable){
@@ -107,7 +152,8 @@ class AnnouncementController {
 				}
 				newAnnouncement.course = Course.findByCoursecode(params.InputCourse)
 				newAnnouncement.save(failOnError: true)
-				redirect(view: 'default')
+				render(view: '/default')
+				//newAnnouncement.delete();
 				
 			}catch (Exception e){
 				//This need to be completed to handle various errors for adding to the database
@@ -118,29 +164,29 @@ class AnnouncementController {
 		}
 	}
 	def editAnnouncement(){
- 
- 
-			def deleteAnnouncementa = Announcement.findByTitle(params.announcementno)
-			def links = []
-			retrieveClasses().each {
+		
+		
+		def deleteAnnouncementa = Announcement.findByTitle(params.announcementno)
+		def links = []
+		retrieveClasses().each {
 			links.add(it.coursecode)
+		}
+		render(template: '/templates/editAnnouncement', model: [text:deleteAnnouncementa.text,title:deleteAnnouncementa.title,coursecodes: links, currentUserRole: getAccountType()])
+		
+		deleteAnnouncementa.delete()
 	}
-			render(template: '/templates/editAnnouncement', model: [text:deleteAnnouncementa.text,title:deleteAnnouncementa.title,coursecodes: links, currentUserRole: getAccountType()])
-	 
-			deleteAnnouncementa.delete()
-	}
-	 
+	
 	def deleteAnnouncement(){
-	 
-			def deleteAnnouncementa = Announcement.findByTitle(params.announcementno)
-			deleteAnnouncementa.delete()
-	 
-			def links = []
-			retrieveClasses().each {
+		
+		def deleteAnnouncementa = Announcement.findByTitle(params.announcementno)
+		deleteAnnouncementa.delete()
+		
+		def links = []
+		retrieveClasses().each {
 			links.add(it.coursecode)
-	}
-			def currentRole = getAccountType()
-	 
-			render(view: '/default', model: [sidebarlinks: links, controllertype: 'Announcement', currentUserRole: currentRole])
+		}
+		def currentRole = getAccountType()
+		
+		render(view: '/default', model: [sidebarlinks: links, controllertype: 'Announcement', currentUserRole: currentRole])
 	}
 }

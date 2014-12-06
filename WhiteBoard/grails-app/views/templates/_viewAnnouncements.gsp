@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="col-md-12 col-md-offset-0">
 		<div class="panel panel-primary">
-			<div class="panel-heading">Announcement</div>
+			<div class="panel-heading">${type }Announcements</div>
 			<br>
 			<div class="row">
 				<g:each in="${announcelist }">

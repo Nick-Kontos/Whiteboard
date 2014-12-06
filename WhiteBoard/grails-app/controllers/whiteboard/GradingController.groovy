@@ -84,7 +84,7 @@ class GradingController {
 				else{
 					if(changedDateDueType > now){
 						//Submission domain needs docLink and each primary key of student, course, and assignment so that everything can be connected to each other				
-						def newSub = new Submission(docLink:file.originalFilename, student: params.StudentId[1], course: params.CourseId, assignment: params.AssignmentId)
+						def newSub = new Submission(docLink:file.originalFilename, docName:file.originalFilename, student: params.StudentId[1], course: params.CourseId, assignment: params.AssignmentId)
 
 		            	newSub.docpath = grailsApplication.config.uploadFolder + newSub.docLink
 		            	file.transferTo(new File(newSub.docpath))	

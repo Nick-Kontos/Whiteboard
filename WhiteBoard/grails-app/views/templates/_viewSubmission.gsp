@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="col-md-11 col-md-offset-0">
 		<div class="panel panel-primary">
-			<div class="panel-heading">Grade Center</div>
+			<div class="panel-heading">Grade Center for ${coursecode }</div>
 			<table class="table table-bordered">
 				<tr>
 					<th>Assignment Name</th>

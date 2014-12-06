@@ -42,6 +42,7 @@ class AnnouncementController {
 	}
 	def getAccountType(){
 		UserRole.findAllByUser(springSecurityService.currentUser).get(0).role.authority
+		
 	}
 	def createLink(){
 		//render placeholder

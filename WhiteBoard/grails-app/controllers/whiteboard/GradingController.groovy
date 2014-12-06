@@ -46,7 +46,7 @@ class GradingController {
 		Date d = new Date()
 		def assignlist = []
 		assignlist = Assignment.findAllByCourse(Course.findByCoursecode(coursename))
-		render(template: '/templates/viewSubmission', model: [assignlist: assignlist, currentUserRole: getAccountType(), currentDateTime: d])			
+		render(template: '/templates/viewSubmission', model: [assignlist: assignlist, currentUserRole: getAccountType(), currentDateTime: d, coursecode: coursename])			
 	}
 	
 	def assignmentGrades(){

@@ -3,6 +3,7 @@ package whiteboard
 class Submission {
 	
 	Integer grade
+	String docName
 	String docLink
 	String docpath
 	Date dateCreated

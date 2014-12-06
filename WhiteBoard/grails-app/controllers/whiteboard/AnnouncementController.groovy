@@ -117,4 +117,30 @@ class AnnouncementController {
 			render('error please fill  in all fields')
 		}
 	}
+	def editAnnouncement(){
+ 
+ 
+			def deleteAnnouncementa = Announcement.findByTitle(params.announcementno)
+			def links = []
+			retrieveClasses().each {
+			links.add(it.coursecode)
+	}
+			render(template: '/templates/editAnnouncement', model: [text:deleteAnnouncementa.text,title:deleteAnnouncementa.title,coursecodes: links, currentUserRole: getAccountType()])
+	 
+			deleteAnnouncementa.delete()
+	}
+	 
+	def deleteAnnouncement(){
+	 
+			def deleteAnnouncementa = Announcement.findByTitle(params.announcementno)
+			deleteAnnouncementa.delete()
+	 
+			def links = []
+			retrieveClasses().each {
+			links.add(it.coursecode)
+	}
+			def currentRole = getAccountType()
+	 
+			render(view: '/default', model: [sidebarlinks: links, controllertype: 'Announcement', currentUserRole: currentRole])
+	}
 }

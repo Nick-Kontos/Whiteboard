@@ -14,8 +14,20 @@
 								${it?.creator.lastname}
 								<g:if test="${currentUserRole == 'ROLE_TEACHER' }">
 									<div class="pull-right">
-										<button type="button" class="btn btn-default">Edit</button>
-										<button type="button" class="btn btn-default">Delete</button>
+								<g:form role="form" controller="announcement"
+								action="editAnnouncement"  name="InputText" id="InputText" enctype="multipart/form-data">
+								 
+								 
+								<input type="hidden" id="announcementno" name="announcementno" value="${it?.title}">
+								<button type="submit" class="btn btn-default">Edit</button>
+								</g:form>
+								 
+								<g:form role="form" controller="announcement"
+								action="deleteAnnouncement" enctype="multipart/form-data">
+								 
+								<input type="hidden" id="announcementno" name="announcementno" value="${it?.title}">
+								  <button type="submit" class="btn btn-default">Delete</button>
+								  </g:form>
 									</div>
 								</g:if>
 								<div>

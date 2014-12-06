@@ -58,7 +58,7 @@
 		</g:if>
 		<g:if test="${currentUserRole == 'ROLE_TEACHER' }">
 			<li><g:remoteLink update="MainContent" controller="course"
-					action="">Appoint TA</g:remoteLink></li>
+					action="appointTA">Appoint TA</g:remoteLink></li>
 		</g:if>		
 		<g:if test="${currentUserRole != 'ROLE_SITEMANAGER' }">
 			<g:each in="${sidebarlinks}">

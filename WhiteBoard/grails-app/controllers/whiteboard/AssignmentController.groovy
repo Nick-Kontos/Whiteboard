@@ -137,6 +137,36 @@ class AssignmentController {
 		}
 
 	}
+	def editAssignment(){
+ 
+		def deleteAssignment = Assignment.findByTitle(params.assignmentno)
+		def links = []
+		retrieveClasses().each {
+		links.add(it.coursecode)
+		}
+		render(template: '/templates/editAssignment', model: [text:deleteAssignment.text,point: deleteAssignment.totalpoints, title:deleteAssignment.title,coursecodes: links, currentUserRole: getAccountType()])
+		 
+		deleteAssignment.delete()
+ 
+	}
+ 
+	def deleteAssignment(){
+ 
+		def deleteAssignment = Assignment.findByTitle(params.assignmentno)
+		 
+		deleteAssignment.delete()
+		 
+		 
+		def links = []
+		retrieveClasses().each {
+		links.add(it.coursecode)
+		}
+		def currentRole = getAccountType()
+		 
+		render(view: '/default', model: [sidebarlinks: links, controllertype: 'Assignment', currentUserRole: currentRole])
 
+		 
+		 
+	}
 
 }

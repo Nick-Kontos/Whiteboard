@@ -41,7 +41,7 @@
 							</td>
 							<td><g:link controller="grading" action="download"
 									id="${it?.id}">
-									${it?.docName}
+									${it?.docname}
 								</g:link></td>
 							<td><g:hiddenField name="SubmissionId" id="SubmissionId"
 									value="${it.id}" /> <a href="#" class="btn btn-success"
@@ -65,7 +65,7 @@
 							</td>
 							<td><g:link controller="grading" action="download"
 									id="${it?.id}">
-									${it?.docName}
+									${it?.docname}
 								</g:link></td>
 							<td><a href="#" class="btn btn-success" data-toggle="modal"
 								data-target="${'#comment' + it.id }">View/Edit</a></td>

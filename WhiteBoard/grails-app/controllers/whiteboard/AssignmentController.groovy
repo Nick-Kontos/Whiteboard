@@ -99,7 +99,7 @@ class AssignmentController {
 				}
 				newAssign.course = Course.findByCoursecode(params.InputCourse)
 				newAssign.save(failOnError: true)
-				redirect(view: '/default')
+				redirect controller: 'assignment', action: 'allLink'
 
 
 			}catch(Exception e){

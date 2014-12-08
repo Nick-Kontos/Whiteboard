@@ -3,7 +3,7 @@
 		<h3 class="panel-title">Create Course</h3>
 	</div>
 	<div class="panel-body">
-		<g:form role="form" controller="course" action="createCourse"
+		<g:formRemote update="MainContent" name="createCourse" url="[controller: 'course', action: 'createCourse']"
 			enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="InputCourseCode">Input Course Code</label>
@@ -86,6 +86,6 @@
 			<div class="form-group">
 				<button type="submit" class="btn btn-default btn-lg btn-block">Submit</button>
 			</div>
-		</g:form>
+		</g:formRemote>
 	</div>
 </div>

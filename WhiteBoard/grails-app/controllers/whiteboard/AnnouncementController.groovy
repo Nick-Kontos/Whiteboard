@@ -152,7 +152,17 @@ class AnnouncementController {
 				}
 				newAnnouncement.course = Course.findByCoursecode(params.InputCourse)
 				newAnnouncement.save(failOnError: true)
-				render(view: '/default')
+				 
+				 
+				def links = []
+				retrieveClasses().each {
+				links.add(it.coursecode)
+				}
+				def currentRole = getAccountType()
+				 
+				render(view: '/default', model: [sidebarlinks: links, controllertype: 'Announcement', currentUserRole: currentRole])
+				 
+				//newAnnouncement.delete();
 				//newAnnouncement.delete();
 				
 			}catch (Exception e){

@@ -12,23 +12,16 @@
 								-
 								${it?.creator.firstname}
 								${it?.creator.lastname}
-								<g:if test="${currentUserRole == 'ROLE_TEACHER' }">
-									<div class="pull-right">
-								<g:form role="form" controller="announcement"
-								action="editAnnouncement"  name="InputText" id="InputText" enctype="multipart/form-data">
+								<g:if test="${currentUserRole == 'ROLE_TEACHER'||currentUserRole == 'ROLE_SITEMANAGER' }">
+								<div class="pull-right">
+
+								<li><g:remoteLink type="button" update="MainContent" controller="announcement"
+								action="editAnnouncement" params="${[announcementno: it?.title] }"  >Edit</g:remoteLink></li> 
 								 
+								<li><g:remoteLink type="button" update="MainContent" controller="announcement"
+								action="deleteAnnouncement" params="${[announcementno: it?.title] }"  >Delete</g:remoteLink></li>
 								 
-								<input type="hidden" id="announcementno" name="announcementno" value="${it?.title}">
-								<button type="submit" class="btn btn-default">Edit</button>
-								</g:form>
-								 
-								<g:form role="form" controller="announcement"
-								action="deleteAnnouncement" enctype="multipart/form-data">
-								 
-								<input type="hidden" id="announcementno" name="announcementno" value="${it?.title}">
-								  <button type="submit" class="btn btn-default">Delete</button>
-								  </g:form>
-									</div>
+								</div>
 								</g:if>
 								<div>
 									posted Date:

@@ -153,7 +153,6 @@ class AnnouncementController {
 				newAnnouncement.course = Course.findByCoursecode(params.InputCourse)
 				newAnnouncement.save(failOnError: true)
 				redirect controller: 'announcement', action: 'allLink'
-				//newAnnouncement.delete();
 				
 			}catch (Exception e){
 				//This need to be completed to handle various errors for adding to the database

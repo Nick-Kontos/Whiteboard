@@ -6,12 +6,10 @@
 			<div class="span7 text-center">
 				<div class="btn-group" role="group">
 					<g:if test="${submissionList.assignment.gradeCompleted}">
-						<button type="submit" class="btn btn-success btn-lg">Finalize
-							Grades</button>
+						<g:link type="button" class="btn btn-success btn-lg"  controller="grade" action="finalizeGrade" params="${[FinalizeGrades: submissionList.grade, AssignmentId: submissionList.assignment.id]}" >Fianlize Grades</g:link>
 					</g:if>
 					<g:else>
-						<button type="submit" class="btn btn-success btn-lg" disabled>Finalize
-							Grades</button>
+						<g:link type="button" class="btn btn-success btn-lg"  controller="grade" action="finalizeGrade" params="${[FinalizeGrades: submissionList.grade, AssignmentId: submissionList.assignment.id]}" >Fianlize Grades</g:link>
 					</g:else>
 					<button type="button" class="btn btn-success btn-lg">Download
 						Grade Report</button>
@@ -109,7 +107,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<g:if test="${submissionList.assignment.gradeCompleted == false}">
+						<g:if test="${submissionList.assignment.gradeCompleted}">
 							<button type="submit" class="btn btn-primary">Save
 								changes</button>
 						</g:if>

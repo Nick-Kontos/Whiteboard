@@ -88,13 +88,12 @@ class GradeController {
 	def saveComments(){
 
 		
-		def comment = params.InputComment
+		def comment = params.InputComments
 		def id = params.SubmissionId
 
 		print id
-		if(params.InputGrades ){
-
-			try{
+		print comment
+		try{
 
 				def update = Submission.get(id)
 				
@@ -106,9 +105,7 @@ class GradeController {
 				//this need to be completed to handle different errors
 				render(e.message)
 			}
-		}else {
-			render('Error please complete all fields')
-		}
+
 		
 	}
 
@@ -116,7 +113,24 @@ class GradeController {
 	def finalizeGrade(){
 		def finalize = params.FinalizeGrades
 		def id = params.AssignmentId
+		def sortedGrades = finalize.sort()
+		def numItems = finalize.size()
+		//Get Median
+		/*
+		def listOfValues = []
+		sortedGrades.each{ grade -> 
+			def objReturn = null
+			def listHalf = (int) Math.abs(numItems/2)
+			print listHalf
+			if(listHalf == numItems/2){
+				objReturn = (listOfValues.get(listHalf)) 
+			}
+		}
+		*/
 
+		//def median = numItems %2 != 0 ? sortedGrades[midNumIndex] : (sortedGrades[midNumIndex] + sortedGrades[midNumIndex-1])/2				
+
+		
 
 		//Get Average
 		def query = Submission.where {

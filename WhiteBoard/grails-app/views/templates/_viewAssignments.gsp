@@ -59,7 +59,7 @@
 										[Course]CourseCode:${it?.course.coursecode}<br>
 										[Course]CourseName:${it?.course.coursename}<br>
 										[User]Student Id:${it?.course.students.id}<br>
-										[User]Student User:${it?.course.students.username}<br>
+										[User]Student User:${it?.course.students.username}
 										[User]Student User:${assignlist.course.students.username}
 									</p>
 									<div class="form-group">

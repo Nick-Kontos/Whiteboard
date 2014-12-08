@@ -117,11 +117,38 @@ class GradeController {
 		def finalize = params.FinalizeGrades
 		def id = params.AssignmentId
 
+
+		//Get Average
+		def query = Submission.where {
+			assignment.id == id
+		}.projections{
+				avg('grade')
+			}		
+		def avgResults = query.find()
+		//Get Max
+		def query2 = Submission.where {
+			assignment.id == id
+		}.projections{
+				max('grade')
+			} 		
+		def maxResults = query2.find()
+		//Get Min
+		def query3 = Submission.where {
+			assignment.id == id
+		}.projections{
+				min('grade')
+			} 		
+		def minResults = query3.find()
+		
+
 		if(params.FinalizeGrades){
 		try{
 
 			def update = Assignment.get(id)
 			update.gradeCompleted = true
+			update.avg = avgResults
+			update.max = maxResults
+			update.min = minResults
 			update.save()
 
 			render('save')
@@ -135,12 +162,5 @@ class GradeController {
 		render('Error')
 		}
 
-	}
-	def getAvg(){
-		def assignlist = []
-		def id = params.AssignmentId
-		assignlist = Submission.findAllByGrade(Assignment.findById(id))
-		def update = Assignment.get(1)
-		update.avg = 25
 	}
 }

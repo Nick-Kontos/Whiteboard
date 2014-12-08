@@ -6,7 +6,7 @@
 				enctype="multipart/form-data">
 			<div class="span7 text-center">
 				<div class="btn-group" role="group">
-					<g:if test="${submissionList.assignment.gradeCompleted == false}">
+					<g:if test="${submissionList.assignment.gradeCompleted}">
 					<button type="submit" class="btn btn-success btn-lg">Finalize
 						Grades</button>
 					</g:if>
@@ -151,7 +151,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<g:if test="${submissionList.assignment.gradeCompleted == false}">
+				<g:if test="${submissionList.assignment.gradeCompleted}">
 				<button type="submit" class="btn btn-primary">Save changes</button>
 				</g:if>
 				<g:else>

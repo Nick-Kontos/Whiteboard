@@ -4,6 +4,8 @@ class Announcement {
 	
 	String title
 	String text
+	String docname
+	String docpath
 	String doclink
 	Date dateCreated
 	User creator
@@ -12,5 +14,7 @@ class Announcement {
 	
 	static constraints = {
 		doclink nullable: true
+		docname nullable: true
+		docpath nullable: true
 	}
 }

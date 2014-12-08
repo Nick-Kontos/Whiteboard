@@ -63,7 +63,6 @@ class AssignmentController {
 		//option 1 parse through inputstream
 		//def file = params.FileUpload
 		//def file = params.FileUpload
-		def file = request.getFile('FileUpload')
 		print springSecurityService.currentUser
 		//print file1
 		//print file
@@ -81,7 +80,7 @@ class AssignmentController {
 		if(params.InputCourse && params.InputTitle && params.InputDescription && params.InputPointsWorth && params.InputDueDate){
 			try{
 
-				def newAssign = new Assignment(title: params.InputTitle, text: params.InputDescription, datedue: params.InputDueDate, totalpoints: params.InputPointsWorth, creator: springSecurityService.currentUser, doclink:file.originalFilename)
+				def newAssign = new Assignment(title: params.InputTitle, text: params.InputDescription, datedue: params.InputDueDate, totalpoints: params.InputPointsWorth, creator: springSecurityService.currentUser)
 				//newAssign.doclink = file.originalFilename
 
 				//response.setContentType("APPLICATION/OCTET-STREAM")
@@ -89,9 +88,15 @@ class AssignmentController {
 
 
 				//submission,assignmentTitle
-				newAssign.docpath = grailsApplication.config.uploadFolder + newAssign.doclink
-				file.transferTo(new File(newAssign.docpath))
-
+				def file
+				if(params.FileUpload){
+					file = request.getFile(params.FileUpload)
+				}
+				if(file){
+					newAssign.doclink = file.originalFilename
+					newAssign.docpath = grailsApplication.config.uploadFolder + newAssign.doclink
+					file.transferTo(new File(newAssign.docpath))
+				}
 				if(params.InputVisable){
 					newAssign.viewable = true
 				}else{
@@ -139,35 +144,35 @@ class AssignmentController {
 
 	}
 	def editAssignment(){
- 
+
 		def deleteAssignment = Assignment.findByTitle(params.assignmentno)
 		def links = []
 		retrieveClasses().each {
-		links.add(it.coursecode)
+			links.add(it.coursecode)
 		}
 		render(template: '/templates/editAssignment', model: [text:deleteAssignment.text,point: deleteAssignment.totalpoints, title:deleteAssignment.title,coursecodes: links, currentUserRole: getAccountType()])
-		 
+
 		deleteAssignment.delete()
- 
+
 	}
- 
+
 	def deleteAssignment(){
- 
+
 		def deleteAssignment = Assignment.findByTitle(params.assignmentno)
-		 
+
 		deleteAssignment.delete()
-		 
-		 
+
+
 		def links = []
 		retrieveClasses().each {
-		links.add(it.coursecode)
+			links.add(it.coursecode)
 		}
 		def currentRole = getAccountType()
-		 
+
 		render(view: '/default', model: [sidebarlinks: links, controllertype: 'Assignment', currentUserRole: currentRole])
 
-		 
-		 
+
+
 	}
 
 }

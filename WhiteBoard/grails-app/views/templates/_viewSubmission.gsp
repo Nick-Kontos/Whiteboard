@@ -29,6 +29,12 @@
 				Grade Center for
 				${coursecode }
 			</div>
+			<div class="span7 text-center">
+				<div class="btn-group" role="group">
+					<g:link controller="grading" action="downloadAssignment" type="button" class="btn btn-success btn-lg">Download
+						Grade Report</g:link>
+				</div>
+			</div>
 			<table class="table table-bordered">
 				<tr>
 					<th>Assignment Name</th>

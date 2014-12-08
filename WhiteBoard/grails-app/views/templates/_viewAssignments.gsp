@@ -14,23 +14,26 @@
 								${it?.creator.firstname}
 								${it?.creator.lastname}
 
-					<g:if test="${currentUserRole == 'ROLE_TEACHER' }">
-					<div class="pull-right">
-					<g:form role="form" controller="assignment"
-					action="editAssignment" enctype="multipart/form-data">
-					<input type="hidden" id="assignmentno" name="assignmentno" value="${it?.title}">
-					<button type="submit" class="btn btn-default">Edit</button>
-					</g:form>
-					 
-					 
-					<g:form role="form" controller="assignment"
-					action="deleteAssignment"  name="InputText" id="InputText" enctype="multipart/form-data">
-					<input type="hidden" id="assignmentno" name="assignmentno" value="${it?.title}">
-					  <button type="submit" class="btn btn-default">Delete</button>
-					 
-					  </g:form>
-					</div>
-					</g:if>
+								<g:if test="${currentUserRole == 'ROLE_TEACHER' }">
+									<div class="pull-right">
+										<g:form role="form" controller="assignment"
+											action="editAssignment" enctype="multipart/form-data">
+											<input type="hidden" id="assignmentno" name="assignmentno"
+												value="${it?.title}">
+											<button type="submit" class="btn btn-default">Edit</button>
+										</g:form>
+
+
+										<g:form role="form" controller="assignment"
+											action="deleteAssignment" name="InputText" id="InputText"
+											enctype="multipart/form-data">
+											<input type="hidden" id="assignmentno" name="assignmentno"
+												value="${it?.title}">
+											<button type="submit" class="btn btn-default">Delete</button>
+
+										</g:form>
+									</div>
+								</g:if>
 
 								<div>
 									posted Date:
@@ -50,7 +53,8 @@
 							</div>
 
 							<g:if test="${currentUserRole == 'ROLE_STUDENT'}">
-								<g:form role="form" controller="grading" action="saveAssignment"
+								<g:formRemote name="submitAssignment"
+									url="[controller: 'grading', action: 'saveAssignment']"
 									enctype="multipart/form-data">
 
 									<p>
@@ -69,15 +73,15 @@
 											type="hidden" id="StudentId" name="StudentId"
 											value="${it?.course.students.id}"> <input
 											type="hidden" id="DateDue" name="DateDue"
-											value="${it?.datedue}">
-											<input type="hidden" id="StudentFirstName" name="StudentFirstName"
-											value="${it?.course.students.firstname}">
-											<input type="hidden" id="StudentLastName" name="StudentLastName"
-											value="${it?.course.students.lastname}">
-											<input type="hidden" id="CourseCode" name="CourseCode"
-											value="${it?.course.coursecode}">	
-											<input type="hidden" id="AssignmentName" name="AssignmentName"
-											value="${it?.title}">																																											
+											value="${it?.datedue}"> <input type="hidden"
+											id="StudentFirstName" name="StudentFirstName"
+											value="${it?.course.students.firstname}"> <input
+											type="hidden" id="StudentLastName" name="StudentLastName"
+											value="${it?.course.students.lastname}"> <input
+											type="hidden" id="CourseCode" name="CourseCode"
+											value="${it?.course.coursecode}"> <input
+											type="hidden" id="AssignmentName" name="AssignmentName"
+											value="${it?.title}">
 									</div>
 									<div class="form-group">
 
@@ -90,7 +94,7 @@
 										<button type="submit" class="btn btn-default btn-lg btn-block">Submit</button>
 									</div>
 
-								</g:form>
+								</g:formRemote>
 
 							</g:if>
 

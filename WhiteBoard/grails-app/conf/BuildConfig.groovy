@@ -44,6 +44,7 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
+		mavenRepo "http://repo.grails.org/grails/core"
     }
 
     dependencies {
@@ -55,6 +56,7 @@ grails.project.dependency.resolution = {
         //postgres
         runtime 'postgresql:postgresql:8.4-702.jdbc3'
 		runtime 'mysql:mysql-connector-java:5.1.29'
+		compile 'commons-beanutils:commons-beanutils:1.8.3'
     }
 
     plugins {
@@ -68,6 +70,7 @@ grails.project.dependency.resolution = {
 		compile ":spring-security-core:2.0-RC4"
 		compile ":mail:1.0.7"
         compile ":google-visualization:0.7.1"
+		compile ":export:1.6"
         
 		//compile ":bootstrap-file-upload:2.1.2"
 		//compile ":twitter-bootstrap:3.1.1.3"

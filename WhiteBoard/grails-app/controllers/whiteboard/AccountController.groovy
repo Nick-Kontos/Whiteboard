@@ -61,7 +61,7 @@ class AccountController {
 				}
 
 				UserRole.create(newUser, newUserRole, true)
-				redirect controller: 'account', action: 'viewAccount', params: [role: newUserRole]
+				redirect controller: 'account', action: 'viewAccount', params: [role: newUserRole.authority]
 			}catch(Exception e){
 				//this needs to be filled in for error detection later
 				render(e.message)

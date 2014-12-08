@@ -21,6 +21,24 @@ class AccountController {
 		//render placeholder
 		render(template: '/templates/createAccountForm')
 	}
+	
+	def viewAccount(){
+		def c = UserRole.createCriteria()
+		def roleList = c.list{
+			eq('role', Role.findByAuthority(params.role))
+		}
+		def accountList = []
+		roleList.each{
+			accountList.add(it.user)
+		}
+		render template: '/templates/viewAccounts', model: [accountList: accountList, role: params.role]
+	}
+	
+	def delete(){
+		UserRole.removeAll(User.findById(params.userid))
+		User.findById(params.userid).delete(flush: true)
+		redirect controller: 'account', action: 'viewAccount', params: [role: params.role]
+	}
 
 	def searchLink(){
 		//render placeholder
@@ -43,7 +61,7 @@ class AccountController {
 				}
 
 				UserRole.create(newUser, newUserRole, true)
-				render('Successfully created ')
+				redirect controller: 'account', action: 'viewAccount', params: [role: newUserRole]
 			}catch(Exception e){
 				//this needs to be filled in for error detection later
 				render(e.message)

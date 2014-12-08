@@ -56,6 +56,10 @@ class CourseController {
 		//render placeholder
 		render('Search all courses')
 	}
+	
+	def viewCourses(){
+		render template: '/templates/viewCourses', model: [courseList: Course.all]
+	}
 
 	def createCourse(){
 		if(params.InputCourseCode && params.InputCourseName && params.InputDescription && params.InputInstructor){
@@ -114,7 +118,7 @@ class CourseController {
 					}
 				}
 				newCourse.save(failOnError: true)
-				render('Successfully created ')
+				redirect controller: 'course', action: 'viewCourses'
 
 			}catch(Exception e){
 				//This needs to be filled in

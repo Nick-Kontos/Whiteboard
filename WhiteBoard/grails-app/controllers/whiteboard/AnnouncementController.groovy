@@ -152,7 +152,7 @@ class AnnouncementController {
 				}
 				newAnnouncement.course = Course.findByCoursecode(params.InputCourse)
 				newAnnouncement.save(failOnError: true)
-				render(view: '/default')
+				redirect controller: 'announcement', action: 'allLink'
 				//newAnnouncement.delete();
 				
 			}catch (Exception e){

@@ -3,7 +3,7 @@
 		<h3 class="panel-title">Create Account</h3>
 	</div>
 	<div class="panel-body">
-		<g:form role="form" controller="account" action="createAccount">
+		<g:formRemote update="MainContent" name="createAccount" url="[controller: 'account', action: 'createAccount']">
 				<div class="form-group">
 					<label for="InputEmail">Email address</label> <g:textField type="email"
 						class="form-control" name="InputEmail" id="InputEmail" placeholder="Enter email"/>
@@ -33,6 +33,6 @@
 				<div class="form-group">
 					<button type="submit" class="btn btn-default btn-lg btn-block">Submit</button>
 				</div>		
-			</g:form>
+			</g:formRemote>
 		</div>
 </div>

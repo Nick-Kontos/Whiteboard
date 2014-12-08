@@ -7,10 +7,10 @@
 		</g:if>
 		<g:if
 			test="${ currentUserRole == 'ROLE_TEACHER' || currentUserRole == 'ROLE_TA' || currentUserRole == 'ROLE_STUDENT'}">
-			<li><g:remoteLink update="MainContent" controller="announcement" class="active"
-					action="allLink">All</g:remoteLink></li>
+			<li><g:remoteLink update="MainContent" controller="announcement"
+					class="active" action="allLink">All</g:remoteLink></li>
 		</g:if>
-							
+
 		<li><g:remoteLink update="MainContent" controller="announcement"
 				action="generalLink">General</g:remoteLink></li>
 		<g:if
@@ -46,7 +46,14 @@
 			<li><g:remoteLink update="MainContent" controller="account"
 					action="createLink">Create</g:remoteLink></li>
 			<li><g:remoteLink update="MainContent" controller="account"
-					action="searchLink">Search</g:remoteLink></li>
+					action="viewAccount" params="[role: 'ROLE_TEACHER']">View Teachers</g:remoteLink></li>
+			<li><g:remoteLink update="MainContent" controller="account"
+					action="viewAccount" params="[role: 'ROLE_STUDENT']">View Students</g:remoteLink></li>
+			<li><g:remoteLink update="MainContent" controller="account"
+					action="viewAccount" params="[role: 'ROLE_TA']">View TAs</g:remoteLink></li>
+			<li><g:remoteLink update="MainContent" controller="account"
+					action="viewAccount" params="[role: 'ROLE_SITEMANAGER']">View Managers</g:remoteLink></li>
+
 		</g:if>
 	</g:elseif>
 	<g:elseif test="${controllertype == 'Course' }">
@@ -54,12 +61,12 @@
 			<li><g:remoteLink update="MainContent" controller="course"
 					action="createLink">Create</g:remoteLink></li>
 			<li><g:remoteLink update="MainContent" controller="course"
-					action="searchLink">Search</g:remoteLink></li>
+					action="viewCourses">Search</g:remoteLink></li>
 		</g:if>
 		<g:if test="${currentUserRole == 'ROLE_TEACHER' }">
 			<li><g:remoteLink update="MainContent" controller="course"
 					action="appointTA">Appoint TA</g:remoteLink></li>
-		</g:if>		
+		</g:if>
 		<g:if test="${currentUserRole != 'ROLE_SITEMANAGER' }">
 			<g:each in="${sidebarlinks}">
 				<li><g:remoteLink update="MainContent" controller="course"
@@ -83,7 +90,8 @@
 		</g:if>
 	</g:elseif>
 	<g:elseif test="${controllertype == 'Grading' }">
-		<g:if test="${currentUserRole != 'ROLE_SITEMANAGER' || 'ROLE_STUDENT' }">
+		<g:if
+			test="${currentUserRole != 'ROLE_SITEMANAGER' || 'ROLE_STUDENT' }">
 
 			<g:each in="${sidebarlinks}">
 				<li><g:remoteLink update="MainContent" controller="grading"

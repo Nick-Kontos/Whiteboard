@@ -4,6 +4,7 @@ class Assignment {
 	
 	String title
 	String text
+	String docname
 	String doclink
 	String docpath
 	Date dateCreated
@@ -24,6 +25,7 @@ class Assignment {
 		avg nullable: true
 		med nullable: true
 		gradeCompleted default: false
+		docname nullable: true
 		doclink nullable: true
 		docpath nullable: true
 	}

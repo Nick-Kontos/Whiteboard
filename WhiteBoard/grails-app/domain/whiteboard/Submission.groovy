@@ -3,8 +3,8 @@ package whiteboard
 class Submission {
 	
 	Integer grade
-	String docName
-	String docLink
+	String docname
+	String doclink
 	String docpath
 	Date dateCreated
 	String comment

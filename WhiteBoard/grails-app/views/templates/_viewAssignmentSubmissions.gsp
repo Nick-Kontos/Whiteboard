@@ -11,8 +11,8 @@
 					<g:else>
 						<g:link type="button" class="btn btn-success btn-lg"  controller="grade" action="finalizeGrade" params="${[FinalizeGrades: submissionList.grade, AssignmentId: submissionList.assignment.id]}" >Fianlize Grades</g:link>
 					</g:else>
-					<button type="button" class="btn btn-success btn-lg">Download
-						Grade Report</button>
+					<g:link controller="grading" action="downloadSubmission" type="button" class="btn btn-success btn-lg">Download
+						Grade Report</g:link>
 				</div>
 			</div>
 			<table class="table table-bordered">

@@ -145,6 +145,7 @@ class AnnouncementController {
 			try{
 				def newAnnouncement = new Announcement(title: params.InputTitle, text: params.InputText, creator: springSecurityService.currentUser)
 				
+				
 				if(params.InputVisable){
 					newAnnouncement.viewable = true
 				}else{

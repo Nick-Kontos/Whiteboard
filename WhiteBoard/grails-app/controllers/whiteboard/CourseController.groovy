@@ -59,66 +59,62 @@ class CourseController {
 	
 	def createCourse(){
 		if(params.InputCourseCode && params.InputCourseName && params.InputDescription && params.InputInstructor){
-			//def file = params.fileUpload
-			//def file = request.getFile('fileUpload')
-			/*if(file != null){
-				try{
-					def newCourse = new Course(coursename: params.InputCourseName, coursecode: params.InputCourseCode, description: params.InputDescription, teacher: User.findByUsername(params.InputInstructor))
-					print newCourse
-					file.getInputStream().eachLine{line ->
-						print line
-						if(line != null){
-							def lineList = line.tokenize(",")
-							if((User.findByUsername(lineList.get(0))) == null){
-								print "HELLO"
-								def newStudent = new User(username: lineList.get(0), password: "password", email: lineList.get(3), firstname: lineList.get(2), lastname: lineList.get(1))
-								newStudent.save(failOnError: true)
-								UserRole.create(newStudent, Role.findByAuthority('ROLE_STUDENT'), true)
-								newCourse.addToStudents(newStudent)
-								newCourse.save(failOnError:true)
+			if(Course.findByCoursecode(params.InputCourseCode) == null){
+				if(User.findByUsername(params.InputInstructor) == null){
+					render "Teacher does not exist"
+				}
+				else{ /* Course code is unique and teacher exists */
+					def file = request.getFile('fileUpload')
+					if(!file.empty){
+						try{
+							def newCourse = new Course(coursename: params.InputCourseName, coursecode: params.InputCourseCode, description: params.InputDescription, teacher: User.findByUsername(params.InputInstructor))
+							file.getInputStream().eachLine{line ->
+								if(line != null){
+									def lineList = line.tokenize(",")
+									if((User.findByUsername(lineList.get(0))) == null){
+										def newStudent = new User(username: lineList.get(0), password: "password", email: lineList.get(3), firstname: lineList.get(2), lastname: lineList.get(1))
+										newStudent.save(failOnError: true)
+										UserRole.create(newStudent, Role.findByAuthority('ROLE_STUDENT'), true)
+										newCourse.addToStudents(newStudent)
+										newCourse.save(failOnError:true)
+									}
+									else{
+										def s = User.findByUsername(lineList.get(0))
+										newCourse.addToStudents(s)
+										newCourse.save(failOnError:true)	
+									}
+								}
 							}
-							else{
-								print "Error1"
-								def s = User.findByUsername(lineList.get(0))
-								print s
-								newCourse.addToStudents(s)
-								newCourse.save(failOnError:true)	
-							}
+							render "Creating course with file succeeded"
+						}catch(Exception e){
+							render "Creating course without file did not succeed"
 						}
 					}
-					render "SUCCESS"
-				}catch(Exception e){
-					render "ERROR"
+					else{ /* file is empty */
+						try{
+							def newCourse = new Course(coursename: params.InputCourseName, coursecode: params.InputCourseCode, description: params.InputDescription, teacher: User.findByUsername(params.InputInstructor))
+							params.InputRoster.tokenize(',').each {
+								try{
+									def s = User.findByUsername(it)
+									newCourse.addToStudents(s)
+								}catch(Exception e){
+									render " User " + it.toString() + " does not exist " + "</br>"
+								}
+							}
+							newCourse.save(failOnError: true)
+							render('Successfully created ')
+						}catch(Exception e){
+							render "Creating course with text box failed"
+						}
+					}	
 				}
-			}
+			} /* course does not exist */
 			else{
-				try{
-					def newCourse = new Course(coursename: params.InputCourseName, coursecode: params.InputCourseCode, description: params.InputDescription, teacher: User.findByUsername(params.InputInstructor))
-					params.InputRoster.tokenize(',').each {
-						def s = User.findByUsername(it)
-						newCourse.addToStudents(s)
-					}
-					newCourse.save(failOnError: true)
-					render('Successfully created ')
-				}catch(Exception e){
-					//This needs to be filled in
-					render(e.message)
-				}
-			}*/
-				try{
-					def newCourse = new Course(coursename: params.InputCourseName, coursecode: params.InputCourseCode, description: params.InputDescription, teacher: User.findByUsername(params.InputInstructor))
-					params.InputRoster.tokenize(',').each {
-						def s = User.findByUsername(it)
-						newCourse.addToStudents(s)
-					}
-					newCourse.save(failOnError: true)
-					render('Successfully created ')
-				}catch(Exception e){
-					//This needs to be filled in
-					render(e.message)
-				}			
-		}else{
-			render('Input incomplete please complete all fields')
+				render "Course already exists."
+			}
+		} /* All fields complete */
+		else{
+			render('Input incomplete. Please complete all fields')
 		}
 	}
 	def appointTA(){

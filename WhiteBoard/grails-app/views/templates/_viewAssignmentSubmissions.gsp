@@ -50,7 +50,7 @@
 								data-toggle="modal" data-target="#commentModal">View/Edit</a></td>
 							<td><g:hiddenField name="SubmissionId" id="SubmissionId"
 									value="${it.id}" /> <a href="#" class="btn btn-success"
-								data-toggle="modal" data-target="#gradeModal"> No Grade ${it.id}</a>
+								data-toggle="modal" data-target="#gradeModal"> No Grade/ ${it.assignment.totalpoints}</a>
 							</td>
 
 						</tr>
@@ -70,9 +70,9 @@
 									${it?.docName}
 								</g:link></td>
 							<td><a href="#" class="btn btn-success" data-toggle="modal"
-								data-target="#commentModal">View/Edit</a></td>
+								data-target="${'#comment' + it.id }">View/Edit</a></td>
 							<td><a href="#" class="btn btn-success" data-toggle="modal"
-								data-target="#gradeModal"> ${it.grade} ${it.id}
+								data-target="${'#grade' + it.id }"> ${it.grade + '/' + it.assignment.totalpoints}
 							</a></td>
 
 						</tr>
@@ -86,7 +86,7 @@
 	</div>
 </div>
 <g:each in="${submissionList }">
-	<div class="modal fade" id="commentModal" tabindex="-1" role="dialog"
+	<div class="modal fade" id="${'comment' + it.id }" tabindex="-1" role="dialog"
 		aria-labelledby="basicModal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -122,7 +122,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal fade" id="gradeModal" tabindex="-1" role="dialog"
+	<div class="modal fade" id="${'grade' + it.id }" tabindex="-1" role="dialog"
 		aria-labelledby="basicModal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">

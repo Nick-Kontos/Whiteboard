@@ -4,8 +4,8 @@
 		<h3 class="panel-title">Create Assignment!</h3>
 	</div>
 	<div class="panel-body">
-		<g:formRemote update="MainContent" url="[controller: 'assignment', action: 'createAssignment']" name="createAssignment"
-			enctype="multipart/form-data">
+		<g:form role="form" controller="assignment"
+				action="createAssignment" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="InputCourse">Select Course</label>
 				<g:select name="InputCourse" class="form-control" id="InputCourse"
@@ -45,6 +45,6 @@
 			<div class="form-group">
 				<button type="submit" class="btn btn-default btn-lg btn-block">Submit</button>
 			</div>
-		</g:formRemote>
+		</g:form>
 	</div>
 </div>

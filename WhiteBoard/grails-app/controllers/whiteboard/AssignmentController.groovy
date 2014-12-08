@@ -90,7 +90,7 @@ class AssignmentController {
 				//submission,assignmentTitle
 				def file
 				if(params.FileUpload){
-					file = request.getFile(params.FileUpload)
+					file = request.getFile('FileUpload')
 				}
 				if(file){
 					newAssign.doclink = file.originalFilename

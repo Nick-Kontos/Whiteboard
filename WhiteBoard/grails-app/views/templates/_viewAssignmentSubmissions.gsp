@@ -47,10 +47,10 @@
 								</g:link></td>
 							<td><g:hiddenField name="SubmissionId" id="SubmissionId"
 									value="${it.id}" /> <a href="#" class="btn btn-success"
-								data-toggle="modal" data-target="#commentModal">View/Edit</a></td>
+								data-toggle="modal" data-target="${'#comment' + it.id }">View/Edit</a></td>
 							<td><g:hiddenField name="SubmissionId" id="SubmissionId"
 									value="${it.id}" /> <a href="#" class="btn btn-success"
-								data-toggle="modal" data-target="#gradeModal"> No Grade/ ${it.assignment.totalpoints}</a>
+								data-toggle="modal" data-target="${'#grade' + it.id }"> No Grade/ ${it.assignment.totalpoints}</a>
 							</td>
 
 						</tr>

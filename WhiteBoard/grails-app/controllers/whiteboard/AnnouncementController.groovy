@@ -173,22 +173,19 @@ class AnnouncementController {
 			render('error please fill  in all fields')
 		}
 	}
-	def editAnnouncement(){
+	def editAnnouncement(){ 
+	
+		def deleteAnnouncementa = Announcement.findByTitle(params.announcementno) 
 		
-		
-		def deleteAnnouncementa = Announcement.findByTitle(params.announcementno)
-		def links = []
-		retrieveClasses().each {
-			links.add(it.coursecode)
-		}
-		render(template: '/templates/editAnnouncement', model: [text:deleteAnnouncementa.text,title:deleteAnnouncementa.title,coursecodes: links, currentUserRole: getAccountType()])
-		
-		deleteAnnouncementa.delete()
+		render(template: '/templates/editAnnouncement', model: [text:deleteAnnouncementa.text,title:deleteAnnouncementa.title,coursecodes: params.course1, currentUserRole: getAccountType()]) 
+
+		deleteAnnouncementa.delete() 
 	}
 	
 	def deleteAnnouncement(){
 		
 		def deleteAnnouncementa = Announcement.findByTitle(params.announcementno)
+		
 		deleteAnnouncementa.delete()
 		
 		def links = []

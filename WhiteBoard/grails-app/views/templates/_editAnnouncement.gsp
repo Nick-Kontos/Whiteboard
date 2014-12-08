@@ -6,10 +6,11 @@
 		<g:form role="form" controller="announcement"
 			action="createAnnouncement" enctype="multipart/form-data">
 			<div class="form-group">
-				<label for="InputCourse">Select Course</label>
-				<g:select name="InputCourse" class="form-control" id="InputCourse"
-					from="${coursecodes}" />
-			</div>
+			<label for="InputCourse">Select Course</label>
+			</div>			 
+			<input type="hidden" name="InputCourse" id="InputCourse" value="${coursecodes}" />
+
+			<div class="form-group">${coursecodes}</div>
 			<div class="form-group">
 				<label for="InputTitle">Announcement Title</label>
 				<g:textField name="InputTitle" type="text" class="form-control"

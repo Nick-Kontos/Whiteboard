@@ -64,6 +64,7 @@ class AssignmentController {
 		//def file = params.FileUpload
 		//def file = params.FileUpload
 		def file = request.getFile('FileUpload')
+		print springSecurityService.currentUser
 		//print file1
 		//print file
 		//file.inputStream

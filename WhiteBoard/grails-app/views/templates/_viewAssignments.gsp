@@ -59,7 +59,8 @@
 										[Course]CourseCode:${it?.course.coursecode}<br>
 										[Course]CourseName:${it?.course.coursename}<br>
 										[User]Student Id:${it?.course.students.id}<br>
-										[User]Student User:${it?.course.students.username}
+										[User]Student User:${it?.course.students.username}<br>
+										[User]Student User:${assignlist.course.students.username}
 									</p>
 									<div class="form-group">
 										<input type="hidden" id="AssignmentId" name="AssignmentId"
@@ -69,6 +70,14 @@
 											value="${it?.course.students.id}"> <input
 											type="hidden" id="DateDue" name="DateDue"
 											value="${it?.datedue}">
+											<input type="hidden" id="StudentFirstName" name="StudentFirstName"
+											value="${it?.course.students.firstname}">
+											<input type="hidden" id="StudentLastName" name="StudentLastName"
+											value="${it?.course.students.lastname}">
+											<input type="hidden" id="CourseCode" name="CourseCode"
+											value="${it?.course.coursecode}">	
+											<input type="hidden" id="AssignmentName" name="AssignmentName"
+											value="${it?.title}">																																											
 									</div>
 									<div class="form-group">
 

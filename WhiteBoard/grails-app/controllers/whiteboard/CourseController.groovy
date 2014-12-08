@@ -59,8 +59,9 @@ class CourseController {
 	
 	def createCourse(){
 		if(params.InputCourseCode && params.InputCourseName && params.InputDescription && params.InputInstructor){
-			def file = params.fileUpload
-			if(file != null){
+			//def file = params.fileUpload
+			//def file = request.getFile('fileUpload')
+			/*if(file != null){
 				try{
 					def newCourse = new Course(coursename: params.InputCourseName, coursecode: params.InputCourseCode, description: params.InputDescription, teacher: User.findByUsername(params.InputInstructor))
 					print newCourse
@@ -103,7 +104,19 @@ class CourseController {
 					//This needs to be filled in
 					render(e.message)
 				}
-			}
+			}*/
+				try{
+					def newCourse = new Course(coursename: params.InputCourseName, coursecode: params.InputCourseCode, description: params.InputDescription, teacher: User.findByUsername(params.InputInstructor))
+					params.InputRoster.tokenize(',').each {
+						def s = User.findByUsername(it)
+						newCourse.addToStudents(s)
+					}
+					newCourse.save(failOnError: true)
+					render('Successfully created ')
+				}catch(Exception e){
+					//This needs to be filled in
+					render(e.message)
+				}			
 		}else{
 			render('Input incomplete please complete all fields')
 		}

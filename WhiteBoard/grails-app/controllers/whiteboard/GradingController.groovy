@@ -52,7 +52,7 @@ class GradingController {
 	def assignmentGrades(){
 		def submissionList = Submission.findAllByAssignment(Assignment.findById(params.assignmentId))
 		
-		render template: '/templates/viewAssignmentSubmissions', model: [submissionList: submissionList]
+		render template: '/templates/viewAssignmentSubmissions', model: [submissionList: submissionList, currentUserRole: getAccountType()]
 	}
 	
 	
@@ -73,10 +73,14 @@ class GradingController {
 		def file = request.getFile('FileUpload')
 		def dateDue = params.DateDue
 		Date now = new Date()
-		print dateDue
+		print springSecurityService.currentUser.id
+		//def student = params.StudentId
+		//print student
 		//change dateDue type from String to Date
 		def changedDateDueType = Date.parse("yyyy-MM-dd hh:mm:ss.s", dateDue)
-		
+
+		def fileNameOrdered = springSecurityService.currentUser.id + "_" + springSecurityService.currentUser.firstname + "_" + springSecurityService.currentUser.lastname + "_" + params.CourseCode + "_" + params.AssignmentName + "_" + file.originalFilename
+		//print fileNameOrdered
 			try{
 				if(file.empty){
 					flash.message = "File cannot be empty"
@@ -84,7 +88,7 @@ class GradingController {
 				else{
 					if(changedDateDueType > now){
 						//Submission domain needs docLink and each primary key of student, course, and assignment so that everything can be connected to each other				
-						def newSub = new Submission(docLink:file.originalFilename, docName:file.originalFilename, student: params.StudentId[1], course: params.CourseId, assignment: params.AssignmentId)
+						def newSub = new Submission(docLink:file.originalFilename, docName:fileNameOrdered, student: springSecurityService.currentUser.id, course: params.CourseId, assignment: params.AssignmentId)
 
 		            	newSub.docpath = grailsApplication.config.uploadFolder + newSub.docLink
 		            	file.transferTo(new File(newSub.docpath))	

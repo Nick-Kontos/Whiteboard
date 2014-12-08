@@ -60,15 +60,44 @@ class GradeController {
 	def saveGrades(){
 
 		def grades = params.int('InputGrades')
-		def comment = params.InputComment
+		print grades
+		//def comment = params.InputComment
 		def id = params.SubmissionId
-
+		print id
+	
 		if(params.InputGrades ){
 
 			try{
 
 				def update = Submission.get(id)
+				print update
 				update.grade = grades
+				//update.comment = comment
+				update.save()
+
+				render('save')
+			}catch(Exception e){
+				//this need to be completed to handle different errors
+				render(e.message)
+			}
+		}else {
+			render('Error please complete all fields')
+		}
+		
+	}
+	def saveComments(){
+
+		
+		def comment = params.InputComment
+		def id = params.SubmissionId
+
+		print id
+		if(params.InputGrades ){
+
+			try{
+
+				def update = Submission.get(id)
+				
 				update.comment = comment
 				update.save()
 
@@ -83,4 +112,35 @@ class GradeController {
 		
 	}
 
+
+	def finalizeGrade(){
+		def finalize = params.FinalizeGrades
+		def id = params.AssignmentId
+
+		if(params.FinalizeGrades){
+		try{
+
+			def update = Assignment.get(id)
+			update.gradeCompleted = true
+			update.save()
+
+			render('save')
+
+		}catch(Exception e){
+
+			render(e.message)
+
+		}
+	}else{
+		render('Error')
+		}
+
+	}
+	def getAvg(){
+		def assignlist = []
+		def id = params.AssignmentId
+		assignlist = Submission.findAllByGrade(Assignment.findById(id))
+		def update = Assignment.get(1)
+		update.avg = 25
+	}
 }

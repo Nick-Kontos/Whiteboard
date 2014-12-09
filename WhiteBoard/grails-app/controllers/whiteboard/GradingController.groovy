@@ -85,6 +85,8 @@ class GradingController {
 		submissionList = Submission.findAllByAssignment(Assignment.findById(assignmentId))
 		String fileString
 		fileString = "First Name, Last Name, Date Submitted, Grade,\n"
+		print submissionList
+		print assignmentId
 		submissionList.each{
 			fileString += it.student.firstname + ", "
 			fileString += it.student.lastname + ", "
@@ -126,7 +128,7 @@ class GradingController {
 				flash.message = "File cannot be empty"
 			}
 			else{
-				if(changedDateDueType > now){
+				
 					//Submission domain needs docLink and each primary key of student, course, and assignment so that everything can be connected to each other
 					def newSub = new Submission(doclink:file.originalFilename, docname:fileNameOrdered, student: springSecurityService.currentUser.id, course: params.CourseId, assignment: params.AssignmentId)
 
@@ -137,14 +139,14 @@ class GradingController {
 					render("saved")
 					//redirect(view: '/default')
 
-				}
-				else{
+				
+				if(changedDateDueType < now){
 					sendMail {
-						to "ben-jun@hotmail.com"
-						subject "Hello Fred"
-						body 'How are you?'
+						to Course.findById(params.CourseId).teacher.email
+						subject "Warning - Late Submission"
+						body 'Assignment for ' + Assignment.findById(params.AssignmentId).title + " has been submitted late for student " + springSecurityService.currentUser.firstname + " " + springSecurityService.currentUser.lastname
 					}
-					render("failed cuz of due date is late and mail has been sent")
+					render("Your submission is late!")
 				}
 
 			}

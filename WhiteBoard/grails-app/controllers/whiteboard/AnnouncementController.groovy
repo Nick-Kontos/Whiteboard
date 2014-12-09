@@ -165,7 +165,7 @@ class AnnouncementController {
 	}
 	def editAnnouncement(){ 
 	
-		def deleteAnnouncementa = Announcement.findByTitle(params.announcementno) 
+		def deleteAnnouncementa = Announcement.findById(params.announcementno) 
 		
 		render(template: '/templates/editAnnouncement', model: [text:deleteAnnouncementa.text,title:deleteAnnouncementa.title,coursecodes: params.course1, currentUserRole: getAccountType()]) 
 
@@ -174,7 +174,7 @@ class AnnouncementController {
 	
 	def deleteAnnouncement(){
 		
-		def deleteAnnouncementa = Announcement.findByTitle(params.announcementno)
+		def deleteAnnouncementa = Announcement.findById(params.announcementno)
 		
 		deleteAnnouncementa.delete()
 		

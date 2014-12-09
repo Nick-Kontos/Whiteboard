@@ -113,15 +113,15 @@ class AssignmentController {
 			render('Error please complete all fields')
 		}
 	}
-def returnAssignment(){
-def links = []
-retrieveClasses().each {
-links.add(it.coursecode)
-}
-def currentRole = getAccountType()
+	def returnAssignment(){
+		def links = []
+		retrieveClasses().each {
+			links.add(it.coursecode)
+		}
+		def currentRole = getAccountType()
 
-render(view: '/default', model: [sidebarlinks: links, controllertype: 'Assignment', currentUserRole: currentRole])
-}	
+		render(view: '/default', model: [sidebarlinks: links, controllertype: 'Assignment', currentUserRole: currentRole])
+	}
 	def download(long id){
 
 		Assignment newAssign = Assignment.get(id)
@@ -152,7 +152,7 @@ render(view: '/default', model: [sidebarlinks: links, controllertype: 'Assignmen
 	}
 	def editAssignment(){
 
-		def deleteAssignment = Assignment.findByTitle(params.assignmentno)
+		def deleteAssignment = Assignment.findById(params.assignmentno)
 		def links = []
 		retrieveClasses().each {
 			links.add(it.coursecode)
@@ -165,7 +165,7 @@ render(view: '/default', model: [sidebarlinks: links, controllertype: 'Assignmen
 
 	def deleteAssignment(){
 
-		def deleteAssignment = Assignment.findByTitle(params.assignmentno)
+		def deleteAssignment = Assignment.findById(params.assignmentno)
 
 		deleteAssignment.delete()
 

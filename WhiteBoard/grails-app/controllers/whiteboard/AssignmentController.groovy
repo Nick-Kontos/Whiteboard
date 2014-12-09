@@ -104,8 +104,8 @@ class AssignmentController {
 				}
 				newAssign.course = Course.findByCoursecode(params.InputCourse)
 				newAssign.save(failOnError: true)
-				redirect controller: 'assignment', action: 'allLink'
-
+				//redirect controller: 'assignment', action: 'allLink'
+				render(template: '/templates/viewSubAssignment',model: [course:params.InputCourse, title: params.InputTitle, point: params.InputPointsWorth, text: params.InputDescription])
 
 			}catch(Exception e){
 				//this need to be completed to handle different errors
@@ -115,6 +115,15 @@ class AssignmentController {
 			render('Error please complete all fields')
 		}
 	}
+def returnAssignment(){
+def links = []
+retrieveClasses().each {
+links.add(it.coursecode)
+}
+def currentRole = getAccountType()
+
+render(view: '/default', model: [sidebarlinks: links, controllertype: 'Assignment', currentUserRole: currentRole])
+}	
 	def download(long id){
 
 		Assignment newAssign = Assignment.get(id)

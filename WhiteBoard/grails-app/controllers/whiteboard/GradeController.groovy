@@ -111,20 +111,16 @@ class GradeController {
 
 
 	def finalizeGrade(){
-		def finalize = params.FinalizeGrades
+
 		def id = params.AssignmentId
-		def sortedGrades = finalize.sort()
-		def numItems = finalize.size()
-		def midNumIndex = (int) numItems/2
-		
+
 		//Get Median
 		def grades = []
 		Submission.findAllByAssignment(Assignment.findById(params.AssignmentId)).each{
 			grades.add(it.grade)
 		}
-		
-		def median = numItems %2 != 0 ? grades[midNumIndex] : (grades[midNumIndex] + grades[midNumIndex-1])/2				
-		
+		def midNumIndex = (int) grades.size()/2
+		def median = grades.size() %2 != 0 ? grades[midNumIndex] : (grades[midNumIndex] + grades[midNumIndex-1])/2				
 
 		//Get Average
 		def query = Submission.where {
@@ -172,4 +168,5 @@ class GradeController {
 		}
 
 	}
+
 }

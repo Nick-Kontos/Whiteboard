@@ -5,8 +5,6 @@
 
 			<div class="row">
 				<g:each in="${assignlist }">
-
-					<div class="col-md-11 col-md-offset-1">
 						<div class="panel panel-info">
 							<div class="panel-heading">
 								${it?.course.coursecode }
@@ -53,18 +51,10 @@
 							</div>
 
 							<g:if test="${currentUserRole == 'ROLE_STUDENT'}">
-							<g:form role="form" controller="grading"
-								action="saveAssignment" enctype="multipart/form-data">
+								<g:form role="form" controller="grading" action="saveAssignment"
+									enctype="multipart/form-data">
 
-									<p>
-										[Assignment]AssignmentId:${it?.id}<br> [Assignment]DueDate:${it?.datedue}<br>
-										[Assignment]Title:${it?.title}<br> [Course]CourseId:${it?.course.id}<br>
-										[Course]CourseCode:${it?.course.coursecode}<br>
-										[Course]CourseName:${it?.course.coursename}<br>
-										[User]Student Id:${it?.course.students.id}<br>
-										[User]Student User:${it?.course.students.username}
-										[User]Student User:${assignlist.course.students.username}
-									</p>
+
 									<div class="form-group">
 										<input type="hidden" id="AssignmentId" name="AssignmentId"
 											value="${it?.id}"> <input type="hidden" id="CourseId"

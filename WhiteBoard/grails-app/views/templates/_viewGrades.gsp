@@ -16,7 +16,7 @@
   						</tr>
   						<tr>
   							<td class="info">${it?.assignment.title }</td>
-  							<td class="info"><button type="button" class="btn btn-primary btn-lg active">view</button></td>
+  							<td class="info">${it?.grade }</td>
   						</tr>
 					</table>					
 

@@ -25,7 +25,9 @@ class GradingController {
 
 	def retrieveClasses(){
 		def result
-		if(getAccountType() == 'ROLE_STUDENT'){
+		String accountType = getAccountType()
+		print accountType
+		if(accountType == 'ROLE_STUDENT'){
 			def c = Course.createCriteria()
 			result = c.list {
 				students{
@@ -33,10 +35,10 @@ class GradingController {
 				}
 			}
 		}
-		else if(getAccountType() == 'ROLE_TEACHER'){
+		else if(accountType == 'ROLE_TEACHER'){
 			result = Course.findAllByTeacher(springSecurityService.currentUser)
 		}
-		else if(getAccountType() == 'ROLE_TA'){
+		else if(accountType == 'ROLE_TA'){
 			def c = Course.createCriteria()
 			result = c.list{
 				TAs{
@@ -44,10 +46,15 @@ class GradingController {
 				}
 			}
 		}
+		print result
 		return result
 	}
-	def getAccountType(){
-		UserRole.findAllByUser(springSecurityService.currentUser).get(0).role.authority
+	def getAccountType(){		
+		if(UserRole.findAllByUser(springSecurityService.currentUser).size() > 1){
+			return 'ROLE_TA'
+		}else{	
+			return UserRole.findAllByUser(springSecurityService.currentUser).get(0).role.authority
+		}
 	}
 
 	def courseLink(){

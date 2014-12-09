@@ -67,7 +67,7 @@
 						<li><g:remoteLink update="sidebar" controller="Grading"
 								action="sidebar">Grading</g:remoteLink></li>
 					</g:if>
-					<a href="#" class="btn btn-success" data-toggle="modal" data-target="#basicModal">Help</a> 
+					<li><a href="#" class="btn btn-success" data-toggle="modal" data-target="#basicModal">Help</a></li> 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<form name="submitForm" method="POST"

@@ -38,6 +38,7 @@ class CourseController {
 	}
 	def getAccountType(){
 		UserRole.findAllByUser(springSecurityService.currentUser).get(0).role.authority
+		
 	}
 	def createLink(){
 		//render placeholder
@@ -144,6 +145,7 @@ class CourseController {
 				UserRole.create(s, newUserRole, true)
 				student = Course.findByCoursecode(coursename)
 				student.addToTAs(s)
+				student.save(flush:true)
 			}
 
 

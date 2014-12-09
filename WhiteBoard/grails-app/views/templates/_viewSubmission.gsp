@@ -31,7 +31,9 @@
 			</div>
 			<div class="span7 text-center">
 				<div class="btn-group" role="group">
-					<g:link controller="grading" action="downloadAssignment" type="button" class="btn btn-success btn-lg">Download
+					<g:link controller="grading" action="downloadAssignment"
+						type="button" class="btn btn-success btn-lg"
+						params="${[coursename: coursecode] }">Download
 						Grade Report</g:link>
 				</div>
 			</div>
@@ -70,7 +72,10 @@
 							</td>
 							<td><a href="#" class="btn btn-success" data-toggle="modal"
 								data-target="#gradeModal"> histogram </a></td>
-							<td>Download Report</td>
+							<td><g:link controller="grading" action="downloadSubmission"
+									type="button" class="btn btn-success"
+									params="${[assignmentId: it.id]}">
+						Download Report</g:link></td>
 						</tr>
 					</g:if>
 					<g:elseif
@@ -88,7 +93,10 @@
 							<td>N/A</td>
 							<td>N/A</td>
 							<td>Histogram</td>
-							<td>Download Report</td>
+							<td><g:link controller="grading" action="downloadSubmission"
+									type="button" class="btn btn-success"
+									params="${[assignmentId: it.id]}">
+						Download Report</g:link></td>
 						</tr>
 					</g:elseif>
 					<g:else>
@@ -105,7 +113,10 @@
 							<td>N/A</td>
 							<td>N/A</td>
 							<td>Histogram</td>
-							<td>Download Report</td>
+							<td><g:link controller="grading" action="downloadSubmission"
+									type="button" class="btn btn-success"
+									params="${[assignmentId: it.id]}">
+						Download Report</g:link></td>
 						</tr>
 					</g:else>
 

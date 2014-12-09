@@ -3,6 +3,7 @@ package whiteboard
 class GradingController {
 
 	def springSecurityService
+	def exportService
 
 	def index() {
 		def links = []
@@ -52,15 +53,50 @@ class GradingController {
 	def assignmentGrades(){
 		def submissionList = Submission.findAllByAssignment(Assignment.findById(params.assignmentId))
 
-		render template: '/templates/viewAssignmentSubmissions', model: [submissionList: submissionList, currentUserRole: getAccountType()]
+		render template: '/templates/viewAssignmentSubmissions', model: [submissionList: submissionList, currentUserRole: getAccountType(), assignmentId: params.assignmentId]
 	}
-	
+
 	def downloadAssignment(){
 		def coursename = params.coursename
-	}
-	
-	def downloadSubmission(){
+		def assignlist = []
+		assignlist = Assignment.findAllByCourse(Course.findByCoursecode(coursename))
+		String fileString
+		fileString = "Title, Date due, Max, Min, Avg, Med,\n"
+		assignlist.each{
+			fileString += it.title + ", "
+			fileString += it.datedue.getDateTimeString() + ", "
+			fileString += it.max + ", "
+			fileString += it.min + ", "
+			fileString += it.avg + ", "
+			fileString += it.med + "\n"
+		}
 		
+		File file = File.createTempFile("GradeReport",".txt")
+		file.write(fileString)
+		response.setHeader "Content-disposition", "attachment; filename=${file.name}.txt"
+		response.contentType = 'APPLICATION/OCTET-STREAM'
+		response.outputStream << file.text
+		response.outputStream.flush()
+	}
+
+	def downloadSubmission(){
+		def assignmentId = params.assignmentId
+		def submissionList = []
+		submissionList = Submission.findAllByAssignment(Assignment.findById(assignmentId))
+		String fileString
+		fileString = "First Name, Last Name, Date Submitted, Grade,\n"
+		submissionList.each{
+			fileString += it.student.firstname + ", "
+			fileString += it.student.lastname + ", "
+			fileString += it.dateCreated.getDateTimeString() + ", "
+			fileString += it.grade + "\n"
+		}
+		File file = File.createTempFile("GradeReport",".txt")
+		file.write(fileString)
+		response.setHeader "Content-disposition", "attachment; filename=${file.name}.txt"
+		response.contentType = 'APPLICATION/OCTET-STREAM'
+		response.outputStream << file.text
+		response.outputStream.flush()
 	}
 
 	def allLink(){

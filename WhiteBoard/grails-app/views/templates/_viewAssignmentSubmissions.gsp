@@ -11,7 +11,7 @@
 					<g:else>
 						<g:link type="button" class="btn btn-success btn-lg"  controller="grade" action="finalizeGrade" params="${[FinalizeGrades: submissionList.grade, AssignmentId: submissionList.assignment.id]}" >Fianlize Grades</g:link>
 					</g:else>
-					<g:link controller="grading" action="downloadSubmission" type="button" class="btn btn-success btn-lg">Download
+					<g:link controller="grading" action="downloadSubmission" type="button" class="btn btn-success btn-lg" params="${assignmentId }">Download
 						Grade Report</g:link>
 				</div>
 			</div>
@@ -41,7 +41,7 @@
 							</td>
 							<td><g:link controller="grading" action="download"
 									id="${it?.id}">
-									${it?.docName}
+									${it?.docname}
 								</g:link></td>
 							<td><g:hiddenField name="SubmissionId" id="SubmissionId"
 									value="${it.id}" /> <a href="#" class="btn btn-success"
@@ -65,7 +65,7 @@
 							</td>
 							<td><g:link controller="grading" action="download"
 									id="${it?.id}">
-									${it?.docName}
+									${it?.docname}
 								</g:link></td>
 							<td><a href="#" class="btn btn-success" data-toggle="modal"
 								data-target="${'#comment' + it.id }">View/Edit</a></td>

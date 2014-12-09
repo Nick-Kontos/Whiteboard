@@ -3,8 +3,8 @@
 		<h3 class="panel-title">Create Course</h3>
 	</div>
 	<div class="panel-body">
-		<g:formRemote update="MainContent" name="createCourse" url="[controller: 'course', action: 'createCourse']"
-			enctype="multipart/form-data">
+		<g:form role="form" controller="course"
+				action="createCourse" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="InputCourseCode">Input Course Code</label>
 				<g:textField type="text" name="InputCourseCode" class="form-control"
@@ -86,6 +86,6 @@
 			<div class="form-group">
 				<button type="submit" class="btn btn-default btn-lg btn-block">Submit</button>
 			</div>
-		</g:formRemote>
+		</g:form>
 	</div>
 </div>

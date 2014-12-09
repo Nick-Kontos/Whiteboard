@@ -53,9 +53,8 @@
 							</div>
 
 							<g:if test="${currentUserRole == 'ROLE_STUDENT'}">
-								<g:formRemote name="submitAssignment"
-									url="[controller: 'grading', action: 'saveAssignment']"
-									enctype="multipart/form-data">
+							<g:form role="form" controller="grading"
+								action="saveAssignment" enctype="multipart/form-data">
 
 									<p>
 										[Assignment]AssignmentId:${it?.id}<br> [Assignment]DueDate:${it?.datedue}<br>
@@ -94,7 +93,7 @@
 										<button type="submit" class="btn btn-default btn-lg btn-block">Submit</button>
 									</div>
 
-								</g:formRemote>
+								</g:form>
 
 							</g:if>
 

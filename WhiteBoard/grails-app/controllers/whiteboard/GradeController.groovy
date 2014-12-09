@@ -115,21 +115,15 @@ class GradeController {
 		def id = params.AssignmentId
 		def sortedGrades = finalize.sort()
 		def numItems = finalize.size()
+		def midNumIndex = (int) numItems/2
+		
 		//Get Median
-		/*
-		def listOfValues = []
-		sortedGrades.each{ grade -> 
-			def objReturn = null
-			def listHalf = (int) Math.abs(numItems/2)
-			print listHalf
-			if(listHalf == numItems/2){
-				objReturn = (listOfValues.get(listHalf)) 
-			}
+		def grades = []
+		Submission.findAllByAssignment(Assignment.findById(params.AssignmentId)).each{
+			grades.add(it.grade)
 		}
-		*/
-
-		//def median = numItems %2 != 0 ? sortedGrades[midNumIndex] : (sortedGrades[midNumIndex] + sortedGrades[midNumIndex-1])/2				
-
+		
+		def median = numItems %2 != 0 ? grades[midNumIndex] : (grades[midNumIndex] + grades[midNumIndex-1])/2				
 		
 
 		//Get Average
@@ -163,6 +157,7 @@ class GradeController {
 			update.avg = avgResults
 			update.max = maxResults
 			update.min = minResults
+			update.med = median
 			update.save()
 
 			render('save')

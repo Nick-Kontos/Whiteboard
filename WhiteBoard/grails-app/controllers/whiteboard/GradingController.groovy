@@ -110,7 +110,7 @@ class GradingController {
 	}
 
 	def saveAssignment(){
-		def file = request.getFile(params.FileUpload)
+		def file = request.getFile('FileUpload')
 		def dateDue = params.DateDue
 		Date now = new Date()
 		print springSecurityService.currentUser.id
@@ -130,7 +130,7 @@ class GradingController {
 					//Submission domain needs docLink and each primary key of student, course, and assignment so that everything can be connected to each other
 					def newSub = new Submission(doclink:file.originalFilename, docname:fileNameOrdered, student: springSecurityService.currentUser.id, course: params.CourseId, assignment: params.AssignmentId)
 
-					newSub.docpath = grailsApplication.config.uploadFolder + newSub.docLink
+					newSub.docpath = grailsApplication.config.uploadFolder + newSub.doclink
 					file.transferTo(new File(newSub.docpath))
 
 					newSub.save(failOnError: true)

@@ -16,7 +16,7 @@
 								<div class="pull-right">
 
 								<li><g:remoteLink type="button" update="MainContent" controller="announcement"
-								action="editAnnouncement" params="${[announcementno: it?.title] }"  >Edit</g:remoteLink></li> 
+								action="editAnnouncement" params="${[announcementno: it?.title, course1: it?.course.coursecode]}"  >Edit</g:remoteLink></li> 
 								 
 								<li><g:remoteLink type="button" update="MainContent" controller="announcement"
 								action="deleteAnnouncement" params="${[announcementno: it?.title] }"  >Delete</g:remoteLink></li>

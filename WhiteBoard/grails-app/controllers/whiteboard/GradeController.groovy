@@ -131,7 +131,8 @@ class GradeController {
 			grades.add(it.grade)
 		}
 		def midNumIndex = (int) grades.size()/2
-		def median = grades.size() %2 != 0 ? grades[midNumIndex] : (grades[midNumIndex] + grades[midNumIndex-1])/2
+		def median = grades.size() %2 != 0 ? grades[midNumIndex] : (grades[midNumIndex] + grades[midNumIndex-1])/2				
+
 
 		//Get Average
 		def query = Submission.where { assignment.id == id }.projections{ avg('grade') }
@@ -167,4 +168,5 @@ class GradeController {
 		}
 
 	}
+
 }

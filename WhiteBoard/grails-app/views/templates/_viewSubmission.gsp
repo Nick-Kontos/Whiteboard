@@ -1,27 +1,3 @@
-<!-- 
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript">
-	google.load("visualization", "1", {
-		packages : [ "corechart" ]
-	});
-	google.setOnLoadCallback(drawChart);
-	function drawChart() {
-
-		var data = google.visualization.arrayToDataTable([
-				[ 'Task', 'Hours per Day' ], [ 'Work', 11 ], [ 'Eat', 2 ],
-				[ 'Commute', 2 ], [ 'Watch TV', 2 ], [ 'Sleep', 7 ] ]);
-
-		var options = {
-			title : 'My Daily Activities'
-		};
-
-		var chart = new google.visualization.PieChart(document
-				.getElementById('piechart'));
-
-		chart.draw(data, options);
-	}
-</script>
--->
 <div class="container">
 	<div class="col-md-11 col-md-offset-0">
 		<div class="panel panel-primary">
@@ -71,8 +47,10 @@
 							<td>
 								${it.med }
 							</td>
-							<td><a href="#" class="btn btn-success" data-toggle="modal"
+							<td>
+							<a href="#" class="btn btn-success" data-toggle="modal"
 								data-target="#gradeModal"> histogram </a></td>
+							<td><div id="chart_div"></div></td>	
 							<td><g:link controller="grading" action="downloadSubmission"
 									type="button" class="btn btn-success"
 									params="${[assignmentId: it.id]}">
@@ -138,9 +116,7 @@
 			</div>
 
 			<div class="modal-body">
-				<h3>
-					<div id="piechart" style="width: 100px; height: 70px;"></div>
-				</h3>
+					<div id="chart_div"></div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

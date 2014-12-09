@@ -118,6 +118,7 @@ class CourseController {
 		else{
 		render "Course already exists."
 		}
+
 		} /* All fields complete */
 		else{
 		render('Input incomplete. Please complete all fields')

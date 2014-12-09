@@ -86,13 +86,11 @@ class AssignmentController {
 				//response.setContentType("APPLICATION/OCTET-STREAM")
 				//response.setHeader("Content-Disposition", "Attachment;Filename=\"${it.doclink}\"")
 
-
-				//submission,assignmentTitle
 				def file
-				if(params.FileUpload){
+				if(params.FileUpload)
 					file = request.getFile('FileUpload')
-				}
-				if(file){
+				//submission,assignmentTitle
+				if(!file.empty){
 					newAssign.doclink = file.originalFilename
 					newAssign.docpath = grailsApplication.config.uploadFolder + newAssign.doclink
 					file.transferTo(new File(newAssign.docpath))

@@ -49,10 +49,11 @@
 				<g:each in="${assignlist }">
 					<g:if test="${currentDateTime < it.datedue && it.gradeCompleted}">
 						<tr class="success">
-							<td><g:remoteLink update="MainContent" controller="grading"
+							<td>
+							<g:remoteLink update="MainContent" controller="grading"
 									action="assignmentGrades" params="${[assignmentId: it.id] }">
 									${it.title }
-								</g:remoteLink></td>
+							</g:remoteLink></td>
 							<td>
 								${it.datedue }
 							</td>

@@ -144,7 +144,7 @@ class GradingController {
 					sendMail {
 						to Course.findById(params.CourseId).teacher.email
 						subject "Warning - Late Submission"
-						body 'Assignment for ' + Assignment.findById(params.AssignmentId).title + " has been submitted late for student " + springSecurityService.currentUser.firstname + " " + springSecurityService.currentUser.lastname
+						body 'Submission for ' + Assignment.findById(params.AssignmentId).title + " has been submitted late for student " + springSecurityService.currentUser.firstname + " " + springSecurityService.currentUser.lastname
 					}
 					render("Your submission is late!")
 				}

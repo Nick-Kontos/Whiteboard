@@ -49,7 +49,7 @@
 					<th>Download Report</th>
 				</tr>
 				<g:each in="${assignlist }">
-					<g:if test="${currentDateTime < it.datedue && it.gradeCompleted}">
+					<g:if test="${it.gradeCompleted}">
 						<tr class="success">
 							<td>
 							<g:remoteLink update="MainContent" controller="grading"

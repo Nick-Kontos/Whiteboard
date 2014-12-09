@@ -12,7 +12,7 @@ class GradeController {
 		def currentRole = getAccountType()
 		render(view: '/default', model: [sidebarlinks: links, controllertype: 'Grade', currentUserRole: currentRole])
 	}
-	
+
 	def sidebar(){
 		def links = []
 		retrieveClasses().each {
@@ -51,9 +51,7 @@ class GradeController {
 	def allLink(){
 		def assignlist = []
 		retrieveClasses().each {
-			Submission.findAllByCourse(it).each{
-				assignlist.add(it)
-			}		
+			Submission.findAllByCourse(it).each{ assignlist.add(it) }
 		}
 		render(template: '/templates/viewGrades', model: [assignlist: assignlist, currentUserRole: getAccountType()])
 	}
@@ -64,7 +62,7 @@ class GradeController {
 		//def comment = params.InputComment
 		def id = params.SubmissionId
 		print id
-	
+
 		if(params.InputGrades ){
 
 			try{
@@ -76,6 +74,19 @@ class GradeController {
 				update.save()
 
 				render('save')
+				boolean TA = false
+				UserRole.findAllByUser(springSecurityService.currentUser).each{
+					if(it.authority == "ROLE_TA"){
+						TA = true
+					}
+				}
+				if(TA){
+					sendMail {
+						to update.course.teacher.email
+						subject "Assignment Graded by TA"
+						body 'Grade has been submitted for ' + update.assignment.title + " by TA " + springSecurityService.currentUser.firstname + " " + springSecurityService.currentUser.lastname
+					}
+				}
 			}catch(Exception e){
 				//this need to be completed to handle different errors
 				render(e.message)
@@ -83,11 +94,11 @@ class GradeController {
 		}else {
 			render('Error please complete all fields')
 		}
-		
+
 	}
 	def saveComments(){
 
-		
+
 		def comment = params.InputComments
 		def id = params.SubmissionId
 
@@ -95,80 +106,64 @@ class GradeController {
 		print comment
 		try{
 
-				def update = Submission.get(id)
-				
-				update.comment = comment
-				update.save()
+			def update = Submission.get(id)
 
-				render('save')
-			}catch(Exception e){
-				//this need to be completed to handle different errors
-				render(e.message)
-			}
+			update.comment = comment
+			update.save()
 
-		
+			render('save')
+		}catch(Exception e){
+			//this need to be completed to handle different errors
+			render(e.message)
+		}
+
+
 	}
 
 
 	def finalizeGrade(){
-		def finalize = params.FinalizeGrades
+
 		def id = params.AssignmentId
-		def sortedGrades = finalize.sort()
-		def numItems = finalize.size()
-		def midNumIndex = (int) numItems/2
-		
+
 		//Get Median
 		def grades = []
 		Submission.findAllByAssignment(Assignment.findById(params.AssignmentId)).each{
 			grades.add(it.grade)
 		}
-		
-		def median = numItems %2 != 0 ? grades[midNumIndex] : (grades[midNumIndex] + grades[midNumIndex-1])/2				
-		
+		def midNumIndex = (int) grades.size()/2
+		def median = grades.size() %2 != 0 ? grades[midNumIndex] : (grades[midNumIndex] + grades[midNumIndex-1])/2
 
 		//Get Average
-		def query = Submission.where {
-			assignment.id == id
-		}.projections{
-				avg('grade')
-			}		
+		def query = Submission.where { assignment.id == id }.projections{ avg('grade') }
 		def avgResults = query.find()
 		//Get Max
-		def query2 = Submission.where {
-			assignment.id == id
-		}.projections{
-				max('grade')
-			} 		
+		def query2 = Submission.where { assignment.id == id }.projections{ max('grade') }
 		def maxResults = query2.find()
 		//Get Min
-		def query3 = Submission.where {
-			assignment.id == id
-		}.projections{
-				min('grade')
-			} 		
+		def query3 = Submission.where { assignment.id == id }.projections{ min('grade') }
 		def minResults = query3.find()
-		
+
 
 		if(params.FinalizeGrades){
-		try{
+			try{
 
-			def update = Assignment.get(id)
-			update.gradeCompleted = true
-			update.avg = avgResults
-			update.max = maxResults
-			update.min = minResults
-			update.med = median
-			update.save()
+				def update = Assignment.get(id)
+				update.gradeCompleted = true
+				update.avg = avgResults
+				update.max = maxResults
+				update.min = minResults
+				update.med = median
+				update.save()
 
-			render('save')
+				render('save')
 
-		}catch(Exception e){
+			}catch(Exception e){
 
-			render(e.message)
+				render(e.message)
 
-		}
-	}else{
-		render('Error')
+			}
+		}else{
+			render('Error')
 		}
 
 	}

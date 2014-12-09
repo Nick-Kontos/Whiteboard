@@ -69,32 +69,31 @@ class CourseController {
 				}
 				else{
 					/* Course code is unique and teacher exists */
-					if(params.fileUpload){
-						def file = request.getFile(params.fileUpload)
-						if(!file.empty){
-							try{
-								def newCourse = new Course(coursename: params.InputCourseName, coursecode: params.InputCourseCode, description: params.InputDescription, teacher: User.findByUsername(params.InputInstructor))
-								file.getInputStream().eachLine{line ->
-									if(line != null){
-										def lineList = line.tokenize(",")
-										if((User.findByUsername(lineList.get(0))) == null){
-											def newStudent = new User(username: lineList.get(0), password: "password", email: lineList.get(3), firstname: lineList.get(2), lastname: lineList.get(1))
-											newStudent.save(failOnError: true)
-											UserRole.create(newStudent, Role.findByAuthority('ROLE_STUDENT'), true)
-											newCourse.addToStudents(newStudent)
-											newCourse.save(failOnError:true)
-										}
-										else{
-											def s = User.findByUsername(lineList.get(0))
-											newCourse.addToStudents(s)
-											newCourse.save(failOnError:true)
-										}
+
+					def file = request.getFile('fileUpload')
+					if(!file.empty){
+						try{
+							def newCourse = new Course(coursename: params.InputCourseName, coursecode: params.InputCourseCode, description: params.InputDescription, teacher: User.findByUsername(params.InputInstructor))
+							file.getInputStream().eachLine{line ->
+								if(line != null){
+									def lineList = line.tokenize(",")
+									if((User.findByUsername(lineList.get(0))) == null){
+										def newStudent = new User(username: lineList.get(0), password: "password", email: lineList.get(3), firstname: lineList.get(2), lastname: lineList.get(1))
+										newStudent.save(failOnError: true)
+										UserRole.create(newStudent, Role.findByAuthority('ROLE_STUDENT'), true)
+										newCourse.addToStudents(newStudent)
+										newCourse.save(failOnError:true)
+									}
+									else{
+										def s = User.findByUsername(lineList.get(0))
+										newCourse.addToStudents(s)
+										newCourse.save(failOnError:true)
 									}
 								}
-								redirect controller: 'course', action: 'viewCourses'
-							}catch(Exception e){
-								render "Creating course without file did not succeed"
 							}
+							redirect controller: 'course', action: 'viewCourses'
+						}catch(Exception e){
+							render "Creating course without file did not succeed"
 						}
 					}else{
 						/* file is empty */

@@ -32,8 +32,17 @@ class GradingController {
 					idEq(springSecurityService.currentUser.id)
 				}
 			}
-		}else if(getAccountType() == 'ROLE_TEACHER'){
+		}
+		else if(getAccountType() == 'ROLE_TEACHER'){
 			result = Course.findAllByTeacher(springSecurityService.currentUser)
+		}
+		else if(getAccountType() == 'ROLE_TA'){
+			def c = Course.createCriteria()
+			result = c.list{
+				TAs{
+					idEq(springSecurityService.currentUser.id)
+				}
+			}
 		}
 		return result
 	}
